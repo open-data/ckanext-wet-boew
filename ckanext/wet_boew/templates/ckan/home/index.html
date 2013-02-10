@@ -4,12 +4,19 @@
 
 {% block maintag %}{% endblock %}
 
-{# - block breadcrumb_content %}
-  <li>
-    <a href="/">Home</a>
-  </li>
-{%- endblock breadcrumb_content #}  
+{# Clear out the breadcrumb on the home page #}
+{% block breadcrumb_content %}{%- endblock breadcrumb_content %}  
 
+{% block header_site_search %}
+  <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}" method="get">
+    <div class="field">
+      <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
+      <input id="field-sitewide-search" name="q" placeholder="{{ _('Search') }}" />
+      <button class="btn-search" type="submit">{{ _('Search') }}</button>
+    </div>
+  </form>
+{% endblock %}
+      
 {% block content %}
   <div role="main" class="hero">
     <div id="content" class="container">

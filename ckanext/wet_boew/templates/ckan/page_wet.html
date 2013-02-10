@@ -3,20 +3,16 @@
 {%- block page -%}
 
   {#
-  Override the header on a page by page basis by extending this block. If
-  making sitewide header changes it is preferable to override the header.html
-  file.
+    Override the header on a page by page basis by extending this block. If
+    making sitewide header changes it is preferable to override the header.html
+    file.
+    
+    In this example, the usual links in the CKAN header have been moved to the mega-menu
+  
+    {%- block header %}
+      {% include "header.html" %}
+    {% endblock -%}
   #}
-  {%- block header %}
-    {% include "header.html" %}
-  {% endblock -%}
-
-  {% block breadcrumb %}
-    {% if self.breadcrumb_content() | trim %}
-	    {% snippet 'snippets/home_breadcrumb_item.html' %}
-	    {% block breadcrumb_content %}{% endblock %}
-    {% endif %}
-  {% endblock %}
               
   {# The content block allows you to replace the content of the page if needed #}
   {%- block content %}

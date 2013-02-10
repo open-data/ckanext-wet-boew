@@ -60,7 +60,11 @@
 
   {# Allows custom attributes to be added to the <body> tag #}
   <body{% block bodytag %} data-site-root="{{ h.url('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url('/', qualified=true) }}" data-api-root="{{ g.api_url }}"{% endblock %}>
-
+    <header>
+      {% if g.debug and not g.debug_supress_header %}
+        <div class="debug">Controller : {{ c.controller }}<br/>Action : {{ c.action }}</div>
+      {% endif %}
+    </header>
     {# Allow override of the body div for WET secondary menus #}
     {% block body_div %}<div id="wb-body">{% endblock body_div %}
 
@@ -86,8 +90,15 @@
               <h2>Full-width header area</h2>
               <div id="base-fullhd-in">
                 <ul>
+                  {# This format only works for a bilingual format #}
                   <li id="base-fullhd-lang">
+                    {% if h.lang() == 'en'%}
                     <a href={{ h.url(action=c.action, controller=c.controller, locale='fr') }} lang="fr">Français</a>
+                    {% elif h.lang() == 'fr' %}
+                    <a href={{ h.url(action=c.action, controller=c.controller, locale='en') }} lang="fr">English</a>
+                    {% else %}
+                    <a href={{ h.url(action=c.action, controller=c.controller, locale='en') }} lang="fr">English</a>                    
+                    {% endif %}
                   </li>
                 </ul>
               </div>
@@ -122,11 +133,12 @@
               <h2>Breadcrumb trail</h2>
               <div id="base-bc-in">
                 <ol>
-                {%- block breadcrumb %}
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                {%- endblock breadcrumb %}  
+                {% block breadcrumb %}
+                  {% if self.breadcrumb_content() | trim %}
+                    {% snippet 'snippets/home_breadcrumb_item.html' %}
+                    {% block breadcrumb_content %}{% endblock %}
+                  {% endif %}
+                {% endblock %}
                 </ol>
               </div>
             </div>

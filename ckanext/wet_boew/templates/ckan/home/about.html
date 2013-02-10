@@ -3,8 +3,8 @@
 {% block subtitle %}{{ _('About') }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <li class="active">{% link_for _('About'), controller='home', action='about' %}</li>
-{% endblock %}
+  <li>{% link_for _('About'), controller='home', action='about' %}</li>
+{% endblock breadcrumb_content %}
 
 {% block primary %}
   <article class="module">
