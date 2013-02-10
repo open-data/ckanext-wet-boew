@@ -17,48 +17,33 @@
   {# The content block allows you to replace the content of the page if needed #}
   {%- block content %}
     {% block maintag %}<div role="main">{% endblock %}
-      <div id="content" class="container">
-        {% block main_content %}
-          {% block flash %}
-            {% set flash_messages = h.flash.pop_messages() | list %}
-            {% if flash_messages %}
-            <blockquote>
-              {% for message in flash_messages %}
-                <div class="alert fade in {{ message.category }}">
-                  {{ h.literal(message) }}
-                </div>
-              {% endfor %}
-            </blockquote>
-            {% endif %}
-          {% endblock %}
-
-          {% block toolbar %}
-            <fieldset> {# <div class="toolbar"> #}
-              {% block actions %}
-                <ul class="actions pull-right">
-                  {% block actions_content %}{% endblock %}
-                </ul>
-              {% endblock %}
-            </fieldset> 
-          {% endblock %}
-
-          {% block primary %}
-            <div class="primary">
-              {#
-              The primary_content block can be used to add content to the page.
-              This is the main block that is likely to be used within a template.
-
-              Example:
-
-                {% block primary_content %}
-                  <h1>My page content</h1>
-                  <p>Some content for the page</p>
-                {% endblock %}
-              #}
-              {% block primary_content %}{% endblock %}
+      {% block flash %}
+        {% set flash_messages = h.flash.pop_messages() | list %}
+        {% if flash_messages %}
+        <div class="span-8 module-attention">
+          {% for message in flash_messages %}
+            <div class="alert fade in {{ message.category }}">
+              {{ h.literal(message) }}
             </div>
+          {% endfor %}
+        </div>
+        <div class="clear"></div>
+        {% endif %}
+      {% endblock flash %}
+      {% block toolbar %}
+        <div class="span-8">
+          {% block actions %}
+            <ul class="actions pull-right">
+              {% block actions_content %}{% endblock %}
+            </ul>
           {% endblock %}
+        </div>
+        </div class="clear"> 
+      {% endblock toolbar %}      
+      <div id="content">
+        {% block main_content %}
 
+          <div class="span-2">
           {% block secondary %}
             <aside class="secondary">
               {#
@@ -75,10 +60,31 @@
               #}
               {% block secondary_content %}{% endblock %}
             </aside>
-          {% endblock %}
-        {% endblock %}
+          {% endblock secondary %}
+          </div>
+          
+          <div class="span-6">
+          {% block primary %}
+            <div class="primary">
+              {#
+              The primary_content block can be used to add content to the page.
+              This is the main block that is likely to be used within a template.
+
+              Example:
+
+                {% block primary_content %}
+                  <h1>My page content</h1>
+                  <p>Some content for the page</p>
+                {% endblock %}
+              #}
+              {% block primary_content %}{% endblock %}
+            </div>
+          {% endblock primary %}
+          </div>
+          <div class="clear"></div>
+
+        {% endblock main_content %}
       </div>
-    </div>
   {% endblock -%}
 
 {%- endblock page -%}
