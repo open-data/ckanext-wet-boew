@@ -1,0 +1,95 @@
+<div id="wb-foot">
+	<div id="wb-foot-in">
+		<footer>
+			<h2>Footer</h2>
+      <!-- FooterStart -->
+      {% block footer_content %}
+      <nav role="navigation">
+        {% block footer_nav %}
+				<div id="base-sft">
+					<h3>Site footer</h3>
+					<div id="base-sft-in">
+            {% block footer_links %}
+						<section>
+							<div class="span-2">
+								<h4 class="base-col-head"><a href="#">About us</a></h4>
+								<ul>
+									<li>
+										<a href="#">{{ _('Terms and Conditions') }}</a>
+									</li>
+									<li>
+										<a href="#">{{ _('Accessibility') }}</a>
+									</li>
+									<li>
+										<a href="#">{{ _('Code of conduct') }}</a
+									</li>
+									<li>
+										<a href="#">{{ _('Moderation policy') }}</a>
+									</li>
+
+								</ul>
+							</div>
+						</section>
+            <section>
+              <div class="span-2">
+                <h4 class="base-col-head"><a href="#">News</a></h4>
+                <ul>
+ 									<li>
+										<li><a href="#">{{ _('FAQ') }}</a></li>
+									</li>
+									<li>
+										<a href="#">{{ _('Privacy') }}</a>
+									</li>
+									<li>
+										<a href="#">{{ _('Contact us') }}</a>
+									</li>                 
+                  <li>
+                    <a href="#">{{ _('Consultation') }}</a>
+                  </li>  
+                </ul>
+              </div>
+            </section>
+            {% endblock footer_links %}
+            <section>
+              <div class="span-4">
+                <h4 class="base-col-head"><a href="#">{{ _('Powered by')}}</a></h4>
+                <ul>
+                  <li>
+                    {% block footer_attribution %}
+                    <a rel="external" href="http://ckan.org">CKAN</a>
+                    {% endblock footer_attribution %}
+                  </li>
+                </ul>
+                {% block footer_lang %}
+                {% snippet "snippets/language_selector.html" %}
+                {% endblock %}
+              </div>
+            </section>
+
+          </div>
+        </div>
+        {% endblock footer_nav %}
+      </nav>
+      <section>
+        <div id="base-fullft">
+          <h3>Full-width footer area</h3>
+          <p>
+          </p>
+          <div id="base-fullft-in">
+            <p>
+            </p>
+          </div>
+        </div>
+      </section>
+      {% endblock footer_content %}
+      <!-- FooterEnd -->
+    </footer>
+  </div>
+</div>
+
+  {% block footer_debug %}
+    {% if g.debug %}
+      {% include 'snippets/debug.html' %}
+    {% endif %}
+  {% endblock %}
+

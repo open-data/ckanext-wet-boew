@@ -1,0 +1,169 @@
+{# Allows the DOCTYPE to be set on a page by page basis #}
+{%- block doctype %}<!DOCTYPE html>{% endblock -%}
+
+{# Allows custom attributes to be added to the <html> tag #}
+{%- block htmltag -%}
+{% set lang = h.lang() %}
+<!--[if IE 7]> <html lang="{{ lang }}" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="{{ lang }}" class="no-js ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="{{ lang }}" class="no-js"> 
+<!--<![endif]-->
+{%- endblock -%}
+
+  {# Allows custom attributes to be added to the <head> tag #}
+  <head{% block headtag %}{% endblock %}>
+    <meta charset="utf-8" />
+    {%- block meta -%}
+      {% block meta_generator %}<meta name="generator" content="ckan {{ c.__version__ }}" />{% endblock %}
+    {%- endblock -%}
+
+    <title>
+      {%- block title -%}
+        {%- block subtitle %}{% endblock -%}
+        {%- if self.subtitle()|trim %} {{ g.template_title_deliminater }} {% endif -%}
+        {{ g.site_title }}
+      {%- endblock -%}
+    </title>
+
+    {#
+    The links block allows you to add additonal content before the stylesheets
+    such as rss feeds and favicons in the same way as the meta block.
+    #}
+    {% block links -%}
+      <link rel="shortcut icon" href="{{ g.favicon }}" />
+    {% endblock -%}
+
+    {%- block styles %}
+
+    {#
+      <!-- <noscript><link rel="stylesheet" href="dist/theme-base/css/theme-ns-min.css" /></noscript> -->	    
+     #}
+      {% resource 'ckanext-wet/wet' %} 
+       
+      {# resource g.main_css[6:] #}
+    {% endblock %}
+
+    {% block head_extras %}
+      {# defined in the config.ini under "ckan.template_head_end" #}
+      {{ g.template_head_end | safe }}
+    {% endblock %}
+
+    {%- block custom_styles %}
+      {%- if g.site_custom_css -%}
+      <style>
+        {{ g.site_custom_css | safe }}
+      </style>
+      {%- endif -%}
+    {% endblock %}
+  </head>
+
+  {# Allows custom attributes to be added to the <body> tag #}
+  <body{% block bodytag %} data-site-root="{{ h.url('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url('/', qualified=true) }}" data-api-root="{{ g.api_url }}"{% endblock %}>
+
+    {# Allow override of the body div for WET secondary menus #}
+    {% block body_div %}<div id="wb-body">{% endblock body_div %}
+
+      {% block skip %}
+      <div id="wb-skip">
+        <ul id="wb-tphp">
+          <li id="wb-skip1">
+            <a href="#wb-cont">Skip to main content</a>
+          </li>
+          <li id="wb-skip2">
+            <a href="#wb-nav">Skip to footer</a>
+          </li>
+        </ul>
+      </div>
+      {% endblock skip %}
+      
+      <div id="wb-head">
+        <div id="wb-head-in">
+        <header>
+          <!-- HeaderStart -->
+          <section>
+            <div id="base-fullhd">
+              <h2>Full-width header area</h2>
+              <div id="base-fullhd-in">
+                <ul>
+                  <li id="base-fullhd-lang">
+                    <a href={{ h.url(action=c.action, controller=c.controller, locale='fr') }} lang="fr">Français</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+    
+          <div id="base-bnr" role="banner">
+            <div id="base-bnr-in">
+              <div id="base-title">
+                <p id="base-title-in">
+                  <a href="/data">{{ _('Open Data') }}</a>
+                </p>
+              </div>
+            </div>
+          </div>
+    
+          <nav role="navigation">
+            <div id="base-psnb">
+              <h2><span>Site </span>menu</h2>
+              <div id="base-psnb-in">
+                <div class="wet-boew-menubar mb-mega">
+                  <div>
+                    <ul class="mb-menu">
+                    {% include "mega_menu.html" %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div id="base-bc">
+              <h2>Breadcrumb trail</h2>
+              <div id="base-bc-in">
+                <ol>
+                {%- block breadcrumb %}
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                {%- endblock breadcrumb %}  
+                </ol>
+              </div>
+            </div>
+          </nav>
+          <!-- HeaderEnd -->
+        </header>
+        </div>
+      </div>
+
+      <div id="wb-core">    
+        <div id="wb-core-in" class="equalize">
+          <div id="wb-main" role="main" style="min-height: 400px;">
+            <div id="wb-main-in">
+            {%- block page %}{% endblock -%} 
+            </div>
+          </div>
+        {% block sec_menu %}{% endblock sec_menu %}
+        </div>
+      </div>
+
+    {#
+    Override the footer on a page by page basis by extending this block. If
+    making sitewide header changes it is preferable to override the footer.html-u
+    file.
+    #}      
+    {% block footer %}
+      {% include "footer_wet.html" %}
+    {% endblock footer %}
+  
+    {%- block scripts %}        
+    {% endblock -%}
+
+    {% block body_extras -%}
+      {# defined in the config.ini under "ckan.template_footer_end" #}
+      {{ g.template_footer_end | safe }}
+    {%- endblock %}
+    
+    </div>
+  </body>
+</html>

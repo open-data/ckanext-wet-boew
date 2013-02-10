@@ -33,3 +33,6 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# WET Toolkit
+ckanext\wet-boew\public\dist
