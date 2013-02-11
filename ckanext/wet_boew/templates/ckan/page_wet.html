@@ -17,6 +17,7 @@
   {# The content block allows you to replace the content of the page if needed #}
   {%- block content %}
     {% block maintag %}<div role="main">{% endblock %}
+      
       {% block flash %}
         {% set flash_messages = h.flash.pop_messages() | list %}
         {% if flash_messages %}
@@ -30,6 +31,7 @@
         <div class="clear"></div>
         {% endif %}
       {% endblock flash %}
+      
       {% block toolbar %}
         <div class="span-8">
           {% block actions %}
@@ -39,7 +41,8 @@
           {% endblock %}
         </div>
         </div class="clear"> 
-      {% endblock toolbar %}      
+      {% endblock toolbar %}   
+         
       <div id="content">
         {% block main_content %}
 
@@ -65,7 +68,6 @@
           
           <div class="span-6">
           {% block primary %}
-            <div class="primary">
               {#
               The primary_content block can be used to add content to the page.
               This is the main block that is likely to be used within a template.
@@ -78,7 +80,7 @@
                 {% endblock %}
               #}
               {% block primary_content %}{% endblock %}
-            </div>
+   
           {% endblock primary %}
           </div>
           <div class="clear"></div>

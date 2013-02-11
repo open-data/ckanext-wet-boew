@@ -8,13 +8,14 @@
 {% endblock %}
 
 {% block primary_content %}
-  <section class="module">
-    <div class="module-content">
+  <section>
+    <div class="module-poster">
       <form id="dataset-search" class="dataset-search clearfix" method="get" data-module="select-switch">
-        <span class="control-group search-giant">
-          <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('Search...') }}" />
-          <button type="submit" value="{{ _('Search') }}">Submit</button>
-        </span>
+        <div id="search">
+          <label for "q">{{_('Search open data')}}</label>
+          <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('Search...') }}" size="45"/>
+          <button type="submit" value="{{ _('Search') }}">{{ _('Submit') }}</button>
+        </div>
 
         {{ h.snippet('snippets/sort_by.html', sort=c.sort_by_selected) }}
 
@@ -26,12 +27,12 @@
 
         <div id="dataset-search-ext">{% block dataset_search_ext %}{% endblock %}</div>
       </form>
-      <div class="results">
+      <div class="{% if request.params and c.page.item_count == 0 -%}module-info module-simplify{%- endif -%}">
         <strong>
           {%- if request.params and c.page.item_count -%}
             {{ c.page.item_count }} datasets{{ _(" found for \"{query}\"").format(query=c.q) if c.q }}
           {%- elif request.params and c.page.item_count == 0 -%}
-            {{ _('Sorry no datasets found for "{query}"').format(query=c.q) }}
+            <p><strong class="color-attention">{{ _('No datasets found for "{query}"').format(query=c.q) }}</strong></p>
           {%- else -%}
             {{ _('All datasets') }}
           {%- endif -%}
@@ -69,8 +70,9 @@
     {{ c.page.pager(q=c.q) }}
   </section>
 
-  <section class="module module-narrow module-shallow">
-    <small class="module-content">
+  <section>
+    <p>
+    <small class="module-poster">
       You can also access this registry using the {{ h.link_to(_('API'), h.url_for(controller='api', action='get_api', ver=1)) }}
       <!--! FIXME the API Docs link should be for the version of ckan being used but the dev version of ckan needs to point to latest so not trivial -->
       (see {{ h.link_to(_('API Docs'), 'http://docs.ckan.org/en/latest/api.html') }})
@@ -78,6 +80,7 @@
         or download a <a href="{{ g.dumps_url }}">full {{ g.dumps_format }} dump</a>
       {%- endif %}.
     </small>
+    </p>
   </section>
 {% endblock %}
 

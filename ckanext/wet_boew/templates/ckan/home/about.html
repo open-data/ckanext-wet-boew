@@ -4,11 +4,11 @@
 
 {% block breadcrumb_content %}
   <li>{% link_for _('About'), controller='home', action='about' %}</li>
-{% endblock breadcrumb_content %}
+{% endblock %}
 
-{% block primary %}
-  <article class="module">
-    <div class="module-content">
+{% block main_content %}
+  <article>
+      <p>
       {% block about %}
         {% if g.site_about %}
           {{ h.markdown_extract(g.site_about) }}
@@ -17,7 +17,7 @@
           {% snippet 'home/snippets/about_text.html' %}
         {% endif %}
       {% endblock %}
-    </div>
+      </p>
   </article>
 {% endblock %}
 

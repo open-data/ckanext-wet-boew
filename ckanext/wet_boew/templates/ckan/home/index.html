@@ -17,30 +17,37 @@
   </form>
 {% endblock %}
       
+{# For the homepage, re-arrange the normal primary/secondary layout from side-by-side
+   to stacked
+#}
 {% block content %}
-  <div role="main" class="hero">
-    <div id="content" class="container">
+  <div role="main">
       {{ self.flash() }}
       {{ self.primary_content() }}
-    </div>
   </div>
-  <div class="main">
-    <div class="container">
+  <div>
       {{ self.secondary_content() }}
-    </div>
   </div>
 {% endblock %}
 
 {% block primary_content %}
-  <div class="hero-primary module module-popup">
-    <div class="module-content">
+  <h1>{% block home_primary_heading %}{{ _("Welcome to CKAN") }}{% endblock %}</h1>
+  <div class="span-8 equalize">
+  <div class="span-4 row-start">
+    <div class="module-poster">
+      {% block home_image %} 
+          {%- block home_image_content -%}
+          <img src="http://placehold.it/420x220" alt="Placeholder (420x220)" width="420" height="220" />
+          {% endblock %}
+      {% endblock home_image %}
+      
+      <div class="image-caption">
       {% block home_primary %}
-        <header>
+          <h4>{% block home_image_caption %}{{ _("This is a featured section") }}{% endblock %}</h4>
           {% if g.site_intro_text %}
           {{ h.render_markdown(g.site_intro_text) }}
           {% else %}
             {% block home_primary_content %}
-              <h1 class="page-heading">{% block home_primary_heading %}{{ _("Welcome to CKAN") }}{% endblock %}</h1>
               <p>
               {% block home_primary_text %}
                 {% trans %}This is a nice introductory paragraph about CKAN or the site
@@ -50,56 +57,51 @@
               </p>
             {% endblock %}
           {% endif %}
-        </header>
-      {% endblock %}
-
-      {% block home_image %}
-        <section class="featured media-overlay">
-        	
-          <h2 class="media-heading">{% block home_image_caption %}{{ _("This is a featured section") }}{% endblock %}</h2>
-          {% block home_image_content %}
-            <a class="media-image" href="#">
-              <img src="http://placehold.it/420x220" alt="Placeholder" width="420" height="220" />
-            </a>
-          {% endblock %}
-        </section>
-      {% endblock %}
+      {% endblock home_primary %}
+      </div>
     </div>
   </div>
-  <div class="hero-secondary">
-    <div class="hero-secondary-inner">
+  
+  <div class="span-4 row-end">
       {% block home_secondary_content %}
         {% block home_search %}
-          <div class="module module-shallow module-narrow module-dark info">
-            <form class="dataset-search module-content clearfix" method="get" action="{% url_for controller='package', action='search' %}">
-              <h3 class="heading">{{ _("Search Your Data") }}</h3>
-              <span class="control-group search-giant">
-                <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
-                <button type="submit" value="{{ _('Search') }}">Submit</button>
-              </span>
+          <div>
+            <form method="get" action="{% url_for controller='package', action='search' %}">
+              <h3 class="background-accent"><span class="wb-icon-gear"></span>{{ _("Search Your Data") }}</h3>
+              <div class="module">
+                <p>
+                  <input type="text" class="search" name="q" size="45" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
+                  <button type="submit" value="{{ _('Search') }}">Submit</button>
+                </p>
+              </div>
             </form>
           </div>
         {% endblock %}
 
         {% block home_tags %}
-          <div class="tags">
-            <h3 class="tag">Popular {{ c.facet_titles.name }}</h3>
+          <div>
+            <h3>{{ _('Popular') }} {{ c.facet_titles.name }}</h3>
             {% set tags = h.get_facet_items_dict('tags', limit=3) %}
             {% snippet 'snippets/tag_list.html', tags=tags %}
           </div>
         {% endblock %}
       {% endblock %}
-    </div>
-  </div>
-{% endblock %}
 
-{% block secondary_content %}
-  <div class="group-listing">
-    {% for group in c.group_package_stuff %}
-      {% snippet 'snippets/group_item.html', group=group.group_dict, truncate=100 %}
-    {% endfor %}
   </div>
+  </div>
+  <div class="clear"></div>
+{% endblock primary_content %}
+
+<div class="span-8">
+{% block secondary_content %}
+  <ul class="menu-horizontal margin-top-none">
+    {% for group in c.group_package_stuff %}
+      <li>{% snippet 'snippets/group_item.html', group=group.group_dict, truncate=100 %}</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
+</div>
+<div class="clear"></div>
 
 {# Remove the toolbar. #}
 {% block toolbar %}{% endblock %}
