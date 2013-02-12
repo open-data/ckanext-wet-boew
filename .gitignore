@@ -35,4 +35,10 @@ nosetests.xml
 .pydevproject
 
 # WET Toolkit
-ckanext\wet-boew\public\dist
+ckanext/wet_boew/public/dist/grids
+ckanext/wet_boew/public/dist/js
+ckanext/wet_boew/public/dist/theme-base
+ckanext/wet_boew/public/dist/theme-clf2-nsi2
+ckanext/wet_boew/public/dist/theme-gcwu-fegc
+ckanext/wet_boew/public/dist/theme-gcwu-intranet
+ckanext/wet_boew/public/dist/theme-wet-boew

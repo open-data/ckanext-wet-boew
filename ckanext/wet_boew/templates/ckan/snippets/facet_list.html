@@ -38,7 +38,7 @@ alternative_url
     <p><a href="{{ h.remove_url_param(name, extras=extras, alternative_url=alternative_url) }}" class="action">{{ _('Clear All') }}</a></p>    
     {% if items %}
       <nav>
-        <ul class="unstyled nav nav-simple nav-facet">
+        <ul class="list-bullet-none">
           {% for item in items %}
             {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
             {% set label = label_function(item) if label_function else h.truncate(item.display_name, 22) %}
@@ -59,7 +59,7 @@ alternative_url
         {% endif %}
       </p>
     {% else %}
-      <p class="module-content empty">{{ _('There are no filters for this search') }}</p>
+      <p class="module-content color-medium">{{ _('There are no filters for this search') }}</p>
     {% endif %}
     </div>
   </section>

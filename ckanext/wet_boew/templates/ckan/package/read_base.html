@@ -16,7 +16,9 @@
   {% if h.check_access('package_update', {'id':pkg.id }) %}
     <li>{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary', icon='wrench' %}</li>
   {% endif %}
+  {% if c.user %}
   <li>{{ h.follow_button('dataset', pkg.id) }}</li>
+  {% endif %}
 {% endblock %}
 
 {% block primary_content %}
@@ -40,16 +42,16 @@
   <article class="module prose">
 
     {% block page_header %}
-      {% snippet 'snippets/page_header.html', items=[
-          h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name),
-          h.build_nav_icon('dataset_activity', _('Activity Stream'), id=pkg.name),
-          h.build_nav_icon('related_list', _('Related'), id=pkg.name),
-        ] %}
+        <ul class="menu-horizontal margin-top-none">
+          <a href="{{h.url(controller='package', action='read', id=pkg.name)}}" class="button">{{_('Dataset')}}</a>
+          <a href="{{h.url(controller='package', action='activity', id=pkg.name)}}" class="button">{{_('Activity Stream')}}</a>
+          <a href="{{h.url(controller='related', action='list', id=pkg.name)}}" class="button">{{_('Related')}}</a>
+        </ul>
     {% endblock %}
 
     {% block primary_content_inner %}{% endblock %}
   </article>
-{% endblock %}
+{% endblock primary_content %}
 
 {% block secondary_content %}
 
@@ -73,4 +75,4 @@
     {% snippet "snippets/license.html", pkg_dict=pkg %}
   {% endblock %}
 
-{% endblock %}
+{% endblock secondary_content %}
