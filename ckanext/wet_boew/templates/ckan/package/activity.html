@@ -1,0 +1,18 @@
+{% extends "package/read_base.html" %}
+
+{% block subtitle %}{{ _('Activity Stream') }} - {{ c.pkg_dict.title or c.pkg_dict.name }}{% endblock %}
+
+{% block primary_content_inner %}
+  <section class="module-content">
+    <h3>{{ _('Activity Stream') }}</h3>
+    {{ c.package_activity_stream | safe }}
+  </section>
+{% endblock %}
+
+{% block page_header %}
+    <ul class="menu-horizontal margin-top-none">
+      <a href="{{h.url(controller='package', action='read', id=pkg.name)}}" class="button">{{_('Dataset')}}</a>
+      <a href="{{h.url(controller='package', action='activity', id=pkg.name)}}" class="button button-accent">{{_('Activity Stream')}}</a>
+      <a href="{{h.url(controller='related', action='list', id=pkg.name)}}" class="button">{{_('Related')}}</a>
+    </ul>
+{% endblock %}

@@ -1,0 +1,17 @@
+<li class="item {{ activity.type|lower }}">
+	{% if activity.is_new %}
+	<span class="new" title="{{ _('New activity item') }}">{{ _('New activity item') }}</span>
+	{% endif %}
+	<span class="icon-{{ activity.icon }}"></span>
+	<p>
+	  {# The code for this is a problem because the HTML markup is actually embedded in the ckan.lib.activity_streams module
+	     and makes it impossible to control the markup. Hopefully a future version of CKAN will do away with this.
+	     This workaround does away with the gravator link and anonymizes the user #}
+	     
+	  {{ h.literal(activity.msg.format(actor = 'Someone', dataset = activity.data.dataset, resource = activity.data.resource,
+	      tag = activity.data.tag, group = activity.data.group, organization = activity.data.organization,
+	      extra = activity.data.extra, related_item = activity.data.related_item, related_type = activity.data.related_type )) }}
+
+		<span class="date">{{ h.time_ago_in_words_from_str(activity.timestamp, 'hour') }} ago</span>
+	</p>
+</li>

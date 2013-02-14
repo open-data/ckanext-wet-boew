@@ -1,0 +1,43 @@
+{% extends "package/read_base.html" %}
+
+{% set pkg = c.pkg %}
+
+{% block page_header %}
+    <ul class="menu-horizontal margin-top-none">
+      <a href="{{h.url(controller='package', action='read', id=pkg.name)}}" class="button">{{_('Dataset')}}</a>
+      <a href="{{h.url(controller='package', action='activity', id=pkg.name)}}" class="button">{{_('Activity Stream')}}</a>
+      <a href="{{h.url(controller='related', action='list', id=pkg.name)}}" class="button button-accent">{{_('Related')}}</a>
+    </ul>
+{% endblock %}
+
+{% block primary_content_inner %}
+  <section class="module-content">
+    <h3>{{ _('Related Media for {dataset}').format(dataset=h.dataset_display_name(c.pkg)) }}</h3>
+    {% if c.pkg.related %}
+      {% snippet "related/snippets/related_list.html", related_items=c.pkg.related, pkg_id=c.pkg.name %}
+    {% else %}
+      <div class="module-info module-simplify"><h3>{{ _('No related items found') }}</h3></div>
+    {% endif %}
+  </section>
+{% endblock %}
+
+{% block secondary_help_content %}
+
+    <h2 class="background-accent"><span class="wb-icon-info-alt"></span> {{ _('What is Related Media?') }}</h2>
+    <div class="module">
+      {% trans %}
+        <p>Related Media is any app, article, visualisation or idea related to
+        this dataset.</p>
+        <p>For example, it could be a custom visualisation,
+        pictograph or bar chart, an app using all or part of the data or
+        even a news story that references this dataset.</p>
+      {% endtrans %}
+    </div>
+
+{% endblock %}
+
+  {% block package_social %}
+    <p>
+    {% snippet "snippets/social.html" %}
+    </p>
+  {% endblock %}

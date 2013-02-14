@@ -11,8 +11,8 @@ Example:
 
 #}
 {% with truncate=truncate or 0, url=h.url_for(controller='group', action='read', id=group.name) %}
-  <section class="module module-narrow module-shallow group">
-    <div class="module-content media media-vertical">
+  <section>
+    <div class="module">
       <a class="media-image" href="{{ url }}">
         <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" width="200" height="125" alt="{{ group.name }}" />
       </a>

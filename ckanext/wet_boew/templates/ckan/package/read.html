@@ -8,19 +8,17 @@
 
   {% block package_description %}
     <section class="module-content">
-      <h1>{{ pkg.title or pkg.name }}
+      <h4>{{ pkg.title or pkg.name }}
         {% if pkg.state.startswith('draft') %}
           [{{ _('Draft') }}]
         {% endif %}
-      </h1>
+      </h4>
       {% if c.pkg_notes_formatted %}
-        <div class="notes embedded-content">
+        <div class="module">
           {{ c.pkg_notes_formatted }}
         </div>
       {% endif %}
-      {# FIXME why is this here? seems wrong #}
-      <span class="insert-comment-thread"></span>
-    </section>
+    </sectlion>
   {% endblock %}
 
   {% block package_resources %}
