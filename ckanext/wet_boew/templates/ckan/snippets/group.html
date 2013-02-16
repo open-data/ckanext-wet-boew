@@ -12,7 +12,7 @@ Example:
 #}
 {% with truncate=truncate or 0, url=h.url_for(controller='group', action='read', id=group.name) %}
   <section>
-    <div class="module">
+    <div class="module span-2">
       <a class="media-image" href="{{ url }}">
         <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" width="200" height="125" alt="{{ group.name }}" />
       </a>

@@ -12,13 +12,15 @@
 
 {% block actions_content %}
   {# NOTE: Not implemented in stage 1 #}
-  {# <li>{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn', icon='undo' %}</li> #}
-  {% if h.check_access('package_update', {'id':pkg.id }) %}
-    <li>{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary', icon='wrench' %}</li>
-  {% endif %}
-  {% if c.user %}
-  <li>{{ h.follow_button('dataset', pkg.id) }}</li>
-  {% endif %}
+  {# <li class="button">{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn', icon='undo' %}</li> #}
+  <ul class="button-group">
+    {% if h.check_access('package_update', {'id':pkg.id }) %}
+      <li class="button">{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary', icon='wrench' %}</li>
+    {% endif %}
+    {% if c.user %}
+    <li class="button">{{ h.follow_button('dataset', pkg.id) }}</li>
+    {% endif %}
+  </ul>
 {% endblock %}
 
 {% block primary_content %}
@@ -42,7 +44,7 @@
   <article>
 
     {% block page_header %}
-        <ul class="menu-horizontal margin-top-none">
+        <ul class="button-group margin-top-none">
           <a href="{{h.url(controller='package', action='read', id=pkg.name)}}" class="button button-accent">{{_('Dataset')}}</a>
           <a href="{{h.url(controller='package', action='activity', id=pkg.name)}}" class="button">{{_('Activity Stream')}}</a>
           <a href="{{h.url(controller='related', action='list', id=pkg.name)}}" class="button">{{_('Related')}}</a>

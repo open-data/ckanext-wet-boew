@@ -34,8 +34,8 @@
       
       {% block toolbar %}
         <div class="span-8">
-          {% block actions %}
-            <ul class="actions pull-right">
+          {% block actions %} 
+            <ul class="button-toolbar">
               {% block actions_content %}{% endblock %}
             </ul>
           {% endblock %}
@@ -92,8 +92,8 @@
 {%- endblock page -%}
 
 {%- block scripts %}
-    {% resource 'base/main' %}
-    {% resource 'base/ckan' %}
+    <!-- resource 'base/main' 
+     resource 'base/ckan' -->
     {% if g.tracking_enabled %}
         {% resource 'base/tracking.js' %}
     {% endif %}
