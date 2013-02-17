@@ -1,0 +1,14 @@
+{% if followers %}
+	<ul class="list-bullet-none">
+	{% for follower in followers %}
+    {# HACK: (for group/admins) follower can be the id of the user or a user_dict #}
+		<li>
+			<span data-module="popover-context" data-module-type="user" data-module-id="{{ follower.id or follower }}">
+			  {{ h.link_to_user(follower) }}
+			</span>
+		</li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p class="empty">{{ _('No followers') }}</p>
+{% endif %}
