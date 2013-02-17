@@ -13,14 +13,14 @@
 {% block actions_content %}
   {# NOTE: Not implemented in stage 1 #}
   {# <li class="button">{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn', icon='undo' %}</li> #}
+  {% if c.user %}
   <ul class="button-group">
     {% if h.check_access('package_update', {'id':pkg.id }) %}
       <li class="button">{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary', icon='wrench' %}</li>
     {% endif %}
-    {% if c.user %}
     <li class="button">{{ h.follow_button('dataset', pkg.id) }}</li>
-    {% endif %}
   </ul>
+  {% endif %}
 {% endblock %}
 
 {% block primary_content %}
