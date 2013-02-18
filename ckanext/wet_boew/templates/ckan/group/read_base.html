@@ -1,0 +1,96 @@
+{% extends "page_wet.html" %}
+
+{% block subtitle %}{{ c.group_dict.display_name }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li>{% link_for _('Groups'), controller='group', action='index' %}</li>
+  <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</li>
+{% endblock %}
+
+{% block actions_content %}
+  {% if c.user %}
+  <ul class="button-group">
+    {% if h.check_access('group_update', {'id': c.group_dict.id}) %}
+      <li class="button">{% link_for _('Add Dataset to Group'), controller='package', action='new', group=c.group_dict.id, class_='btn', icon='plus' %}</li>
+      <li class="button">{% link_for _('Edit'), controller='group', action='edit', id=c.group_dict.name, class_='btn', icon='wrench' %}</li>
+    {% endif %}
+      <li class="button">{{ h.follow_button('group', c.group_dict.id) }}</li>
+  </ul>
+  {% endif %}
+{% endblock %}
+
+{% block primary_content %}
+  <section>
+    {% block package_header %}
+      <header>
+        <ul class="button-group margin-top-none">
+          <li>
+            <a class="button{% if c.action == 'read' %} button-accent{% endif %}" href="{{ h.url(action='read', controller='group', id=c.group_dict.name, locale=h.lang()) }}">{{ _('Datasets') }}</a>
+          </li>
+          <li>
+            <a class="button{% if c.action == 'activity' %} button-accent{% endif %}" href="{{ h.url(action='activity', controller='group', id=c.group_dict.name, locale=h.lang()) }}">{{ _('Activity Stream') }}</a>
+          </li>
+          <li> 
+            <a class="button{% if c.action == 'admins' %} button-accent{% endif %}" href="{{ h.url(action='admins', controller='group', id=c.group_dict.name, locale=h.lang()) }}">{{  _('Administrators') }}</a>
+          </li>
+          <li>
+            <a class="button{% if c.action == 'about' %} button-accent{% endif %}" href="{{ h.url(action='about', controller='group', id=c.group_dict.name, locale=h.lang()) }}">{{ _('About') }}</a>
+          </li>
+        </ul>
+      </header>
+    {% endblock %}
+    {% block primary_content_inner %}
+      <div class="module">
+        {% include "package/snippets/search_form.html" %}
+      </div>
+      {{ c.page.pager(q=c.q) }}
+    {% endblock %}
+  </section>
+{% endblock %}
+
+{% block secondary_content %}
+  <div class="module">
+    <section>
+      <div class="span-2">
+        <a href="{{ c.group_dict.url }}">
+          <img src="{{ c.group_dict.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" width="200" height="125" alt="{{ c.group_dict.name }}" />
+        </a>
+      </div>
+      <div class="span-2">
+        <h3 class="align-center">{{ c.group_dict.display_name }}</h3>
+        {% if c.group_dict.description %}
+          <p>
+            {{ h.markdown_extract(c.group_dict.description, 180) }}
+            {% link_for _('read more'), controller='group', action='about', id=c.group_dict.name %}
+          </p>
+        {% else %}
+          <p class="empty">{{ _('There is no description for this group') }}</p>
+        {% endif %}
+      </div>
+      <div class="span-2">
+        <div class="span-1 row-start">
+          <h5 class="align-center">{{ _('Followers') }}</h5>
+          <p class="font-xlarge align-center">
+            {{ h.SI_number_span(c.group_dict.num_followers) }}
+          </p>
+        </div>
+        <div class="span-1 row-end">
+          <h5 class="align-center">{{ _('Datasets') }}</h5>
+          <p class="font-xlarge align-center">
+            {{ h.SI_number_span(c.group_dict.packages|length) }}
+          </p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </section>
+  </div>
+
+  {{ h.snippet('snippets/facet_list.html', title='Tags', name='tags', extras={'id':c.group_dict.id}) }}
+  {{ h.snippet('snippets/facet_list.html', title='Formats', name='res_format', extras={'id':c.group_dict.id}) }}
+{% endblock %}
+
+{% block links %}
+  {{ super() }}
+  {% include "group/snippets/feeds.html" %}
+{% endblock %}

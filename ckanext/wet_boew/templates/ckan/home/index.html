@@ -94,11 +94,9 @@
 
 <div class="span-8">
 {% block secondary_content %}
-  <ul class="menu-horizontal margin-top-none">
     {% for group in c.group_package_stuff %}
-      <li>{% snippet 'snippets/group_item.html', group=group.group_dict, truncate=100 %}</li>
+     {% snippet 'snippets/group_item.html', group=group.group_dict, truncate=100 %}
     {% endfor %}
-  </ul>
 {% endblock %}
 </div>
 <div class="clear"></div>

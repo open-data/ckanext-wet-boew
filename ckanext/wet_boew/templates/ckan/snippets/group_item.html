@@ -1,9 +1,8 @@
 <section>
-  <div class="module-poster">
+  <div class="module-poster span-2">
     {% set url=h.url_for(controller='group', action='read', id=group.name) %}
     {% set truncate=truncate or 0 %}
-    <div class="media-content">
-      <h4 class="background-medium"><span class="wb-icon-gear"></span><a href={{ url }}>{{ group.title or group.name }}</a></h4>
+      <h4 class="background-light"><span class="wb-icon-gear"></span><a href={{ url }}>{{ group.title or group.name }}</a></h4>
       <a class="media-image" href="{{ url }}">
         <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" width="100" alt="{{ group.name }}" />
       </a>      
@@ -16,9 +15,9 @@
       {% else %}
         <p class="empty">{{ _('There is no description for this group') }}</p>
       {% endif %}
-    </div>
-  </div>
+
   {% set list_class = "unstyled dataset-list" %}
   {% set item_class = "dataset-item module-content" %}
   {% snippet 'snippets/package_list.html', packages=group.packages, list_class=list_class, item_class=item_class, truncate=120 %}
+  </div>
 </section>

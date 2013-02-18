@@ -3,7 +3,7 @@
 {% set pkg = c.pkg %}
 
 {% block page_header %}
-    <ul class="menu-horizontal margin-top-none">
+    <ul class="button-group margin-top-none">
       <a href="{{h.url(controller='package', action='read', id=pkg.name)}}" class="button">{{_('Dataset')}}</a>
       <a href="{{h.url(controller='package', action='activity', id=pkg.name)}}" class="button">{{_('Activity Stream')}}</a>
       <a href="{{h.url(controller='related', action='list', id=pkg.name)}}" class="button button-accent">{{_('Related')}}</a>

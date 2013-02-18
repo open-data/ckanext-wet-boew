@@ -1,0 +1,10 @@
+{% extends "group/read_base.html" %}
+
+{% block subtitle %}{{ c.group_dict.display_name }}{% endblock %}
+
+{% block primary_content_inner %}
+  <div class="module-content">
+    {% include "package/snippets/search_form.html" %}
+  </div>
+  {{ c.page.pager(q=c.q) }}
+{% endblock %}
