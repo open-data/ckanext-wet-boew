@@ -1,4 +1,4 @@
-{% extends "base_wet.html" %}
+{% extends "gwcu_wet.html" %}
 
 {%- block page -%}
 
@@ -92,8 +92,8 @@
 {%- endblock page -%}
 
 {%- block scripts %}
-    {% resource 'base/main' %}
-    {% resource 'base/ckan' %}
+    <!-- resource 'base/main' 
+     resource 'base/ckan' -->
     {% if g.tracking_enabled %}
         {% resource 'base/tracking.js' %}
     {% endif %}
