@@ -1,4 +1,4 @@
-{% extends "gwcu_wet.html" %}
+{% extends "base_wet.html" %}
 
 {%- block page -%}
 
@@ -34,10 +34,12 @@
       
       {% block toolbar %}
         <div class="span-8">
-          {% block actions %} 
+          {% block actions %}
+
             <ul class="button-toolbar">
               {% block actions_content %}{% endblock %}
             </ul>
+          </p>
           {% endblock %}
         </div>
         </div class="clear"> 

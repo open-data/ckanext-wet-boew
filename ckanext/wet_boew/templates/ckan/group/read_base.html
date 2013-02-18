@@ -3,18 +3,18 @@
 {% block subtitle %}{{ c.group_dict.display_name }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <li>{% link_for _('Groups'), controller='group', action='index' %}</li>
-  <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</li>
+  <li>{% link_for _('Groups'), controller='group', action='index', class_=''  %}</li>
+  <li>{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', class_='', id=c.group_dict.name %}</li>
 {% endblock %}
 
 {% block actions_content %}
   {% if c.user %}
   <ul class="button-group">
     {% if h.check_access('group_update', {'id': c.group_dict.id}) %}
-      <li class="button">{% link_for _('Add Dataset to Group'), controller='package', action='new', group=c.group_dict.id, class_='btn', icon='plus' %}</li>
-      <li class="button">{% link_for _('Edit'), controller='group', action='edit', id=c.group_dict.name, class_='btn', icon='wrench' %}</li>
+      <li>{% link_for _('Add Dataset to Group'), controller='package', action='new', group=c.group_dict.id, class_='button', icon='plus' %}</li>
+      <li>{% link_for _('Edit'), controller='group', action='edit', id=c.group_dict.name, class_='button', icon='wrench' %}</li>
     {% endif %}
-      <li class="button">{{ h.follow_button('group', c.group_dict.id) }}</li>
+      <li>{{ h.follow_button('group', c.group_dict.id) }}</li>
   </ul>
   {% endif %}
 {% endblock %}
