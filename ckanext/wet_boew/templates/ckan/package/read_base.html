@@ -10,18 +10,27 @@
   <li class="active"><a href="" title="{{ dataset }}">{{ dataset|truncate(35) }}</a></li>
 {% endblock %}
 
-{% block actions_content %}
-  {# NOTE: Not implemented in stage 1 #}
-  {# <li class="button">{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn', icon='undo' %}</li> #}
+{% block toolbar %}
   {% if c.user %}
-  <ul class="button-group">
-    {% if h.check_access('package_update', {'id':pkg.id }) %}
-      <li>{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='button' %}</li>
-    {% endif %}
-    <li>{{ h.follow_button('dataset', pkg.id) }}</li>
-  </ul>
+  <div class="span-8">
+    {% block actions %}
+    <ul class="button-toolbar">
+    {% block actions_content %}
+      <ul class="button-group">
+        {# NOTE: Not implemented in stage 1 #}
+        {# <li class="button">{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn', icon='undo' %}</li> #}
+        {% if h.check_access('package_update', {'id':pkg.id }) %}
+          <li>{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='button' %}</li>
+        {% endif %}
+        <li>{{ h.follow_button('dataset', pkg.id) }}</li>
+      </ul>
+    {% endblock %}
+    </ul>
+    {% endblock actions %}
+  </div>
+  </div class="clear">
   {% endif %}
-{% endblock %}
+{% endblock toolbar %}
 
 {% block primary_content %}
   {% block package_revision_info %}

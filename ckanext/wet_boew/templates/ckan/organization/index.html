@@ -6,13 +6,24 @@
   <li>{% link_for _('Organizations'), controller='organization', action='index' %}</li>
 {% endblock %}
 
-{% block actions_content %}
-  <ul class="button-group">
+{% block toolbar %}
   {% if h.check_access('organization_create') %}
-    <li>{% link_for _('Add Organization'), controller='organization', action='new', class_='button' %}</li>
+  <div class="span-8">
+    {% block actions %}
+    <ul class="button-toolbar">
+    {% block actions_content %}
+      <ul class="button-group">
+      {% if h.check_access('organization_create') %}
+        <li>{% link_for _('Add Organization'), controller='organization', action='new', class_='button' %}</li>
+      {% endif %}
+      </ul>
+    {% endblock %}
+    </ul>
+    {% endblock actions %}
+  </div>
+  </div class="clear">
   {% endif %}
-  </ul>
-{% endblock %}
+{% endblock toolbar %}
 
 {% block primary_content %}
   <div>
