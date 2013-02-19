@@ -9,7 +9,7 @@ Example:
 
 #}
 {# This will generate child CSS grid within a span-6 grid. Each group will be displayed in span-2 tile #}
-<div class="span-6">
+<div class="span-6 align-center equalize">
   {% for group in groups %}
     {% set first = loop.index0 % 3 == 0 %}
     {% set last  = loop.index0 % 3 == 2 %}
