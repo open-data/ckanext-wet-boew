@@ -1,0 +1,277 @@
+.ckan-icon {
+  *margin-right: .3em;
+  display: inline-block;
+  vertical-align: text-bottom;
+  position: relative;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/base/images/sprite-ckan-icons.png");
+  background-repeat: no-repeat;
+  background-position: 16px 16px;
+}
+.ckan-icon:last-child {
+  *margin-left: 0;
+}
+.ckan-icon-fb {
+  width: 16px;
+  height: 16px;
+  background-position: 0px 0;
+}
+.ckan-icon-gplus {
+  width: 16px;
+  height: 16px;
+  background-position: -16px 0;
+}
+.ckan-icon-twitter {
+  width: 16px;
+  height: 16px;
+  background-position: -32px 0;
+}
+.ckan-icon-email {
+  width: 16px;
+  height: 16px;
+  background-position: -48px 0;
+}
+.ckan-icon-share {
+  width: 16px;
+  height: 16px;
+  background-position: -64px 0;
+}
+.ckan-icon-feed {
+  width: 16px;
+  height: 16px;
+  background-position: -80px 0;
+}
+.ckan-icon-calendar {
+  width: 16px;
+  height: 16px;
+  background-position: -96px 0;
+}
+.ckan-icon-file {
+  width: 16px;
+  height: 16px;
+  background-position: -112px 0;
+}
+.ckan-icon-lock {
+  width: 16px;
+  height: 16px;
+  background-position: -128px 0;
+}
+.ckan-icon-link-file {
+  width: 16px;
+  height: 16px;
+  background-position: -144px 0;
+}
+.ckan-icon-link-plugin {
+  width: 16px;
+  height: 16px;
+  background-position: -160px 0;
+}
+.ckan-icon-upload-file {
+  width: 16px;
+  height: 16px;
+  background-position: -176px 0;
+}
+.ckan-icon-callout {
+  width: 16px;
+  height: 16px;
+  background-position: -192px 0;
+}
+.ckan-icon-circle-cross {
+  width: 17px;
+  height: 17px;
+  background-position: 0px -16px;
+}
+.ckan-icon-circle-add {
+  width: 17px;
+  height: 17px;
+  background-position: -17px -16px;
+}
+.ckan-icon-flame {
+  width: 17px;
+  height: 17px;
+  background-position: -34px -16px;
+}
+.ckan-icon-search {
+  width: 17px;
+  height: 17px;
+  background-position: -51px -16px;
+}
+.ckan-icon-large-lock {
+  width: 20px;
+  height: 20px;
+  background-position: 0px -33px;
+}
+.ckan-icon-photo {
+  width: 20px;
+  height: 20px;
+  background-position: -20px -33px;
+}
+.ckan-icon-add {
+  width: 20px;
+  height: 20px;
+  background-position: -40px -33px;
+}
+.ckan-icon-home {
+  width: 20px;
+  height: 20px;
+  background-position: -60px -33px;
+}
+.ckan-icon-rewind {
+  width: 20px;
+  height: 20px;
+  background-position: -80px -33px;
+}
+.ckan-icon-tools {
+  width: 20px;
+  height: 20px;
+  background-position: -100px -33px;
+}
+.ckan-icon-flag {
+  width: 20px;
+  height: 20px;
+  background-position: -120px -33px;
+}
+.ckan-icon-clipboard {
+  width: 20px;
+  height: 20px;
+  background-position: -140px -33px;
+}
+.ckan-icon-share {
+  width: 20px;
+  height: 20px;
+  background-position: -160px -33px;
+}
+.ckan-icon-info {
+  width: 20px;
+  height: 20px;
+  background-position: -180px -33px;
+}
+.ckan-icon-download {
+  width: 20px;
+  height: 20px;
+  background-position: -200px -33px;
+}
+.ckan-icon-star {
+  width: 20px;
+  height: 20px;
+  background-position: -220px -33px;
+}
+.ckan-icon-info-flat {
+  width: 20px;
+  height: 20px;
+  background-position: -240px -33px;
+}
+.ckan-icon-tag {
+  width: 20px;
+  height: 20px;
+  background-position: -260px -33px;
+}
+.ckan-icon-plus {
+  width: 20px;
+  height: 20px;
+  background-position: -280px -33px;
+  width: 16px;
+}
+.ckan-icon-head {
+  width: 20px;
+  height: 20px;
+  background-position: -300px -33px;
+}
+.ckan-icon-arrow-e {
+  width: 20px;
+  height: 20px;
+  background-position: -320px -33px;
+  width: 16px;
+}
+.ckan-icon-bookmark {
+  width: 25px;
+  height: 25px;
+  background-position: 0px -53px;
+}
+
+
+.format-label {
+  *margin-right: .3em;
+  display: inline-block;
+  vertical-align: text-bottom;
+  position: relative;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/base/images/sprite-ckan-icons.png");
+  background-repeat: no-repeat;
+  background-position: 16px 16px;
+  text-indent: -900em;
+  text-align:left;
+  background: url("/base/images/sprite-resource-icons.png") no-repeat 0 0;
+}
+.format-label:last-child {
+  *margin-left: 0;
+}
+.format-label {
+  width: 32px;
+  height: 35px;
+  background-position: 0px -62px;
+}
+.format-label[data-format=rdf],
+.format-label[data-format*=rdf] {
+  width: 32px;
+  height: 35px;
+  background-position: -32px -62px;
+}
+.format-label[data-format=pdf],
+.format-label[data-format*=pdf] {
+  width: 32px;
+  height: 35px;
+  background-position: -64px -62px;
+}
+.format-label[data-format=api],
+.format-label[data-format*=api] {
+  width: 32px;
+  height: 35px;
+  background-position: -96px -62px;
+}
+.format-label[data-format=zip],
+.format-label[data-format*=zip] {
+  width: 32px;
+  height: 35px;
+  background-position: -128px -62px;
+}
+.format-label[data-format=xls],
+.format-label[data-format*=xls] {
+  width: 32px;
+  height: 35px;
+  background-position: -160px -62px;
+}
+.format-label[data-format=csv],
+.format-label[data-format*=csv] {
+  width: 32px;
+  height: 35px;
+  background-position: -192px -62px;
+}
+.format-label[data-format=txt],
+.format-label[data-format*=txt] {
+  width: 32px;
+  height: 35px;
+  background-position: -224px -62px;
+}
+.format-label[data-format=xml],
+.format-label[data-format*=xml] {
+  width: 32px;
+  height: 35px;
+  background-position: -256px -62px;
+}
+.format-label[data-format=json],
+.format-label[data-format*=json] {
+  width: 32px;
+  height: 35px;
+  background-position: -288px -62px;
+}
+.format-label[data-format=html],
+.format-label[data-format*=html] {
+  width: 32px;
+  height: 35px;
+  background-position: -320px -62px;
+}
