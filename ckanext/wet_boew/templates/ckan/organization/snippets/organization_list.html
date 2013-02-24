@@ -14,5 +14,6 @@ Example:
     {% set last  = loop.index0 % 3 == 2 %}
     {% snippet "organization/snippets/organization_item.html", organization=organization, first=first, last=last %}
   {% endfor %}
+  <div class="row-end"></div>
 </div>
 <div class="clear"></div>
