@@ -275,3 +275,14 @@
   height: 35px;
   background-position: -320px -62px;
 }
+.ckanext-datapreview {
+  position: relative;
+}
+.ckanext-datapreview  > iframe {
+  min-height: 400px;
+}
+.ckanext-datapreview  > img {
+  max-height: 500px;
+  max-width: 100%;
+  overflow: hidden;
+}
