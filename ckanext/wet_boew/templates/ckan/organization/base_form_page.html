@@ -1,7 +1,7 @@
 {% extends "organization/edit_base.html" %}
 
 {% block primary_content_inner %}
-  <div>
+  <div class="module">
     <h3>{% block page_heading %}{{ _('Organization Form') }}{% endblock %}</h3>
     {% block form %}
       {{ c.form | safe }}
