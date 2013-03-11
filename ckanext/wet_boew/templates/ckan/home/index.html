@@ -12,7 +12,7 @@
     <div class="field">
       <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
       <input id="field-sitewide-search" name="q" placeholder="{{ _('Search') }}" />
-      <button class="btn-search" type="submit">{{ _('Search') }}</button>
+      <button class="btn-search button" type="submit">{{ _('Search') }}</button>
     </div>
   </form>
 {% endblock %}
@@ -71,7 +71,7 @@
               <div class="module">
                 <p>
                   <input type="text" class="search" name="q" size="45" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
-                  <button type="submit" value="{{ _('Search') }}">Submit</button>
+                  <button type="submit" class="button button-accent" value="{{ _('Search') }}">Submit</button>
                 </p>
               </div>
             </form>

@@ -14,7 +14,7 @@
         <div id="search">
           <label for "q">{{_('Search open data')}}</label>
           <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('Search...') }}" size="45"/>
-          <button type="submit" value="{{ _('Search') }}">{{ _('Submit') }}</button>
+          <button type="submit" class="button button-accent" value="{{ _('Search') }}">{{ _('Submit') }}</button>
         </div>
 
         {{ h.snippet('snippets/sort_by.html', sort=c.sort_by_selected) }}
