@@ -20,28 +20,3 @@
     {% endif %}
   </section>
 {% endblock %}
-
-{% block secondary_help_content %}
-
-  <h2 class="background-accent"><span class="wb-icon-info-alt"></span> {{ _('What is Related Media?') }}</h2>
-  <div class="module">
-    {% trans %}
-    <p>
-      Related Media is any app, article, visualisation or idea related to
-      this dataset.
-    </p>
-    <p>
-      For example, it could be a custom visualisation,
-      pictograph or bar chart, an app using all or part of the data or
-      even a news story that references this dataset.
-    </p>
-    {% endtrans %}
-  </div>
-  <p></p>
-{% endblock %}
-
-  {% block package_social %}
-    <p>
-    {% snippet "snippets/social.html" %}
-    </p>
-  {% endblock %}

@@ -11,7 +11,7 @@
   {% if c.user %}
   <ul class="button-group">
     {% if h.check_access('group_update', {'id': c.group_dict.id}) %}
-      <li>{% link_for _('Add Dataset to Group'), controller='package', action='new', group=c.group_dict.id, class_='button', icon='plus' %}</li>
+      <li>{% link_for _('Add Dataset'), controller='package', action='new', group=c.group_dict.id, class_='button', icon='plus' %}</li>
       <li>{% link_for _('Edit'), controller='group', action='edit', id=c.group_dict.name, class_='button', icon='wrench' %}</li>
     {% endif %}
       <li>{{ h.follow_button('group', c.group_dict.id) }}</li>
@@ -21,7 +21,7 @@
 
 {% block primary_content %}
   <section>
-    {% block package_header %}
+    {% block page_header %}
       <header>
         <ul class="button-group margin-top-none">
           <li>
