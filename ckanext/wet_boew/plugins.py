@@ -24,6 +24,7 @@ class WetTheme(p.SingletonPlugin):
         p.toolkit.add_template_directory(config, 'templates/ckan')
         p.toolkit.add_public_directory(config, 'public')
         
+        # monkey patch helpers.py pagination method
         h.Page.pager = _wet_pager
         
     def get_helpers(self):
@@ -51,11 +52,12 @@ class WetTheme(p.SingletonPlugin):
                            h.url_for(controller='user', action='read', id=_name)) 
                            
 def _wet_pager(self, *args, **kwargs):
+    ## a custom pagination method, because CKAN doesn't expose the pagination to the templates,
+    ## and instead hardcodes the pagination html in helpers.py
     kwargs.update(
         format=u"<div class='pagination pagination-centered'><ul class='menu-horizontal ckan-paginate'>$link_previous ~2~ $link_next</ul></div>",
         symbol_previous=u'<', symbol_next=u'>',
         curpage_attr={'class': 'active'}, link_attr={'class': 'button button-small'}
     )
-    #return paginate.Page.pager(h.Page, *args, **kwargs)
     return super(h.Page, self).pager(*args, **kwargs)
                           
