@@ -3,6 +3,10 @@ import ckan.lib.helpers as h
 import ckan.model as model
 import webhelpers.html as html
 
+from webhelpers import paginate
+from webhelpers.html import HTML
+import re
+
 class WetTheme(p.SingletonPlugin):
     """
     Plugin for public-facing version of data.gc.ca site, aka the "portal"
@@ -19,6 +23,8 @@ class WetTheme(p.SingletonPlugin):
         # add our templates
         p.toolkit.add_template_directory(config, 'templates/ckan')
         p.toolkit.add_public_directory(config, 'public')
+        
+        h.Page.pager = _wet_pager
         
     def get_helpers(self):
       return {'link_to_user': self.link_to_user}
@@ -42,4 +48,14 @@ class WetTheme(p.SingletonPlugin):
             if maxlength and len(user.display_name) > maxlength:
                 displayname = displayname[:maxlength] + '...'
             return html.tags.link_to(displayname,
-                           h.url_for(controller='user', action='read', id=_name))      
+                           h.url_for(controller='user', action='read', id=_name)) 
+                           
+def _wet_pager(self, *args, **kwargs):
+    kwargs.update(
+        format=u"<div class='pagination pagination-centered'><ul class='menu-horizontal ckan-paginate'>$link_previous ~2~ $link_next</ul></div>",
+        symbol_previous=u'<', symbol_next=u'>',
+        curpage_attr={'class': 'active'}, link_attr={'class': 'button button-small'}
+    )
+    #return paginate.Page.pager(h.Page, *args, **kwargs)
+    return super(h.Page, self).pager(*args, **kwargs)
+                          
