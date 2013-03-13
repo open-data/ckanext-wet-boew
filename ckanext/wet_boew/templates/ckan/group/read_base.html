@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block actions_content %}
-  {% if c.user %}
   <ul class="button-group">
     {% if h.check_access('group_update', {'id': c.group_dict.id}) %}
       <li>{% link_for _('Add Dataset'), controller='package', action='new', group=c.group_dict.id, class_='button', icon='plus' %}</li>
@@ -16,7 +15,6 @@
     {% endif %}
       <li>{{ h.follow_button('group', c.group_dict.id) }}</li>
   </ul>
-  {% endif %}
 {% endblock %}
 
 {% block primary_content %}
