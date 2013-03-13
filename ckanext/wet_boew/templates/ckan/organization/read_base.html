@@ -15,7 +15,7 @@
     {% block actions_content %}
     {% if h.check_access('organization_update', {'id': c.group_dict.id}) %}
     <li>
-      {% link_for _('Add Dataset to Organization'), controller='package', action='new', group=c.group_dict.id, class_='button', icon='plus' %}
+      {% link_for _('Add Dataset'), controller='package', action='new', group=c.group_dict.id, class_='button', icon='plus' %}
     </li>
     <li>
       {% link_for _('Edit'), controller='organization', action='edit', id=c.group_dict.name, class_='button', icon='wrench' %}
@@ -41,6 +41,9 @@
         <a href="{{h.url(controller='organization', action='read', id=c.group_dict.name)}}" class="button{% if c.action == 'read' %} button-accent{% endif %}">{{_('Dataset')}}</a>
       </li>
       <li>
+        <a href="{{h.url(controller='organization', action='activity', id=c.group_dict.name)}}" class="button{% if c.action == 'activity' %} button-accent{% endif %}">{{_('Activity')}}</a>
+      </li>
+      <li>
         <a href="{{h.url(controller='organization', action='about', id=c.group_dict.name)}}" class="button{% if c.action == 'about' %} button-accent{% endif %}">{{_('About')}}</a>
       </li>
     </ul>
@@ -52,15 +55,11 @@
 {% endblock %}
 
 {% block secondary_content %}
-  {% snippet 'snippets/organization.html', organization=c.group_dict %}
+  {% snippet 'snippets/organization.html', organization=c.group_dict, show_nums=true %}
 
-  {% if h.user_in_org_or_group(c.group_dict.id) %}
-    <p>{{ h.snippet('snippets/facet_list.html', title='Visibility', name='capacity', extras={'id':c.group_dict.id}) }}</p>
-  {% endif %}
-
-  {{ h.snippet('snippets/facet_list.html', title='Tags', name='tags', extras={'id':c.group_dict.id}) }}
-  {{ h.snippet('snippets/facet_list.html', title='Formats', name='res_format', extras={'id':c.group_dict.id}) }}
+  {% block organization_facets %}{% endblock %}
 {% endblock %}
+
 
 {% block links %}
   {{ super() }}

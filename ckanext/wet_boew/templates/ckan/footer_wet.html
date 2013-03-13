@@ -10,9 +10,10 @@
 					<h3>Site footer</h3>
 					<div id="base-sft-in">
             {% block footer_links %}
+            {% set api_url = 'http://docs.ckan.org/{0}/{1}/api.html'.format(request.environ.CKAN_LANG, g.ckan_doc_version) %}
 						<section>
 							<div class="span-2">
-								<h4 class="base-col-head"><a href="#">About us</a></h4>
+								<h4 class="base-col-head"><a href="{{ h.url_for(controller='home', action='about') }}">{{ _('About {0}').format(g.site_title) }}</a></h4>
 								<ul>
 									<li>
 										<a href="#">{{ _('Terms and Conditions') }}</a>
@@ -44,7 +45,7 @@
 										<a href="#">{{ _('Contact us') }}</a>
 									</li>                 
                   <li>
-                    <a href="#">{{ _('Consultation') }}</a>
+                    <a href="{{ api_url }}">{{ _('CKAN API') }}</a>
                   </li>  
                 </ul>
               </div>
