@@ -80,9 +80,14 @@
 
         {% block home_tags %}
           <div>
-            <h3>{{ _('Popular') }} {{ c.facet_titles.name }}</h3>
+            <h3>{{ _('Popular Tags') }}</h3>
             {% set tags = h.get_facet_items_dict('tags', limit=3) %}
-            {% snippet 'snippets/tag_list.html', tags=tags %}
+            <ul class="menu-horizontal margin-top-none">
+              {% for tag in tags %}
+                <a class="button" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
+              {% endfor %}
+            </ul>
+            
           </div>
         {% endblock %}
       {% endblock %}
