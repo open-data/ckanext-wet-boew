@@ -26,8 +26,10 @@
         <!--[if lte IE 9]><select><![endif]-->
 
         {% for followee in followees %}
-        <input type="hidden" name="type" value="{{followee.type}}" />
-        <option label="{{followee.display_name}}" value="{{followee.dict.name}}"></option>
+        
+        <option label="{{followee.display_name}}" value="{{followee.dict.name}}">
+          <input type="hidden" name="type" value="{{followee.type}}" />
+        </option>
         
         {% endfor %}
         <!--[if lte IE 9]></select><![endif]-->
