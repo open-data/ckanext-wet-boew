@@ -22,16 +22,16 @@
 {% endblock %}
 
 {% block primary_content %}
-  <section class="module">
+  <section class="module-poster">
     {% block page_header %}
       <header class="module-content page-header">
-        <ul class="nav nav-tabs">
+        <ul class="button-group">
           <li{% if c.action == 'edit' %} class="active"{% endif %}>
-            {% link_for _('Info'), controller='organization', action='edit', id=organization.name, icon='info-sign' %}
+            {% link_for _('Info'), controller='organization', action='edit', id=organization.name, icon='info-sign', class_='button button-info' %}
           </li>
           {% if h.check_access('organization_member_create', {'id': organization.id}) %}
           <li{% if c.action == 'members' or c.action =='member_new' %} class="active"{% endif %}>
-            {% link_for _('Members'), controller='organization', action='members', id=organization.name, icon='group' %}
+            {% link_for _('Members'), controller='organization', action='members', id=organization.name, icon='group', class_="button" %}
           </li>
           {% endif %}
         </ul>
