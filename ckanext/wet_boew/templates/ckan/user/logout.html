@@ -1,0 +1,12 @@
+{% extends "page_wet.html" %}
+
+{% block subtitle %}{{ _('Logged Out') }}{% endblock %}
+
+{% block primary_content %}
+  <section class="module module-info span-3">
+    <div class="module-content">
+      <h1 class="page-heading">{{ _('Logged Out') }}</h1>
+      <p>{% trans %}You are now logged out.{% endtrans %}</p>
+    </div>
+  </section>
+{% endblock %}

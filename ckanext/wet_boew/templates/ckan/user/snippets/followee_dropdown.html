@@ -1,0 +1,41 @@
+{% macro followee_icon(type) -%}
+  {% if type == 'dataset' %}
+    <i class="icon-sitemap"></i>
+  {% elif type == 'user' %}
+    <i class="icon-user"></i>
+  {% elif type == 'group' %}
+    <i class="icon-group"></i>
+  {% endif %}
+{%- endmacro %}
+
+<div id="followee-filter" class="pull-right">
+  <a href="#followee-popover" class="btn" title="{{ _('Activity from:') }} {{ context.context }}">
+    <span>{{ _('Activity from:') }}</span>
+    <strong>{{ context.context }}</strong>
+    <span class="caret"></span>
+  </a>
+  <form id="followee-popover" action="/dashboard" class="dropdown js-hide">
+    <div class="popover-header">
+      <div class="input-prepend">
+        <span class="add-on"><i class="icon-search"></i></span>
+        <input type="text" name="name" placeholder="{{ _('Search list...') }}" value="{{context.q}}" autocomplete="off" list="suggestions">
+      </div>
+    </div>
+    {% if followees %}
+      <datalist class="menu-horizontal" id="suggestions">
+        <!--[if lte IE 9]><select><![endif]-->
+
+        {% for followee in followees %}
+        
+        <option label="{{followee.display_name}}" value="{{followee.dict.name}}">
+          <input type="hidden" name="type" value="{{followee.type}}" />
+        </option>
+        
+        {% endfor %}
+        <!--[if lte IE 9]></select><![endif]-->
+      </datalist>
+    {% else %}
+      <p class="empty">{{ _('You are not following anything') }}</p>
+    {% endif %}
+  </form>
+</div>

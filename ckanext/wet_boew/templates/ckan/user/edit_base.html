@@ -1,0 +1,27 @@
+{% extends "page_wet.html" %}
+
+{% set user = c.userobj %}
+
+{% block subtitle %}{{ _('Dashboard') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active"><a href="{{ h.url_for(controller='user', action='dashboard') }}">{{ _('Dashboard') }}</a></li>
+{% endblock %}
+
+{% block primary_content %}
+  <article class="module-poster">
+    {% block page_header %}
+      <header class="module-content page-header">
+        <ul class="nav nav-tabs button-group">
+          {% block page_header_tabs %}
+            {{ h.build_nav('user_dashboard', _('News feed'), class_="button") }}
+            {{ h.build_nav('user_edit', _('Settings'), id=user.name, class_="button button-accent") }}
+          {% endblock %}
+        </ul>
+      </header>
+    {% endblock %}
+    <div class="module-content">
+      {% block primary_content_inner %}{% endblock %}
+    </div>
+  </article>
+{% endblock %}
