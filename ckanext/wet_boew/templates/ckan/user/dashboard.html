@@ -29,7 +29,7 @@
       {% snippet 'snippets/context.html', type=c.dashboard_activity_stream_context.filter_type, dict=c.dashboard_activity_stream_context.dict %}
     </div>
   {% endif %}
-  <div class="module module-narrow module-shallow">
+  <div class="module-related">
     <h2 class="module-heading">
       <i class="icon-sitemap"></i>
       {{ _('My Datasets') }}
@@ -43,10 +43,8 @@
           </li>
         {% endfor %}
       </ul>
-    {% else %}
-      <div class="module-content">
-        <p class="empty">{{ _('You do not have any datasets') }}</p>
-      </div>
+    {% else %}>
+      <span>{{ _('You do not have any datasets') }}</span>
     {% endif %}
   </div>
 {% endblock %}
