@@ -45,7 +45,7 @@ Example:
 {% macro checkbox(name, id='', label='', value='', checked=false, placeholder='', error="", classes=[], attrs={}) %}
   {%- set extra_html = caller() if caller -%}
   <div class="control-group{{ " " ~ classes | join(" ") }}{% if error %} error{% endif %}">
-    <div class="controls">
+    <div class="controls span-1">
       <label class="checkbox" for="{{ id or name }}">
         <input id="{{ id or name }}" type="checkbox" name="{{ name }}" value="{{ value | empty_and_escape }}" {{ "checked " if checked }} {{ attributes(attrs) }} />
         {{ label or name }}
@@ -178,10 +178,10 @@ Examples:
   {% do classes.append('error') if error %}
   {%- set extra_html = caller() if caller -%}
   {% call input_block(id or name, label or name, error='', classes=classes, extra_html=extra_html) %}
-    <div class="form-input-prepend">
+    <div class="form-input-prepend {% if error and error is iterable %} form-attention {% endif %}">
       {% if prepend %}<span class="form-addon">{{ prepend }}</span>{%- endif -%}
       <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ attributes(attrs) }} />
-      {% if error and error is iterable %}<span class="error-block">{{ error|join(', ') }}</span>{% endif %}
+      {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
     </div>
   {% endcall %}
 {% endmacro %}
@@ -219,7 +219,7 @@ Examples:
   {%- set extra_html = caller() if caller -%}
   {%- do classes.append('control-custom') -%}
     
-    <div class="span-1 margin-bottom-none row-start{{ " " ~ classes | join(' ') }}">
+    <div class="span-1 margin-bottom-none row-start{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
         <label for="{{ for }}">{{ label or _('Custom') }}</label>
      </div>
     <div class="input-prepend" style="display: inline-block;" {{ attributes(attrs) }}>
@@ -261,12 +261,12 @@ Example:
 
 #}
 {% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="") %}
-   <div class="span-1 row-start{{ " " ~ classes | join(' ') }}">
+   <div class="span-1 row-start{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
       <label for="{{ for }}">{{ label or _('Custom') }}</label>
    </div>
-   <div class="span-4 row-end{{ " " ~ control_classes | join(' ') }}">
+   <div class="span-4 row-end{{ " " ~ control_classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
       {{ caller() }}
-      {% if error and error is iterable %}<span class="error-block">{{ error|join(', ') }}</span>{% endif %}
+      {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
       {{ extra_html }}
    </div>
    <div class="clear"></div>
@@ -287,7 +287,7 @@ Example:
 #}
 {% macro errors(errors={}, type="error", classes=[]) %}
   {% if errors %}
-    <div class="error-explanation alert alert-{{ type }}{{ " " ~ classes | join(' ') }}">
+    <div class="error-explanation module-alert margin-bottom-large alert-{{ type }}{{ " " ~ classes | join(' ') }}">
       <p>{{ _('The form contains invalid entries:') }}</p>
       <ul>
         {% for key, error in errors.items() %}
