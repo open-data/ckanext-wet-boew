@@ -178,10 +178,10 @@ Examples:
   {% do classes.append('error') if error %}
   {%- set extra_html = caller() if caller -%}
   {% call input_block(id or name, label or name, error='', classes=classes, extra_html=extra_html) %}
-    <div class="form-input-prepend">
+    <div class="form-input-prepend {% if error and error is iterable %} form-attention {% endif %}">
       {% if prepend %}<span class="form-addon">{{ prepend }}</span>{%- endif -%}
       <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ attributes(attrs) }} />
-      {% if error and error is iterable %}<span class="error-block">{{ error|join(', ') }}</span>{% endif %}
+      {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
     </div>
   {% endcall %}
 {% endmacro %}
@@ -219,7 +219,7 @@ Examples:
   {%- set extra_html = caller() if caller -%}
   {%- do classes.append('control-custom') -%}
     
-    <div class="span-1 margin-bottom-none row-start{{ " " ~ classes | join(' ') }}">
+    <div class="span-1 margin-bottom-none row-start{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
         <label for="{{ for }}">{{ label or _('Custom') }}</label>
      </div>
     <div class="input-prepend" style="display: inline-block;" {{ attributes(attrs) }}>
