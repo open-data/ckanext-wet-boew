@@ -63,7 +63,8 @@
         </div>
         {% block data_preview %}
           <div class="module-content">
-          {{ h.resource_preview(c.resource, c.package.id) }}
+          {# The resource preview feature of CKAN is currently incompatible with the Accessibility requirements and accessibility features of WET-BOEW #}
+          {# { h.resource_preview(c.resource, c.package.id) } #}
           </div>
         {% endblock %}
       </div>
@@ -98,7 +99,7 @@
   {% block resource_information %}
     <section>
       <div class="module-related">
-      <h3><span class="wb-icon-info-alt"></span>{{ _('Resource Information') }}</h3>
+      <h3>{{ _('Resource Information') }}</h3>
       <ul class="simple-list">
         <li><span class="ckan-icon ckan-icon-calendar"></span> Last Updated: {{ h.render_datetime(res.last_modified) or _("unknown") }}</li>
         <li><span class="ckan-icon ckan-icon-file"></span> Format: {{ res.mimetype_inner or res.mimetype or _("unknown") }}</li>
