@@ -261,12 +261,12 @@ Example:
 
 #}
 {% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="") %}
-   <div class="span-1 row-start{{ " " ~ classes | join(' ') }}">
+   <div class="span-1 row-start{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
       <label for="{{ for }}">{{ label or _('Custom') }}</label>
    </div>
-   <div class="span-4 row-end{{ " " ~ control_classes | join(' ') }}">
+   <div class="span-4 row-end{{ " " ~ control_classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
       {{ caller() }}
-      {% if error and error is iterable %}<span class="error-block">{{ error|join(', ') }}</span>{% endif %}
+      {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
       {{ extra_html }}
    </div>
    <div class="clear"></div>
@@ -287,7 +287,7 @@ Example:
 #}
 {% macro errors(errors={}, type="error", classes=[]) %}
   {% if errors %}
-    <div class="error-explanation alert alert-{{ type }}{{ " " ~ classes | join(' ') }}">
+    <div class="error-explanation module-alert margin-bottom-large alert-{{ type }}{{ " " ~ classes | join(' ') }}">
       <p>{{ _('The form contains invalid entries:') }}</p>
       <ul>
         {% for key, error in errors.items() %}
