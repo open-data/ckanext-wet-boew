@@ -165,18 +165,18 @@
               </div>
             </div>
     
-            <div id="gcwu-bc">
-              <h2>Breadcrumb trail</h2>
-              <div id="gcwu-bc-in">
-                <ol>
-                {% block breadcrumb %}
-                  {% if self.breadcrumb_content() | trim %}
-                    {% snippet 'snippets/home_breadcrumb_item.html' %}
-                    {% block breadcrumb_content %}{% endblock %}
-                  {% endif %}
-                {% endblock %}
-                </ol>
-              </div>
+            {% block breadcrumb %}
+              {% if self.breadcrumb_content() | trim %}
+              <div id="gcwu-bc">
+                <h2>Breadcrumb trail</h2>
+                <div id="gcwu-bc-in">
+                  <ol>
+                      {% snippet 'snippets/home_breadcrumb_item.html' %}
+                      {% block breadcrumb_content %}{% endblock %}
+                  </ol>  
+                </div>
+                {% endif %}
+              {% endblock %}
             </div>
           </nav>
           <!-- HeaderEnd -->
