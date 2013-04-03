@@ -6,8 +6,9 @@
 
 {% block breadcrumb_content %}
   {% set dataset = pkg.title or pkg.name %}
+  {% set pkg_url = h.url(controller='package', action='read', id=pkg.id) %}
   <li>{% link_for _('Datasets'), controller='package', action='search', highlight_actions = 'new index' %}</li>
-  <li class="active"><a href="" title="{{ dataset }}">{{ dataset|truncate(35) }}</a></li>
+  <li class="active"><a href="{{ pkg_url }}" title="{{ dataset }}">{{ dataset|truncate(35) }}</a></li>
 {% endblock %}
 
 {% block toolbar %}
