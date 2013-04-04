@@ -5,7 +5,7 @@
 {% block maintag %}{% endblock %}
 
 {# Clear out the breadcrumb on the home page #}
-{% block breadcrumb_content %}}<li></li>%- endblock breadcrumb_content %}  
+{% block breadcrumb_content %}<li></li>{%- endblock breadcrumb_content %}  
 
 {% block header_site_search %}
   <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}" method="get">
@@ -107,4 +107,6 @@
 <div class="clear"></div>
 
 {# Remove the toolbar. #}
-{% block toolbar %}{% endblock %}
+{% block toolbar %}
+
+{% endblock %}
