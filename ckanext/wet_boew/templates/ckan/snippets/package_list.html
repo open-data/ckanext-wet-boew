@@ -16,7 +16,7 @@ Example:
 #}
 {% set list_class = 'list-bullet-none' %}
 {% if packages %}
-  <ul class="{{ list_class or 'list-bullet-none' }}">
+  <ul class="{{ list_class or 'list-bullet-none' }} wet-boew-zebra zebra-hover">
     {% for package in packages %}
       {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}
     {% endfor %}
