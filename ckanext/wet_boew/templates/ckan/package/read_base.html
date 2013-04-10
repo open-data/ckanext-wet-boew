@@ -77,7 +77,7 @@
 
   {% block package_social %}
     {% if pkg.groups %}<p>{% endif %}
-    {% snippet "snippets/social.html" %}
+    {% snippet "snippets/social.html", pkg_dict=pkg %}
     {% if pkg.groups %}</p>{% endif %}
   {% endblock %}
 
