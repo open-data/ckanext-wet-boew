@@ -9,14 +9,10 @@ the contents of the 'dist' folder into 'ckanext-wet-boew/ckanext/wet_boew/public
 
   cd ckanext/wet_boew/public/dist/
 
-  wget https://github.com/wet-boew/wet-boew/archive/master-dist.zip
+  wget https://github.com/wet-boew/wet-boew-dist/archive/v3.1.0-release-dist.zip
   unzip master-dist.zip wet-boew-master-dist/dist/*
   mv wet-boew-master-dist/dist/* .
   rm -r master-dist.zip wet-boew-master-dist/
-  
-Note: For the temporary mobile initialization fix, download the open-data/wet-boew repo and build the master branch, or download the distribution only from here:
-
-  https://dl.dropbox.com/u/6526141/dist.zip
 
 The WET toolkit distribution includes only minimized versions of the required Javascript files. 
 However CKAN uses the Fanstatic resource manager which requires un-minimized Javascript files, so
