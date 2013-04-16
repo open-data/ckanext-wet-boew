@@ -92,13 +92,14 @@
               <div id="base-fullhd-in">
                 <ul>
                   {# This format only works for a bilingual format #}
+                  {% set current_url = request.environ.CKAN_CURRENT_URL %}
                   <li id="base-fullhd-lang">
                     {% if h.lang() == 'en'%}
-                    <a href={{ h.url(action=c.action, controller=c.controller, locale='fr') }} lang="fr">Français</a>
+                    <a href="{% url_for current_url, locale='fr' %}" lang="fr">Français</a>
                     {% elif h.lang() == 'fr' %}
-                    <a href={{ h.url(action=c.action, controller=c.controller, locale='en') }} lang="fr">English</a>
+                    <a href="{% url_for current_url, locale='en' %}" lang="en">English</a>
                     {% else %}
-                    <a href={{ h.url(action=c.action, controller=c.controller, locale='en') }} lang="fr">English</a>                    
+                    <a href="{% url_for current_url, locale='en' %}" lang="en">English</a>                    
                     {% endif %}
                   </li>
                 </ul>
