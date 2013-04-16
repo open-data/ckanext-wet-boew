@@ -1,3 +1,4 @@
+{% block mega %}
 <li>
   <section>
     <h3><a href={{ h.url(action='index', controller='home') }}>{{_('Home')}}</a></h3>
@@ -86,3 +87,5 @@
   </section>          
 {% endif %}
 </li>
+
+{% endblock %}
