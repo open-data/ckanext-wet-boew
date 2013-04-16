@@ -64,8 +64,10 @@
         </div>
         {% block data_preview %}
           <div class="module-content">
-          {# The resource preview feature of CKAN is currently incompatible with the Accessibility requirements and accessibility features of WET-BOEW #}
-          {# { h.resource_preview(c.resource, c.package.id) } #}
+            {% if c.resource.datastore_active %}
+          {# The resource preview feature of CKAN should only be used with an accessible previewer like ckanext-datatable #}
+          {{ h.resource_preview(c.resource, c.package.id) }}
+            {% endif %}
           </div>
         {% endblock %}
       </div>
