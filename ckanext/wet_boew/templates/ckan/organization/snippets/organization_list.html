@@ -8,12 +8,13 @@ Example:
     {% snippet "organization/snippets/organization_list.html" %}
 
 #}
-<div class="span-6 align-center equalize">
-  {% for organization in organizations %}
-    {% set first = loop.index0 % 3 == 0 %}
-    {% set last  = loop.index0 % 3 == 2 %}
-    {% snippet "organization/snippets/organization_item.html", organization=organization, first=first, last=last %}
-  {% endfor %}
-  <div class="row-end"></div>
-</div>
-<div class="clear"></div>
+{% for i in range(0, organizations|count, 3) %}
+  {% set chunk = [organizations[i:i+3]]  %} 
+  <div class="span-6 align-center equalize">
+    {% snippet "organization/snippets/organization_item.html", organization=organizations[i], first=True%}
+    {% snippet "organization/snippets/organization_item.html", organization=organizations[i+1] %}
+    {% snippet "organization/snippets/organization_item.html", organization=organizations[i+2], last=True %}
+    <div class="row-end"></div>
+  </div>
+  <div class="clear"></div>
+{% endfor %}
