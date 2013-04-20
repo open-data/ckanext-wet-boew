@@ -1,7 +1,9 @@
+import ckan as ckan
 import ckan.plugins as p
 import ckan.lib.helpers as h
 import ckan.model as model
 import webhelpers.html as html
+import dateutil.parser
 
 from webhelpers import paginate
 from webhelpers.html import HTML
@@ -28,7 +30,9 @@ class WetTheme(p.SingletonPlugin):
         h.Page.pager = _wet_pager
         
     def get_helpers(self):
-      return {'link_to_user': self.link_to_user}
+      return {'link_to_user': self.link_to_user, 
+              'get_datapreview': self.get_datapreview,
+              'iso_to_goctime': self.iso_to_goctime }
 
 
     def link_to_user(self, user, maxlength=0):
@@ -50,7 +54,18 @@ class WetTheme(p.SingletonPlugin):
                 displayname = displayname[:maxlength] + '...'
             return html.tags.link_to(displayname,
                            h.url_for(controller='user', action='read', id=_name)) 
-                           
+             
+
+    def get_datapreview(self, res_id):
+     
+        #import pdb; pdb.set_trace()
+        dsq_results = ckan.logic.get_action('datastore_search')({}, {'resource_id': res_id})
+        return h.snippet('package/wet_datatable.html', ds_fields=dsq_results['fields'], ds_records=dsq_results['records'])     
+      
+    def iso_to_goctime(self, isodatestr):
+        dateobj = dateutil.parser.parse(isodatestr)
+        return dateobj.strftime('%Y-%m-%d')
+                                 
 def _wet_pager(self, *args, **kwargs):
     ## a custom pagination method, because CKAN doesn't expose the pagination to the templates,
     ## and instead hardcodes the pagination html in helpers.py
