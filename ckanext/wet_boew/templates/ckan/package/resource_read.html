@@ -10,7 +10,7 @@
 {% block breadcrumb_content %}
   <li>{% link_for _('Datasets'), controller='package', action='search', highlight_actions = 'new index' %}</li>
   <li>{% link_for h.dataset_display_name(c.package)|truncate(15), controller='package', action='read', id=c.package.get('name') %}</li>
-  <li><a href="">{{ h.resource_display_name(res)|truncate(30) }}</a></li>
+  <li>{% link_for h.resource_display_name(res)|truncate(30), controller='package', action='resource_read', id=c.package.get('name'), resource_id=res.id %}</a></li>
 {% endblock %}
 
 {% block actions_content %}
@@ -43,11 +43,11 @@
 
   {% block resource %}
     <section>
-      <div class="module-content" style="width: 880;height: 630">
-        <div class="module-content">
+      <div>
+        <div>
           {% block resource_content %}
             {% block resource_read_title %}<h3>{{ h.resource_display_name(res) | truncate(50) }}</h3>{% endblock %}
-            <a class="button button-accent button-large"href="{{ res.url }}"><span class="wb-icon-drive-download"></span>Download</a>
+            <a class="button" href="{{ res.url }}"><span class="wb-icon-drive-download"></span>Download</a>
             <div class="prose notes" property="rdfs:label">
               {% if res.description %}
                 {{ h.render_markdown(res.description) }}
@@ -56,17 +56,19 @@
               {% endif %}
               {% if not res.description and c.package.notes %}
                 <h3>{{ _('From the dataset abstract') }}</h3>
-                <blockquote>{{ h.markdown_extract(c.package.get('notes')) }}</blockquote>
+                <p>{{ h.markdown_extract(c.package.get('notes')) }}</p>
                 <p>{% trans dataset=c.package.title, url=h.url_for(controller='package', action='read', id=c.package['name']) %}Source: <a href="{{ url }}">{{ dataset }}</a>{% endtrans %}
               {% endif %}
             {% endblock %}
           </div>
         </div>
         {% block data_preview %}
-          <div class="module-content">
+          <div>
             {% if c.resource.datastore_active %}
-          {# The resource preview feature of CKAN should only be used with an accessible previewer like ckanext-datatable #}
-          {{ h.resource_preview(c.resource, c.package.id) }}
+              {# The resource preview feature of CKAN should only be used with an accessible previewer like ckanext-datatable #}
+
+              {{ h.get_datapreview(c.resource.id) }}
+
             {% endif %}
           </div>
         {% endblock %}
@@ -100,33 +102,30 @@
 
 {% block secondary_content %}
   {% block resource_information %}
-    <section>
-      <div class="module-related">
-      <h3>{{ _('Resource Information') }}</h3>
-      <ul class="simple-list">
+       
+  <section>
+  <div class="module-related">        
+  <h3>{{ _('Resource Information') }}</h3>
+      <ul>
         <li><span class="ckan-icon ckan-icon-calendar"></span> Last Updated: {{ h.render_datetime(res.last_modified) or _("unknown") }}</li>
         <li><span class="ckan-icon ckan-icon-file"></span> Format: {{ res.mimetype_inner or res.mimetype or _("unknown") }}</li>
       </ul>
-      </div>
-    </section>
+  </div>
+  </section>
+
   {% endblock resource_information %}
 
-  {% block license_information %}
-    <p>
-      {% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}
-    </p>
-  {% endblock %}
-  
-  {% block resources_list %}
-    <p>
-    {% snippet "package/snippets/resources.html", pkg=pkg, active=res.id %}
-    </p>
-  {% endblock %}
-
-  {% block resource_license %}
+  {% block package_social %}
     <p>
     {% snippet "snippets/social.html", pkg_dict=pkg %}
     </p>
   {% endblock %}
+
+  {% block package_license %}
+    <p>
+    {% snippet "snippets/license.html", pkg_dict=pkg %}
+    </p>
+  {% endblock %}
+  
 {% endblock %}
 
