@@ -286,3 +286,18 @@
   max-width: 100%;
   overflow: hidden;
 }
+
+.disabled_paginator a{
+	background: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	cursor: default;
+	font-style: italic;
+	text-shadow: none;
+	z-index: 1;
+	cursor: default !important;
+	pointer-events: none;
+	opacity: .3;
+	zoom: 1;
+}
