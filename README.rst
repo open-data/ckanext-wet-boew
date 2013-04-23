@@ -24,6 +24,9 @@ into 'ckanext-wet-boew/ckanext/wet_boew/public/dist/js/jquerymobile/jquery.mobil
   wget http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.js \
     -O js/jquerymobile/jquery.mobile-1.3.0.js
 
+This extension also requires the python json and shapely libraries that are used by the
+CKAN spatial extension.
+
 By default, CKAN pages will still display using the default CKAN template. To use the base theme,
 override the template for the page and have it extend template page_wet.html instead of the usual
 page.html.

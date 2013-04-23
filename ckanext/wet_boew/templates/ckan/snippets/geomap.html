@@ -1,8 +1,8 @@
 <div>
   <div class="wet-boew-geomap position scaleline"
     data-wet-boew='{
-    "layersFile": "/data/data/config-en.js",
-    "tables": [ { "id": "cities", "datatable": true, "tab": false, "visible": true, "zoom" : true } ]
+    "layersFile": "{{h.url_for_static('/data/config-en.js')}}",
+    "tables": [ { "id": "features", "datatable": true, "tab": false, "visible": true, "zoom" : true } ]
     }'>
     </div>
 </div>
@@ -13,9 +13,9 @@
 <div class="wet-boew-geomap-layers">
   <h2>Feature</h2>
   <div>
-    <section><h3 class="background-light">Cities</h3>
+    <section><h3 class="background-light">Features</h3>
 
-    <table id="cities" class="table-simplify width-100" aria-label="Cities">
+    <table id="features" class="table-simplify width-100" aria-label="Cities">
     <caption></caption>
     <thead>
       <tr>
@@ -23,8 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      {# This needs to be converted to a dynamic type passed into the snippet from read.html #}
-      <tr data-geometry="Polygon (-114.5 55.75, -114.5 56, -114, 56, -114, 55.75, -114.5, 55.75)" data-type="wkt">
+      <tr data-geometry="{{ h.geojson_to_wkt(gjson) }}" data-type="wkt">
         <td>{{gid}}</td>
       </tr>
     </tbody>
