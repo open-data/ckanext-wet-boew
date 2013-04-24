@@ -1,0 +1,39 @@
+
+{# h.debug_inspect(ds_fields) #}
+{# h.debug_inspect(c['dsrecords']) #}
+
+{# Next, using the information passed in from the plugin, create the header and rows dynamically. #}
+
+<section>
+  <div class="tsrw-overflow">
+    <h2 id="prtable">{{_("Preview")}}</h2>
+<table id="tsrw" class="wet-boew-tables" data-wet-boew='{"bZebra": true, "bPaginate": true}' data-role="table" data-mode="columntoggle">
+  <thead>
+    <tr class="font-small">
+      {% set i = 1 %}
+      {% for field_name in ds_fields %}
+        {% if field_name['id'] != '_id' %}
+          <th scope="col" data-priority="arb-{{i}}">{{field_name['id']}}</th>
+        {% endif %}
+        {% set i = i + 1 %}
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for ds_rec in ds_records %}
+      <tr>
+        {% for ds_field in ds_fields %}
+          {% if ds_field['id'] != '_id' %}
+            {% if ds_field['type'] != 'timestamp' %}
+              <td>{{ ds_rec[ds_field['id']] }}</td>
+            {% else %}
+              <td>{{ h.iso_to_goctime(ds_rec[ds_field['id']]) }}</td>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+<div>
+  <div class="wet-boew-geomap position scaleline"
+    data-wet-boew='{
+    "layersFile": "{{h.url_for_static('/data/config-en.js')}}",
+    "tables": [ { "id": "features", "datatable": true, "tab": false, "visible": true, "zoom" : true } ]
+    }'>
+    </div>
+</div>
+  
+<div class="clear"></div>
+
+<!-- Insert Layer Data -->
+<div class="wet-boew-geomap-layers">
+  <h2>Feature</h2>
+  <div>
+    <section><h3 class="background-light">Features</h3>
+
+    <table id="features" class="table-simplify width-100" aria-label="Cities">
+    <caption></caption>
+    <thead>
+      <tr>
+        <th>ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-geometry="{{ h.geojson_to_wkt(gjson) }}" data-type="wkt">
+        <td>{{gid}}</td>
+      </tr>
+    </tbody>
+    </table>
+    </section>      
+      
+  </div>  
+</div>
+<!-- END Insert Layer Data -->
+
+<div class="clear"></div>
+
