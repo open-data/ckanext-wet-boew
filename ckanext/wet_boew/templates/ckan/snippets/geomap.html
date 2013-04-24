@@ -1,9 +1,9 @@
 <div>
+  {% set config_js = h.url_for_static('/data/config-en.js') %}
   <div class="wet-boew-geomap position scaleline"
     data-wet-boew='{
-    "layersFile": "{{h.url_for_static('/data/config-en.js')}}",
-    "tables": [ { "id": "features", "datatable": true, "tab": false, "visible": true, "zoom" : true } ]
-    }'>
+    "layersFile": "{{config_js}}",
+    "tables": [ { "id": "spatialfeature", "datatable": false, "tab": false, "visible": true, "zoom" : true } ]}'>
     </div>
 </div>
   
@@ -11,15 +11,14 @@
 
 <!-- Insert Layer Data -->
 <div class="wet-boew-geomap-layers">
-  <h2>Feature</h2>
   <div>
-    <section><h3 class="background-light">Features</h3>
+    <section>
 
-    <table id="features" class="table-simplify width-100" aria-label="Cities">
+    <table id="spatialfeature" class="table-simplify width-100" aria-label="{{_('Spatial Feature')}}">
     <caption></caption>
     <thead>
       <tr>
-        <th>ID</th>
+        <th>{{_('Name')}}</th>
       </tr>
     </thead>
     <tbody>
@@ -35,4 +34,3 @@
 <!-- END Insert Layer Data -->
 
 <div class="clear"></div>
-
