@@ -77,7 +77,7 @@ class WetTheme(p.SingletonPlugin):
       ## then output the geometry in Well-Known-Text format
       
       gjson = json.loads(gjson_str)
-      # import pdb; pdb.set_trace()
+      #import pdb; pdb.set_trace()
       shape = shapely.geometry.asShape(gjson)
       wkt_str = wkt.dumps(shape)
       return wkt_str
