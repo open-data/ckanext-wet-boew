@@ -31,6 +31,7 @@ class WetTheme(p.SingletonPlugin):
         
         # monkey patch helpers.py pagination method
         h.Page.pager = _wet_pager
+        h.gravatar = _wet_no_gravatar
         
     def get_helpers(self):
       return {'link_to_user': self.link_to_user, 
@@ -93,4 +94,7 @@ def _wet_pager(self, *args, **kwargs):
     )
     
     return super(h.Page, self).pager(*args, **kwargs)
+    
+def _wet_no_gravatar(email_hash, size=100, default=None):
+    return ""
                           
