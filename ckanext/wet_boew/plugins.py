@@ -88,8 +88,9 @@ def _wet_pager(self, *args, **kwargs):
     ## and instead hardcodes the pagination html in helpers.py
     kwargs.update(
         format=u"<div class='pagination pagination-centered'><ul class='menu-horizontal ckan-paginate'>$link_previous ~2~ $link_next</ul></div>",
-        symbol_previous=u'<', symbol_next=u'>',
-        curpage_attr={'class': 'active'}, link_attr={'class': 'button button-small'}
+        symbol_previous=u'previous', symbol_next=u'next',
+        curpage_attr={'class': 'disabled_paginator'}, link_attr={'class': 'button button-small'}
     )
+    
     return super(h.Page, self).pager(*args, **kwargs)
                           
