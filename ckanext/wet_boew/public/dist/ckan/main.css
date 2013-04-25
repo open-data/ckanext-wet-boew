@@ -301,3 +301,7 @@
 	opacity: .3;
 	zoom: 1;
 }
+
+form select{
+	max-width: 100%;
+}
