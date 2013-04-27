@@ -1,3 +1,63 @@
+
+#dtprv td {
+  text-align: center;
+}
+
+#dtprv td.wcagsc {
+  text-align: left;
+}
+
+@media screen and (min-width: 240px) {
+  #dtprv th.ui-table-priority-dtprv, #dtprv td.ui-table-priority-prv {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 360px) {
+  #dtprv th.ui-table-priority-dtprv-2, #dtprv td.ui-table-priority-dtprv-2 {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 480px) {
+  #dtprv th.ui-table-priority-dtprv-3, #dtprv td.ui-table-priority-dtprv-3 {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 560px) {
+  #dtprv th.ui-table-priority-dtprv-4, #dtprv td.ui-table-priority-dtprv-4 {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 660px) {
+  #dtprv th.ui-table-priority-dtprv-5, #dtprv td.ui-table-priority-dtprv-5 {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 740px) {
+  #dtprv th.ui-table-priority-dtprv-6, #dtprv td.ui-table-priority-dtprv-6 {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 860px) {
+  #dtprv th.ui-table-priority-dtprv-7, #dtprv td.ui-table-priority-dtprv-7 {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 920px) {
+  #dtprv th.ui-table-priority-dtprv-8, #dtprv td.ui-table-priority-dtprv-8 {
+    display: table-cell;
+  }
+}
+
+#dtprv [class*="ui-table-priority"], #dtprv th.ui-table-cell-hidden, #dtprv td.ui-table-cell-hidden {
+  display: none;
+}
+#dtprv .ui-table-priority-arb1, #dtprv th.ui-table-cell-visible, #dtprv td.ui-table-cell-visible {
+  display: table-cell;
+}
+#dtprv-overflow {
+  overflow: auto;
+}
+
 .ckan-icon {
   *margin-right: .3em;
   display: inline-block;
