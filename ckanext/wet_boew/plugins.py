@@ -80,7 +80,6 @@ class WetTheme(p.SingletonPlugin):
       gjson = json.loads(gjson_str)
       coords = gjson['coordinates']
 
-      import pdb; pdb.set_trace()        
       # test to see if the latitude and longitude have been transposed. Since all co-ordinates are in 
       # Canada, the latitude should be negative.
       if coords:
