@@ -76,10 +76,24 @@ class WetTheme(p.SingletonPlugin):
       ##  u'{"type": "Polygon", "coordinates": [[[-54, 46], [-54, 47], [-52, 47], [-52, 46], [-54, 46]]]}']
       ## Convert this JSON into an object, and load it into a Shapely object. The Shapely library can
       ## then output the geometry in Well-Known-Text format
-      
+
       gjson = json.loads(gjson_str)
-      #import pdb; pdb.set_trace()
+      coords = gjson['coordinates']
+
+      import pdb; pdb.set_trace()        
+      # test to see if the latitude and longitude have been transposed. Since all co-ordinates are in 
+      # Canada, the latitude should be negative.
+      if coords:
+        if coords[0][0][0]:
+          if coords[0][0][0] > 0:
+            new_coords = []
+            for coord in coords[0]:
+              coord1 = [coord[1], coord[0]]
+              new_coords.append(coord1)
+            gjson['coordinates'][0] = new_coords
+    
       shape = shapely.geometry.asShape(gjson)
+
       wkt_str = wkt.dumps(shape)
       return wkt_str
 
