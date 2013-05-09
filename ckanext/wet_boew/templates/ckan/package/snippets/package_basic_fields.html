@@ -18,7 +18,7 @@
 
 <div class="control-group">
   {% set error = errors.license_id %}
-  <label class="control-label row-start span-1" for="field-license">{{ _("License") }}</label>
+  <label class="control-label row-start span-1" for="field-license">{{ _("Licence") }}</label>
   <div class="controls row-end span-4">
     <select id="field-license" name="license_id" data-module="autocomplete">
       {% for licence_desc, licence_id in licences|sort if licence_desc  %}
