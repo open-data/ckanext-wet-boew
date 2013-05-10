@@ -64,7 +64,7 @@
       {% else %}
         <p class="empty">
           {% if c.is_myself %}
-            {% trans %}You have not provided a biography.{% endtrans %}
+            {{ _('You have not provided a biography') }}.
           {% else %}
             {% trans %}This user has no biography.{% endtrans %}
           {% endif %}
