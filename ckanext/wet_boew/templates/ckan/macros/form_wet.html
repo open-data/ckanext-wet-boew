@@ -186,6 +186,20 @@ Examples:
   {% endcall %}
 {% endmacro %}
 
+{% macro append(name, id='', label='', append='', value='', placeholder='', type='text', error="", classes=[], attrs={}) %}
+  {# We manually append the error here as it needs to be inside the .input-prepend block #}
+  {% set classes = (classes|list) %}
+  {% do classes.append('error') if error %}
+  {%- set extra_html = caller() if caller -%}
+  {% call input_block(id or name, label or name, error='', classes=classes, extra_html=extra_html) %}
+    <div class="form-input-append {% if error and error is iterable %} form-attention {% endif %}">
+      <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ attributes(attrs) }} style="margin-right:0; padding-right:0;" />
+      {% if append %}<span class="form-addon">{{ append }}</span>{%- endif -%}
+      {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
+    </div>
+  {% endcall %}
+{% endmacro %}
+
 {#
 Creates all the markup required for an custom key/value input. These are usually
 used to let the user provide custom meta data. Each "field" has three inputs

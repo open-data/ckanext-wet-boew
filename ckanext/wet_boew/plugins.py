@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import ckan as ckan
 import ckan.plugins as p
 import ckan.lib.helpers as h
@@ -10,6 +12,7 @@ import shapely.wkt as wkt
 
 from webhelpers import paginate
 from webhelpers.html import HTML
+from pylons.i18n import gettext
 import re
 
 class WetTheme(p.SingletonPlugin):
@@ -100,9 +103,10 @@ class WetTheme(p.SingletonPlugin):
 def _wet_pager(self, *args, **kwargs):
     ## a custom pagination method, because CKAN doesn't expose the pagination to the templates,
     ## and instead hardcodes the pagination html in helpers.py
+    
     kwargs.update(
         format=u"<div class='pagination pagination-centered'><ul class='menu-horizontal ckan-paginate'>$link_previous ~2~ $link_next</ul></div>",
-        symbol_previous=u'previous', symbol_next=u'next',
+        symbol_previous=gettext('Previous').decode('utf-8'), symbol_next=gettext('Next').decode('utf-8'),
         curpage_attr={'class': 'disabled_paginator'}, link_attr={'class': 'button button-small'}
     )
     
