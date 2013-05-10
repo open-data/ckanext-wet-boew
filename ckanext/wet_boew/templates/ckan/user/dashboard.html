@@ -29,7 +29,7 @@
       {% snippet 'snippets/context.html', type=c.dashboard_activity_stream_context.filter_type, dict=c.dashboard_activity_stream_context.dict %}
     </div>
   {% endif %}
-  <div class="module-related">
+  <div class="module-related margin-bottom-large" >
     <h2 class="module-heading">
       <i class="icon-sitemap"></i>
       {{ _('My Datasets') }}
@@ -42,7 +42,7 @@
             {{ h.link_to(h.truncate(title, 80), h.url_for(controller='package', action='read', id=package.name)) }}
           </li>
         {% endfor %}
-        <li>{{ h.link_to("Load More", h.url_for(controller='user', action='read', id=user["name"]), class_="button button-small") }}
+        <li>{{ h.link_to(_("Load more"), h.url_for(controller='user', action='read', id=user["name"]), class_="button button-small") }}
         </li>
       </ul>
     {% else %}>
