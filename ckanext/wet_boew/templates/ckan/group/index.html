@@ -28,11 +28,6 @@
 {% block primary_content %}
   <div>
       <p><h3 class="page-heading">{{ _('Groups') }}</h3></p>
-      {% snippet 'snippets/simple_search.html', q=c.q, sort=c.sort_by_selected, placeholder=_('Search groups...') %}
-      <h2>
-        {% snippet 'snippets/search_result_text.html', query=c.q, count=c.page.item_count, type='group' %}
-      </h2>
-      
       {% if c.page.items or request.params %}
         {% snippet "group/snippets/group_list.html", groups=c.page.items %}
       {% else %}
