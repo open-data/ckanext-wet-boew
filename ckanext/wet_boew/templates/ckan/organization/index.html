@@ -51,10 +51,10 @@
 {% block secondary_content %}
 <section>
   <div class="module-related">
-    <h3><span></span> {{ _('What are Organizations?') }} </h3>
+    <h3><span></span> {{ _('What are Organizations') }}? </h3>
     <ul>
       <li>
-        {% trans %}
+        {% if h.lang() == 'en' %}
           Organizations act like publishing departments for datasets (for
           example, the Department of Health). This means that datasets can be
           published by and belong to a department instead of an individual
@@ -63,7 +63,11 @@
           Within organizations, admins can assign roles and authorisation its
           members, giving individual users the right to publish datasets from
           that particular organisation (e.g. Office of National Statistics).
-        {% endtrans %}
+        {% else %}
+          Une organisation est semblable à un ministère qui publie des ensembles de données (par    exemple, le ministère de la Santé). Cela signifie que les ensembles de données peuvent être publiés par un ministère, et appartiennent à celui_x001E_ci, plutôt qu’à un utilisateur individuel. 
+          <br/><br/>
+          Au sein d’une organisation, les administrateurs peuvent attribuer des rôles et des autorisations aux membres et donner aux utilisateurs individuels le droit de publier des ensembles de données provenant de cette organisation (p. ex. Office of National Statistics).
+        {% endif %}
       </li>
     </ul>
   </div>
