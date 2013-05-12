@@ -9,7 +9,7 @@ Example:
   {% snippet 'snippets/custom_form_fields.html', extras=data.extras, errors=errors, limit=3 %}
 
 #}
-{% import "macros/form_wet.html" as form %}
+{% import "macros/form_wet.html" as form with context %}
 
 <div data-module="custom-fields">
   {% for extra in extras %}
