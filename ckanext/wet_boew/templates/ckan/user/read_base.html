@@ -98,7 +98,7 @@
         <li>{{ user.email }} <span class="background-medium"><span class="wb-icon-lock"></span> {{ _('Private') }}</span></li>
       {% endif %} 
       <li><h5>{{ _('Member Since') }}</h5></li>
-      <li>{{ h.render_datetime(user.created) }}</li>
+      <li>{{ h.render_datetime(user.created, date_format="%Y-%m-%d") }}</li>
       {% if c.is_myself %}
         <li><h5>{{ _('API Key') }}</h5></li>
         <li>{{ user.apikey }}</li>
