@@ -26,11 +26,13 @@ then itself be extended to add/remove blocks of functionality. #}
     <div class="form-actions span-4">
       {% block disclaimer %}
         <p class="action-info small">
-          {%- trans -%}
+          {% if h.lang() == 'en' %}
           Important: By submitting content, you
           agree to release your contributions under the Open Database
           Licence.
-          {%- endtrans -%}
+          {% else %}
+          Important : en fournissant un contenu, vous acceptez de diffuser votre contribution aux termes de la licence sur la base de données ouverte.
+          {% endif %}
         </p>
       {% endblock %}
       {% block delete_button %}
