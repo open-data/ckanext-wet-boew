@@ -118,7 +118,11 @@ Examples:
   {% call input_block(id or name, label or name, error, classes, control_classes=["editor"], extra_html=extra_html) %}
     <textarea id="{{ id or name }}" name="{{ name }}" cols="60" rows="5" placeholder="{{ placeholder }}" {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
     <div class="module-content">
-      {% trans %}You can use <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown formatting</a> here{% endtrans %}
+      {% if h.lang() == 'en' %}
+        {% trans %}You can use <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown formatting</a> here{% endtrans %}
+      {% else %}
+        {% trans %}Vous pouvez utiliser le formatage <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a> ici{% endtrans %}
+      {% endif %}
     </div>
   {% endcall %}
 {% endmacro %}
