@@ -2,15 +2,13 @@
 ckanext-wet-boew
 ================
 
-This CKAN extension adds the Web Experience Toolkit base theme to CKAN 2.0. It was developed
-using the 3.1 beta of WET. The WET toolkit is not included in this Git repository. To obtain a
-copy of the WET distribution, see https://github.com/wet-boew/wet-boew/wiki/Downloads. Copy
+This CKAN extension adds the Web Experience Toolkit base theme to CKAN 2.0. You will need the https://github.com/open-data/wet-boew fork of WET, branch canada-v3.1 , which adds some minor fixes to the 3.1 release of WET. To obtain a copy of the WET distribution, download: https://dl.dropboxusercontent.com/u/6526141/dist.zip . Copy
 the contents of the 'dist' folder into 'ckanext-wet-boew/ckanext/wet_boew/public/dist'::
 
   cd ckanext/wet_boew/public/dist/
 
-  wget https://github.com/wet-boew/wet-boew-dist/archive/v3.1.0-release-dist.zip
-  unzip master-dist.zip wet-boew-master-dist/dist/*
+  wget https://dl.dropboxusercontent.com/u/6526141/dist.zip
+  unzip dist.zip wet-boew-master-dist/dist/*
   mv wet-boew-master-dist/dist/* .
   rm -r master-dist.zip wet-boew-master-dist/
 
