@@ -365,3 +365,7 @@
 form select{
 	max-width: 100%;
 }
+
+.no_display {
+	display: none !important;
+}
