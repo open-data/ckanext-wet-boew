@@ -9,11 +9,12 @@ Example:
 
 #}
 {% for i in range(0, organizations|count, 3) %}
-  {% set chunk = [organizations[i:i+3]]  %} 
+  {% set chunk = organizations[i:i+3]  %} 
   <div class="span-6 align-center equalize">
-    {% snippet "organization/snippets/organization_item.html", organization=organizations[i], first=True%}
-    {% snippet "organization/snippets/organization_item.html", organization=organizations[i+1] %}
-    {% snippet "organization/snippets/organization_item.html", organization=organizations[i+2], last=True %}
+    {% for org in chunk %}
+      {% snippet "organization/snippets/organization_item.html",
+        organization=org, first=loop.index0 % 3 == 0, last=loop.index0 % 3 == 2 %}
+    {% endfor %}
     <div class="row-end"></div>
   </div>
   <div class="clear"></div>
