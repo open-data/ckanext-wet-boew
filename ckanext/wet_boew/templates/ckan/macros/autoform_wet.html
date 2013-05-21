@@ -24,7 +24,7 @@ Example
   {{ autoform.generate(form_info, data, errors) }}
 
 #}
-{% import 'macros/form_wet.html' as form with context %}
+{% import 'macros/form_wet.html' as form %}
 {%- macro generate(form_info=[], data={}, errors={}, error_summary=[]) -%}
   {{ form.errors(error_summary) if error_summary }}
 
