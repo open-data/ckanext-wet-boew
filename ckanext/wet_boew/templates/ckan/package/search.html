@@ -38,6 +38,7 @@
           {% snippet 'snippets/search_result_text.html', query=c.q, count=c.page.item_count, type='dataset' %}
         </strong>
         <div class="filter-list">
+          {% block filter_list %}
           {% for field in c.fields_grouped %}
             {% set search_facets_items = c.search_facets.get(field)['items'] %}
             <span class="facet">{{ c.facet_titles.get(field) }}:</span>
@@ -52,6 +53,7 @@
               </span>
             {% endfor %}
           {% endfor %}
+          {% endblock %}
           {% if request.params and c.page.item_count == 0 %}
             {% trans %}
               <p class="extra">Please try another search.</p>
