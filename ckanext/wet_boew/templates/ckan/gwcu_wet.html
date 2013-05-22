@@ -67,7 +67,7 @@
       {% endif %}
     </header>
     {# Allow override of the body div for WET secondary menus #}
-    {% block body_div %}<div id="wb-body"></div>{% endblock body_div %}
+    {% block body_div %}<div id="wb-body">{% endblock body_div %}
 
       {% block skip %}
       <div id="wb-skip">
@@ -205,6 +205,7 @@
     making sitewide header changes it is preferable to override the footer.html-u
     file.
     #}      
+    </div>
     {% block footer %}
       {% include "footer_gwcu.html" %}
     {% endblock footer %}
