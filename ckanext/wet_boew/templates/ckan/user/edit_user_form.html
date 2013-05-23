@@ -1,6 +1,6 @@
 {% import 'macros/form_wet.html' as form %}
 
-<form class="dataset-form form-horizontal" method="post" action="{{ action }}">
+<form class="dataset-form form-horizontal" method="post" {% if action is defined %} action="{{ action }}" {% endif %}>
   {{ form.errors(error_summary) }}
 
   <fieldset>
