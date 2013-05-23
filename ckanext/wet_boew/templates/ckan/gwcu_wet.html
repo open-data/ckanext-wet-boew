@@ -200,12 +200,13 @@
         </div>
       </div>
 
+    
     {#
     Override the footer on a page by page basis by extending this block. If
     making sitewide header changes it is preferable to override the footer.html-u
     file.
     #}      
-    </div>
+    
     {% block footer %}
       {% include "footer_gwcu.html" %}
     {% endblock footer %}
@@ -218,6 +219,7 @@
       {{ g.template_footer_end | safe }}
     {%- endblock %}
     
+      </div>
     </div>
   </body>
 </html>
