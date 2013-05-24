@@ -73,7 +73,7 @@
       <div id="wb-skip">
         <ul id="wb-tphp">
           <li id="wb-skip1">
-            <a href="#wb-cont">Skip to main content</a>
+            <a href="#wb-main">Skip to main content</a>
           </li>
           <li id="wb-skip2">
             <a href="#wb-nav">Skip to footer</a>
@@ -200,11 +200,13 @@
         </div>
       </div>
 
+    
     {#
     Override the footer on a page by page basis by extending this block. If
     making sitewide header changes it is preferable to override the footer.html-u
     file.
     #}      
+    
     {% block footer %}
       {% include "footer_gwcu.html" %}
     {% endblock footer %}
@@ -217,6 +219,7 @@
       {{ g.template_footer_end | safe }}
     {%- endblock %}
     
+      </div>
     </div>
   </body>
 </html>

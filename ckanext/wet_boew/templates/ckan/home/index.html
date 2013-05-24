@@ -21,7 +21,7 @@
    to stacked
 #}
 {% block content %}
-  <div role="main">
+  <div>
       {{ self.flash() }}
       {{ self.primary_content() }}
   </div>
@@ -70,7 +70,7 @@
               <h3 class="background-accent"><span class="wb-icon-gear"></span>{{ _("Search Your Data") }}</h3>
               <div class="module">
                 <p>
-                  <input type="text" class="search" name="q" size="45" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
+                  <input type="text" class="search" name="q" id="q" size="45" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
                   <button type="submit" class="button button-accent" value="{{ _('Search') }}">{{_('Submit')}}</button>
                 </p>
               </div>
