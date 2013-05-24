@@ -64,6 +64,8 @@
       {{ form.input('mimetype_inner', id='field-mimetype-inner', label=_('MIME Type'), placeholder=_('eg. application/json'), value=data.mimetype_inner, error=errors.mimetype_inner, classes=[]) }}
     {% endif %}
   {% endblock %}
+  
+  </div>
 
   <div class="form-actions">
     {% block delete_button %}

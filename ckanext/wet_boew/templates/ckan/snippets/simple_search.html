@@ -1,6 +1,7 @@
 <form class="dataset-search clearfix" method="GET" data-module="select-switch">
   <span class="control-group search-giant">
-    <input type="text" class="search" name="q" value="{{ q }}" autocomplete="off" placeholder="{{ placeholder }}" />
+    <label for="q">{{_('Search)}}</label>
+    <input type="text" class="search" name="q" id="q" value="{{ q }}" autocomplete="off" placeholder="{{ placeholder }}" />
     <button type="submit" class="button button-accent">{{ _('Search') }}</button>
   </span>
   <span class="form-select control-group control-order-by">
