@@ -3,6 +3,7 @@
 import ckan as ckan
 import ckan.plugins as p
 import ckan.lib.helpers as h
+import ckan.lib.formatters as formatters
 import ckan.model as model
 import webhelpers.html as html
 import dateutil.parser
@@ -11,7 +12,7 @@ import shapely as shapely
 import shapely.wkt as wkt
 
 from webhelpers import paginate
-from webhelpers.html import HTML
+from webhelpers.html import HTML, literal
 from pylons.i18n import gettext
 import re
 
@@ -35,6 +36,7 @@ class WetTheme(p.SingletonPlugin):
         # monkey patch helpers.py pagination method
         h.Page.pager = _wet_pager
         h.gravatar = _wet_no_gravatar
+        h.SI_number_span = _SI_number_span_close
         
     def get_helpers(self):
       return {'link_to_user': self.link_to_user, 
@@ -114,4 +116,13 @@ def _wet_pager(self, *args, **kwargs):
     
 def _wet_no_gravatar(email_hash, size=100, default=None):
     return ""
-                          
+    
+def _SI_number_span_close(number):
+    ''' outputs a span with the number in SI unit eg 14700 -> 14.7k '''
+    number = int(number)
+    if number < 1000:
+        output = literal('<span>')
+    else:
+        output = literal('<span title="' + formatters.localised_number(number) + '">')
+    return output + formatters.localised_SI_number(number) + literal('</span>')
+                      

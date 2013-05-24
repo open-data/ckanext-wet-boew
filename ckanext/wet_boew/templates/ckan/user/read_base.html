@@ -25,7 +25,7 @@
     </ul>
     {% endblock actions %}
   </div>
-  </div class="clear">
+  <div class="clear"></div>
   {% endif %}
 {% endblock toolbar %}
 
@@ -69,13 +69,13 @@
     </div>
     <div class="span-2">
       <div class="span-1 row-start">
-        <h5 class="align-center">{{ _('Edits') }}</h5>
+        <h4 class="align-center">{{ _('Edits') }}</h4>
         <p class="font-xlarge align-center">
           {{ h.SI_number_span(user.number_of_edits) }}
         </p>
       </div>
       <div class="span-1 row-end">
-        <h5 class="align-center">{{ _('Datasets') }}</h5>
+        <h4 class="align-center">{{ _('Datasets') }}</h4>
         <p class="font-xlarge align-center">
           {{ h.SI_number_span(user.number_administered_packages) }}
         </p>
@@ -85,22 +85,22 @@
     <div class="span-2">
       <ul class="list-bullet-none">
       {% if user.name.startswith('http://') or user.name.startswith('https://') %}
-        <li><h5>{{ _('Open ID') }}</h5></li>
+        <li><h4>{{ _('Open ID') }}</h4></li>
         <ul class="list-bullet-none">
           <li>{{ user.name|urlize(25) }}{# Be great if this just showed the domain #}</li>
         </ul>
       {% else %}
-        <li><h5>{{ _('Username') }}</h5></li>
+        <li><h4>{{ _('Username') }}</h4></li>
         <li>{{ user.name }}</li>
       {% endif %}
       {% if c.is_myself %}
-        <li><h5>{{ _('Email') }}</h5></li>
+        <li><h4>{{ _('Email') }}</h4></li>
         <li>{{ user.email }} <span class="background-medium"><span class="wb-icon-lock"></span> {{ _('Private') }}</span></li>
       {% endif %} 
-      <li><h5>{{ _('Member Since') }}</h5></li>
+      <li><h4>{{ _('Member Since') }}</h4></li>
       <li>{{ h.render_datetime(user.created, date_format="%Y-%m-%d") }}</li>
       {% if c.is_myself %}
-        <li><h5>{{ _('API Key') }}</h5></li>
+        <li><h4>{{ _('API Key') }}</h4></li>
         <li>{{ user.apikey }}</li>
         <li><span class="background-medium"><span class="wb-icon-lock"></span> {{ _('Private') }}</span></li>
       {% endif %}                        
