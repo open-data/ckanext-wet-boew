@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block breadcrumb_content %}
-  <li class="active">{{ h.nav_link(_('Search Datasets'), controller='package', action='search', highlight_actions = 'new index') }}</li>
+  <li class="active">{{ h.nav_link(_('Search Data'), controller='package', action='search', highlight_actions = 'new index') }}</li>
 {% endblock %}
 
 {% block primary_content %}
@@ -19,7 +19,7 @@
     <div class="module-poster">
       <form id="dataset-search" class="dataset-search clearfix" method="get" data-module="select-switch">
         <div id="search">
-          <label for="q">{{_('Search')}}</label>
+          <label for="q">{{_('Search Data')}}</label>
           <input type="text" class="search" name="q" id="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('Search...') }}" size="45"/>
           <button type="submit" class="button button-accent" value="{{ _('Search') }}">{{ _('Submit') }}</button>
           {% block suggest_a_dataset_button %}{% endblock %}
@@ -45,13 +45,13 @@
             {% set search_facets_items = c.search_facets.get(field)['items'] %}
             <span class="facet">{{ c.facet_titles.get(field) }}:</span>
             {% for value in c.fields_grouped[field] %}
-              <span class="filtered pill">
+              <span class="filtered pill background-accent facet-filter">
                 {%- if c.translated_fields and c.translated_fields.has_key((field,value)) -%}
                   {{ c.translated_fields[(field,value)] }}
                 {%- else -%}
                   {{ h.list_dict_filter(search_facets_items , 'name', 'display_name', value) }}
                 {%- endif %}
-                <a href="{{ c.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="icon-remove"></i></a>
+                <a href="{{ c.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><span class="wb-icon-x"></span></a>
               </span>
             {% endfor %}
           {% endfor %}
