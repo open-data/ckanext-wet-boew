@@ -85,23 +85,12 @@ class WetTheme(p.SingletonPlugin):
       gjson = json.loads(gjson_str)
       coords = gjson['coordinates']
 
-      # test to see if the latitude and longitude have been transposed. Since all co-ordinates are in 
-      # Canada, the latitude should be negative.
-      if coords:
-        if coords[0][0][0]:
-          if coords[0][0][0] > 0:
-            new_coords = []
-            for coord in coords[0]:
-              coord1 = [coord[1], coord[0]]
-              new_coords.append(coord1)
-            gjson['coordinates'][0] = new_coords
-    
       shape = shapely.geometry.asShape(gjson)
 
       wkt_str = wkt.dumps(shape)
       return wkt_str
 
-                                 
+
 def _wet_pager(self, *args, **kwargs):
     ## a custom pagination method, because CKAN doesn't expose the pagination to the templates,
     ## and instead hardcodes the pagination html in helpers.py
