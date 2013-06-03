@@ -1,6 +1,6 @@
 
 pe.document.on('geomap-ready', function() {
         var myMap = pe.fn.geomap.getMap();
-        var myExtent = myMap.getLayer('table#spatialfeature'); 
-        myMap.zoomToExtent(myExtent, true);    
+        var layer = myMap.getLayersByName('spatialfeature')[0];
+        myMap.zoomToExtent(layer.getDataExtent().scale(3));
     });
