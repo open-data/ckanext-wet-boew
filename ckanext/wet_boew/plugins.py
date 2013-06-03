@@ -77,18 +77,19 @@ class WetTheme(p.SingletonPlugin):
         return dateobj.strftime('%Y-%m-%d')
       
     def geojson_to_wkt(self, gjson_str):
-      ## Ths GeoJSON string should look something like:
-      ##  u'{"type": "Polygon", "coordinates": [[[-54, 46], [-54, 47], [-52, 47], [-52, 46], [-54, 46]]]}']
-      ## Convert this JSON into an object, and load it into a Shapely object. The Shapely library can
-      ## then output the geometry in Well-Known-Text format
+        ## Ths GeoJSON string should look something like:
+        ##  u'{"type": "Polygon", "coordinates": [[[-54, 46], [-54, 47], [-52, 47], [-52, 46], [-54, 46]]]}']
+        ## Convert this JSON into an object, and load it into a Shapely object. The Shapely library can
+        ## then output the geometry in Well-Known-Text format
 
-      gjson = json.loads(gjson_str)
-      coords = gjson['coordinates']
+        try:
+            gjson = json.loads(gjson_str)
+            shape = shapely.geometry.asShape(gjson)
+        except ValueError:
+            return None # avoid 500 error on bad geojson in DB
 
-      shape = shapely.geometry.asShape(gjson)
-
-      wkt_str = wkt.dumps(shape)
-      return wkt_str
+        wkt_str = wkt.dumps(shape)
+        return wkt_str
 
 
 def _wet_pager(self, *args, **kwargs):
