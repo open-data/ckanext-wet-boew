@@ -69,7 +69,7 @@ class WetTheme(p.SingletonPlugin):
     def get_datapreview(self, res_id):
      
         #import pdb; pdb.set_trace()
-        dsq_results = ckan.logic.get_action('datastore_search')({}, {'resource_id': res_id, 'limit' : 10000})
+        dsq_results = ckan.logic.get_action('datastore_search')({}, {'resource_id': res_id, 'limit' : 100})
         return h.snippet('package/wet_datatable.html', ds_fields=dsq_results['fields'], ds_records=dsq_results['records'])     
       
     def iso_to_goctime(self, isodatestr):
