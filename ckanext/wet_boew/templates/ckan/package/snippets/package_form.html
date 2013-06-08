@@ -3,7 +3,7 @@
 
 {# This provides a full page that renders a form for adding a dataset. It can
 then itself be extended to add/remove blocks of functionality. #}
-<form class="dataset-form form-horizontal" method="post" {% if action is defined and action != ''%} action="{{ action }}" {% endif %} data-module="basic-form">
+<form id="dataset-form" class="dataset-form form-horizontal" method="post" {% if action is defined and action != ''%} action="{{ action }}" {% endif %} data-module="basic-form">
   {% block stages %}
     {# disable stages for now. WET-BOEW does not have the components to do this in a manner that is aesthetically pleasing out of the box. #}
     {# { h.snippet('package/snippets/stages.html', stages=stage) } #}
