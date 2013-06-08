@@ -56,11 +56,14 @@
             {% endfor %}
           {% endfor %}
           {% endblock %}
-          {% if request.params and c.page.item_count == 0 %}
-            {% trans %}
-              <p class="extra">Please try another search.</p>
-            {% endtrans %}
-          {% endif %}
+        </div>
+        {% if request.params and c.page.item_count == 0 %}
+          {% block try_another_search %}
+          {% trans %}
+            <p class="extra">Please try another search.</p>
+          {% endtrans %}
+          {% endblock %}
+        {% endif %}
       </div>
 
       {% if c.query_error %}
@@ -72,7 +75,6 @@
     </div>
 
     {{ c.page.pager(q=c.q) }}
-    </div>
   </section>
 
   {%- block api_access_info -%}
