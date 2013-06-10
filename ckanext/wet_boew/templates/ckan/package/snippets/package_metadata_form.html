@@ -4,7 +4,9 @@
 {% set errors = errors or {} %}
 
 <form id="dataset-form" class="dataset-form dataset-resource-form form-horizontal" method="post" data-module="basic-form">
+  {% block errors %}
   {{ form.errors(error_summary) }}
+  {% endblock %}
 
   {% snippet 'package/snippets/package_metadata_fields.html', data=data, errors=errors, groups_available=groups_available %}
 
