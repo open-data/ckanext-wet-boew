@@ -3,9 +3,10 @@
 {% set data = data or {} %}
 {% set errors = errors or {} %}
 
-<form class="dataset-form dataset-resource-form form-horizontal" method="post" data-module="basic-form">
-  {# { h.snippet('package/snippets/stages.html', stages=['complete', 'complete', 'active'], pkg_name=pkg_name) } #}
+<form id="dataset-form" class="dataset-form dataset-resource-form form-horizontal" method="post" data-module="basic-form">
+  {% block errors %}
   {{ form.errors(error_summary) }}
+  {% endblock %}
 
   {% snippet 'package/snippets/package_metadata_fields.html', data=data, errors=errors, groups_available=groups_available %}
 
