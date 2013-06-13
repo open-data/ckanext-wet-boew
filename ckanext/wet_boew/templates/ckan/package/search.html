@@ -20,11 +20,13 @@
         <div id="search">
           <label for="q">{{_('Search Data')}}</label>
           <input type="text" class="search" name="q" id="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('Search...') }}" size="45"/>
-          <button type="submit" class="button button-accent" value="{{ _('Search') }}">{{ _('Submit') }}</button>
+          
           {% block suggest_a_dataset_button %}{% endblock %}
         </div>
 
         {{ h.snippet('snippets/sort_by.html', sort=c.sort_by_selected) }}
+        
+        <button type="submit" class="button button-large button-accent" value="{{ _('Search') }}">{{ _('Submit') }}</button>
         
         {% if c.fields -%}
           <span>
