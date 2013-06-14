@@ -37,7 +37,25 @@
       <div id="content">
         {% block main_content %}
 
-          <div class="span-2">
+          <div class="span-6" style="float: right;">
+          {% block primary %}
+              {#
+              The primary_content block can be used to add content to the page.
+              This is the main block that is likely to be used within a template.
+
+              Example:
+
+                {% block primary_content %}
+                  <h1>My page content</h1>
+                  <p>Some content for the page</p>
+                {% endblock %}
+              #}
+              {% block primary_content %}{% endblock %}
+
+          {% endblock primary %}
+          </div>
+
+          <div class="span-2" style="float: left;">
           {% block secondary %}
             <aside class="secondary">
               {#
@@ -55,24 +73,6 @@
               {% block secondary_content %}{% endblock %}
             </aside>
           {% endblock secondary %}
-          </div>
-          
-          <div class="span-6">
-          {% block primary %}
-              {#
-              The primary_content block can be used to add content to the page.
-              This is the main block that is likely to be used within a template.
-
-              Example:
-
-                {% block primary_content %}
-                  <h1>My page content</h1>
-                  <p>Some content for the page</p>
-                {% endblock %}
-              #}
-              {% block primary_content %}{% endblock %}
-   
-          {% endblock primary %}
           </div>
           <div class="clear"></div>
 
