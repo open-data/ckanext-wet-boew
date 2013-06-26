@@ -138,7 +138,10 @@ def _add_extra_longitude_points(gjson):
     out = [[plng, plat]]
     for lng, lat in coords[1:]:
         if plat - fuzz < lat < plat + fuzz:
-            parts = math.floor(abs(lng-plng))
+            parts = int(abs(lng-plng))
+            if parts > 300:
+                # something wrong with the data, give up
+                return gjson
             for i in range(parts)[1:]:
                 out.append([(i*lng + (parts-i)*plng)/parts, lat])
         out.append([lng, lat])
