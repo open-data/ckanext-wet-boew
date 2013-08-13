@@ -63,5 +63,6 @@
 
 {% block links %}
   {{ super() }}
+  <link rel="canonical" href="{{h.canonical_search_url()}}"/>
   {% include "organization/snippets/feeds.html" %}
 {% endblock %}

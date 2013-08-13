@@ -9,6 +9,11 @@
   {% endif %}
 {% endblock %}
 
+{% block links %}
+{{ super() }}
+<link rel="canonical" href="{{h.canonical_search_url()}}"/>
+{% endblock %}
+
 {% block skip %}
 <div id="wb-skip">
   <ul id="wb-tphp">
