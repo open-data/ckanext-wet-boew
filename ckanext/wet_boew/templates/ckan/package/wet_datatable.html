@@ -25,7 +25,7 @@
         {% for ds_field in ds_fields %}
           {% if ds_field['id'] != '_id' %}
             {% if ds_field['type'] != 'timestamp' %}
-              <td>{{ ds_rec[ds_field['id']] }}</td>
+              <td>{{ ds_rec[ds_field['id']] or ('&nbsp;'|safe) }}</td>
             {% else %}
               <td>{{ h.iso_to_goctime(ds_rec[ds_field['id']]) }}</td>
             {% endif %}

@@ -84,6 +84,13 @@ class WetTheme(p.SingletonPlugin):
 
         try:
             gjson = json.loads(gjson_str)
+            try:
+                gjson = _add_extra_longitude_points(gjson)
+            except:
+                # this is bad, but all we're trying to do is improve
+                # certain shapes and if that fails showing the original
+                # is good enough
+                pass
             shape = shapely.geometry.asShape(gjson)
         except ValueError:
             return None # avoid 500 error on bad geojson in DB
@@ -115,4 +122,28 @@ def _SI_number_span_close(number):
     else:
         output = literal('<span title="' + formatters.localised_number(number) + '">')
     return output + formatters.localised_SI_number(number) + literal('</span>')
-                      
+
+def _add_extra_longitude_points(gjson):
+    """
+    Assume that sides of a polygon with the same latitude should
+    be rendered as curves following that latitude instead of
+    straight lines on the final map projection
+    """
+    import math
+    fuzz = 0.00001
+    if gjson[u'type'] != u'Polygon':
+        return gjson
+    coords = gjson[u'coordinates'][0]
+    plng, plat = coords[0]
+    out = [[plng, plat]]
+    for lng, lat in coords[1:]:
+        if plat - fuzz < lat < plat + fuzz:
+            parts = int(abs(lng-plng))
+            if parts > 300:
+                # something wrong with the data, give up
+                return gjson
+            for i in range(parts)[1:]:
+                out.append([(i*lng + (parts-i)*plng)/parts, lat])
+        out.append([lng, lat])
+        plng, plat = lng, lat
+    return {u'coordinates': [out], u'type': u'Polygon'}
