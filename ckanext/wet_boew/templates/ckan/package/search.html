@@ -9,6 +9,11 @@
   {% endif %}
 {% endblock %}
 
+{% block links %}
+{{ super() }}
+<link rel="canonical" href="{{h.canonical_search_url()}}"/>
+{% endblock %}
+
 {% block skip %}
 <div id="wb-skip">
   <ul id="wb-tphp">
@@ -88,8 +93,10 @@
       {% endif %}
       {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
     </div>
-
-    {{ c.page.pager(q=c.q) }}
+    
+    {%- block pager -%}
+      {{ c.page.pager(q=c.q) }}
+    {%- endblock -%}
   </section>
 
   {%- block api_access_info -%}
