@@ -1,0 +1,51 @@
+{#
+Displays a single related item.
+
+related - The related item dict.
+pkg_id  - The id of the owner package. If present the edit button will be
+          displayed.
+
+Example:
+
+
+
+#}
+{% set placeholder_map = {
+'application':'/base/images/placeholder-application.png'
+} %}
+<div class="span-2 module{% if first %} row-start{% endif %}{% if last %} row-end{% endif %}">
+  <div class="span-2">
+    <p>
+      <a href="{{ related.url }}"><img src="{{ related.image_url or placeholder_map[related.type] or h.url_for_static('/base/images/placeholder-image.png') }}" alt="{{ related.title }}" /></a>
+    </p>
+  </div>
+  <div class="span-2">
+  <a href="{{ related.url }}">
+    <span class="banner">
+      {%- if related.type == 'application' -%}
+        aplp
+      {%- elif related.type == 'visualization' -%}
+        viz
+      {%- else -%}
+        {{ related.type | replace('news_', '') }}
+      {%- endif -%}
+    </span>
+  </a>
+  <div class="media-content">
+    <h4 class="media-heading">
+      <a href="{{ related.url }}" title="{{ _('View {name}').format(name=related.title) }}">
+        {{ related.title }}
+      </a>
+    </h4>
+    {% if related.description %}
+      <div class="prose">{{ h.render_markdown(related.description) }}</div>
+    {% else %}
+      <p class="empty">{{ _('This item has no description') }}</p>
+    {% endif %}
+    <a class="button" href="{{ related.url }}" target="_blank">{{ _('Go to {type}').format(type=related.type|replace('_', ' ')|title) }}</a>
+    {% if pkg_id %}
+      {{ h.nav_link(_('Edit'), controller='related', action='edit', id=pkg_id, related_id=related.id, class_='button button-accent') }}
+    {% endif %}
+  </div>
+  </div>
+</div>
