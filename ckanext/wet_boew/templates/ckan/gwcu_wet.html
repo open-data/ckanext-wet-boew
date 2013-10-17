@@ -106,12 +106,11 @@
                     {# This format only works for a bilingual format #}
                     {% set current_url = request.environ.CKAN_CURRENT_URL %}
                     <li id="base-fullhd-lang">
+                    {% set url_parts = current_url.partition('?') %}
                       {% if h.lang() == 'en'%}
-                      <a href="{% url_for current_url, locale='fr' %}" lang="fr">Français</a>
-                      {% elif h.lang() == 'fr' %}
-                      <a href="{% url_for current_url, locale='en' %}" lang="en">English</a>
+                      <a href="{% url_for url_parts[0], locale='fr' %}{{ ''.join(url_parts[1:]) }}" lang="fr">Français</a>
                       {% else %}
-                      <a href="{% url_for current_url, locale='en' %}" lang="en">English</a>                    
+                      <a href="{% url_for url_parts[0], locale='en' %}{{ ''.join(url_parts[1:]) }}" lang="en">English</a>
                       {% endif %}
                     </li>
                   </ul>
