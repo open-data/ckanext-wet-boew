@@ -1,19 +1,7 @@
 {% extends "page_wet.html" %}
 
-{% block secondary_content %}
-
-  {% block secondary_help_content %}{% endblock %}
-
-  {% block package_social %}
-    {% snippet "snippets/social.html" %}
-  {% endblock %}
-
-{% endblock %}
-
-{% block primary_content %}
-  <article class="module prose">
-    <section class="module-content">
+{% block main_content %}
+  <div class="span-8">
       {% block primary_content_inner %}{% endblock %}
-    </section>
-  </article>
+  </div>
 {% endblock %}
