@@ -1,0 +1,33 @@
+<table class="wet-boew-tables">
+  <thead>
+    <tr>
+      <td>{{ _('Revision') }}</td>
+      <td>{{ _('Timestamp') }}</td>
+      <td>{{ _('Author') }}</td>
+      <td>{{ _('Entity') }}</td>
+      <td>{{ _('Log Message') }}</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rev in revisions %}
+      <tr>
+        <td>
+          <a href="{{ h.url_for(controller='revision', action='read', id=rev.id) }}">{{rev.id | truncate(6)}}</a>
+        </td>
+        <td class="dataset-details">
+          {{ h.render_datetime(rev.timestamp, with_hours=True) }}
+        </td>
+        <td>{{ h.linked_user(rev.author) }}</td>
+        <td>
+          {% for pkg in rev.packages %}
+            <a href="{{ h.url_for(controller='package', action='read', id=pkg.name) }}">{{ pkg.title }}</a>
+          {% endfor %}
+          {% for group in rev.groups %}
+            <a href="{{ h.url_for(controller='group', action='read', id=group.name) }}">{{ group.display_name }}</a>
+          {% endfor %}
+        </td>
+        <td>{{ rev.message }}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
