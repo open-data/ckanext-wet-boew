@@ -40,7 +40,11 @@
         {% if c.pkg_revision_id %}
           <div class="module-attention module-simplify">
 
-              {% set timestamp = h.render_datetime(c.pkg_revision_timestamp, with_hours=True) %}
+              {# Ideally, the timestamp would be replaced by LOCALISED timestamp. Unfortunately the CKAN
+                 helper function this replaces is English only #}
+              {% set rev_date = pkg.revision_timestamp[:10] %}
+              {% set rev_time = pkg.revision_timestamp[11:16] %}
+              {% set timestamp = "%s %s" % (rev_date, rev_time) %}
               {% set url =  h.url(controller='package', action='read', id=pkg.name) %}
 
               {% if c.pkg_revision_not_latest %}
