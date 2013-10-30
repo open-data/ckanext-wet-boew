@@ -21,16 +21,10 @@
       <div id="wb-main" role="main">
         <div id="wb-main-in">
           <div class="span-6 float-right">
-            {% block primary %}
-              {% block primary_content %}{% endblock %}
-            {% endblock %}
+            {{ self.primary() }}
           </div>
           <div class="span-2 float-left">
-            {% block secondary %}
-              <aside class="secondary">
-                {% block secondary_content %}{% endblock %}
-              </aside>
-            {% endblock secondary %}
+            {{ self.secondary() }}
           </div>
           <div class="clear"></div>
         </div>
