@@ -1,0 +1,44 @@
+{% ckan_extends %}
+
+{% block footer_content %}
+  <div id="wb-foot">
+    <div id="wb-foot-in">
+      <footer>
+        <h2>Footer</h2>
+        <nav role="navigation">
+          <div id="base-sft">
+            <h3>Site footer</h3>
+            <div id="base-sft-in">
+              {% set api_url = 'http://docs.ckan.org/{0}/{1}/api.html'.format(request.environ.CKAN_LANG, g.ckan_doc_version) %}
+              <div class="span-2">
+                <h4 class="base-col-head"><a href="{{ h.url_for(controller='home', action='about') }}">{{ _('About {0}').format(g.site_title) }}</a></h4>
+                <ul>
+                  <li><a href="#">{{ _('Terms and Conditions') }}</a></li>
+                  <li><a href="#">{{ _('Accessibility') }}</a></li>
+                  <li><a href="#">{{ _('Code of conduct') }}</a></li>
+                  <li><a href="#">{{ _('Moderation policy') }}</a></li>
+                </ul>
+              </div>
+              <div class="span-2">
+                <h4 class="base-col-head">{{ _('News') }}</h4>
+                <ul>
+                  <li><a href="#">{{ _('FAQ') }}</a></li>
+                  <li><a href="#">{{ _('Privacy') }}</a></li>
+                  <li><a href="#">{{ _('Contact us') }}</a></li>                 
+                  <li><a href="{{ api_url }}">{{ _('CKAN API') }}</a></li>  
+                </ul>
+              </div>
+              <div class="span-4">
+                <h4 class="base-col-head">{{ _('Powered by')}}</h4>
+                <ul>
+                  <li><a rel="external" href="http://ckan.org">CKAN</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </footer>
+    </div>
+  </div>
+{% endblock %}
+

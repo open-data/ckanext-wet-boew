@@ -1,0 +1,41 @@
+{% ckan_extends %}
+
+{% block skip %}
+  <div id="wb-skip">
+    <ul id="wb-tphp">
+      <li id="wb-skip1"><a href="#content">Skip to main content</a></li>
+      <li id="wb-skip2"><a href="#footer">Skip to footer</a></li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block flash_inner %}
+  <div class="span-8 module-attention">
+    {{ super() }}
+  </div>
+{% endblock %}
+
+{% block main_content %}
+  <div id="wb-core">
+    <div id="wb-core-in">
+      <div id="wb-main" role="main">
+        <div id="wb-main-in">
+          <div class="span-6 float-right">
+            {% block primary %}
+              {% block primary_content %}{% endblock %}
+            {% endblock %}
+          </div>
+          <div class="span-2 float-left">
+            {% block secondary %}
+              <aside class="secondary">
+                {% block secondary_content %}{% endblock %}
+              </aside>
+            {% endblock secondary %}
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      {% block sec_menu %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

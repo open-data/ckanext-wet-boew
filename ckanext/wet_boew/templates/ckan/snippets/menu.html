@@ -1,0 +1,46 @@
+<ul class="mb-menu">
+  <li>
+    <h3>{% link_for _('Home'), controller='home', action='index' %}</h3>
+    <div class="mb-sm">
+      <ul class="span-2">
+        <li>{% link_for _('Home'), controller='home', action='index' %}</li>
+        <li>{% link_for _('About'), controller='home', action='about' %}</li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <h3>{% link_for _('Open Data'), controller='package', action='search' %}</h3>
+    <div class="mb-sm">
+      <ul>
+        <li>{% link_for _('Search Data'), controller='package', action='search' %}</li>
+        <li><hr></li>
+        {{ h.build_nav_main(
+          ('add dataset', _('Add Dataset'), 'package_create'),
+          ('search', _('Datasets')),
+          ('organizations_index', _('Organizations')),
+          ('group_index', _('Groups')),
+        ) }}
+      </ul>
+      <div class="clear"></div>
+      <div class="mb-main-link">
+        <a href="/eng/content/open-data">{{ _('Open Data - Main Page') }}</a>
+      </div>
+    </div>
+  </li>
+  <li>
+    <h3>{% link_for _('My Account'), controller='user', action='edit', id=user.name %}</h3>
+    <div class="mb-sm">
+      <ul class="span-2">
+        {% if user %}
+          <li>{% link_for _('Dashboard'), controller='user', action='dashboard' %}</li>
+          <li>{% link_for _('My Profile'), controller='user', action='read', id=user.name %}</li>
+          <li>{% link_for _('Edit Profile'), controller='user', action='edit', id=user.name %}</li>
+          <li>{% link_for _('Log out'), controller='user', action='logout' %}</li>
+        {% else %}
+          <li>{% link_for _('Log in'), controller='user', action='login' %}</li>
+          <li>{% link_for _('Register'), controller='user', action='register' %}</li>
+        {% endif %}
+      </ul>
+    </div>
+  </li>
+</ul>
