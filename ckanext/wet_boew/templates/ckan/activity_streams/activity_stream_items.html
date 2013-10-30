@@ -1,0 +1,13 @@
+{% ckan_extends %}
+
+{% block activity_stream %}
+  {% if activities %}
+    <div class="module-comment">
+      <ol class="list-bullet-none wet-boew-zebra" data-module="activity-stream" data-module-more="{{ has_more }}" data-module-context="{{ controller }}" data-module-id="{{ id }}" data-module-offset="{{ offset }}">
+        {{ self.activity_stream_inner() }}
+      </ol>
+    </div>
+  {% else %}
+    {{ self.activity_stream_empty() }}
+  {% endif %}
+{% endblock %}
