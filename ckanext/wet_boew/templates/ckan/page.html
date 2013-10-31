@@ -33,3 +33,16 @@
     </div>
   </div>
 {% endblock %}
+
+{% block page_header %}
+  <header>
+    {% if self.content_action() | trim %}
+      <div class="float-right">
+        {% block content_action %}{% endblock %}
+      </div>
+    {% endif %}
+    <ul class="button-group indent-medium">
+      {% block content_primary_nav %}{% endblock %}
+    </ul>
+  </header>
+{% endblock %}
