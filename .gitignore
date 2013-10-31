@@ -42,6 +42,3 @@ ckanext/wet_boew/public/dist/theme-clf2-nsi2
 ckanext/wet_boew/public/dist/theme-gcwu-fegc
 ckanext/wet_boew/public/dist/theme-gcwu-intranet
 ckanext/wet_boew/public/dist/theme-wet-boew
-
-# NodeJS
-node_modules
