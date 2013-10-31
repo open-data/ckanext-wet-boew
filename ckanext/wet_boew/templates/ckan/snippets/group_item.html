@@ -3,7 +3,8 @@
 {% block group_item %}
   <section>
     <div class="module-poster span-2">
-      {{ super() }}
+      {{ self.group_item_header() }}
+      {{ self.group_item_content() }}
     </div>
   </section>
 {% endblock %}
