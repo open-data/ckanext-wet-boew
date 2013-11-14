@@ -1,0 +1,14 @@
+{% ckan_extends %}
+
+{% block heading %}
+  <strong>{{ self.heading_title() }}</strong>
+{% endblock %}
+
+{% block resources_outer %}
+  <ul class="menu-horizontal margin-top-none">
+    <li>{{ _('Resource Formats:') }}</li>
+    {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+      <li><code>{{ resource }}</code></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
