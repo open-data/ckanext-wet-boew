@@ -96,15 +96,28 @@
   </div>
 {% endblock %}
 
-{% block page_header %}
-  <header>
-    {% if self.content_action() | trim %}
-      <div class="float-right">
-        {% block content_action %}{% endblock %}
-      </div>
-    {% endif %}
-    <ul class="button-group indent-medium">
-      {% block content_primary_nav %}{% endblock %}
-    </ul>
-  </header>
+{% block primary_content %}
+  <article>
+    {% block page_header %}
+      <header>
+        {% if self.content_action() | trim %}
+          <div class="float-right">
+            {% block content_action %}{% endblock %}
+          </div>
+        {% endif %}
+        <ul class="button-group indent-medium">
+          {% block content_primary_nav %}{% endblock %}
+        </ul>
+      </header>
+    {% endblock %}
+    <div>
+      {% if self.page_primary_action() | trim %}
+        <div class="page_primary_action">
+          {% block page_primary_action %}{% endblock %}
+        </div>
+      {% endif %}
+      {% block primary_content_inner %}
+      {% endblock %}
+    </div>
+  </article>
 {% endblock %}
