@@ -1,0 +1,12 @@
+{% ckan_extends %}
+
+{% block package_groups %}
+  {% if pkg.groups %}
+    <p>
+      <div class="module-related">
+        {{ self.package_groups_title() }}
+        {{ self.package_groups_nav() }}
+      </div>
+    </p>
+  {% endif %}
+{% endblock %}
