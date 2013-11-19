@@ -113,9 +113,9 @@
     {% endblock %}
     <div>
       {% if self.page_primary_action() | trim %}
-        <div class="page_primary_action">
+        <p><div class="page_primary_action">
           {% block page_primary_action %}{% endblock %}
-        </div>
+        </div></p>
       {% endif %}
       {% block primary_content_inner %}
       {% endblock %}
