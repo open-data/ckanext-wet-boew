@@ -13,6 +13,7 @@ import shapely.wkt as wkt
 
 from webhelpers import paginate
 from webhelpers.html import HTML, literal
+from webhelpers.html.tags import link_to
 from pylons.i18n import gettext
 import re
 
@@ -28,7 +29,7 @@ class WetTheme(p.SingletonPlugin):
 
         # add the WET JS directory as a fanstatic resource
         p.toolkit.add_resource('public/dist', 'ckanext-wet')
-                
+
         # add our templates
         p.toolkit.add_template_directory(config, 'templates/ckan')
         p.toolkit.add_public_directory(config, 'public')
@@ -38,7 +39,8 @@ class WetTheme(p.SingletonPlugin):
         h.gravatar = _wet_no_gravatar
         h.SI_number_span = _SI_number_span_close
         h.build_nav_icon = _build_nav_icon
-        
+        h._link_to = _link_to
+
     def get_helpers(self):
       return {'link_to_user': self.link_to_user, 
               'get_datapreview': self.get_datapreview,
@@ -102,13 +104,51 @@ class WetTheme(p.SingletonPlugin):
 
 def _build_nav_icon(menu_item, title, **kwargs):
     kwargs.update(
-        class_=u"button"
+        class_ = u"button"
     )
     item = h._make_menu_item(menu_item, title, **kwargs)
     if " class=\"active\"" in item:
         return item.replace("button", "button button-accent")
     return item
 
+
+def _link_to(text, *args, **kwargs):
+    '''Common link making code for several helper functions'''
+    assert len(args) < 2, 'Too many unnamed arguments'
+
+    def _link_class(kwargs):
+        ''' creates classes for the link_to calls '''
+        class_ = kwargs.pop('class_', None)
+        suppress_active_class = kwargs.pop('suppress_active_class', False)
+        if not suppress_active_class and h._link_active(kwargs):
+            active = ' active'
+        else:
+            active = ''
+        kwargs.pop('highlight_actions', '')
+        if class_ and 'btn' in class_:
+            class_ = class_.replace('btn', 'button')
+            if active:
+                active = ' button-accent'
+        if class_:
+            return class_ + active
+        return None
+
+    def _create_link_text(text, **kwargs):
+        ''' Update link text to add a icon or span if specified in the
+        kwargs '''
+        if kwargs.pop('inner_span', None):
+            text = literal('<span>') + text + literal('</span>')
+        if icon:
+            text = literal('<i class="icon-%s"></i> ' % icon) + text
+        return text
+
+    icon = kwargs.pop('icon', None)
+    class_ = _link_class(kwargs)
+    return link_to(
+        _create_link_text(text, **kwargs),
+        h.url_for(*args, **kwargs),
+        class_=class_
+    )
 
 def _wet_pager(self, *args, **kwargs):
     ## a custom pagination method, because CKAN doesn't expose the pagination to the templates,
