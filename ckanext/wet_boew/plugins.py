@@ -42,7 +42,8 @@ class WetTheme(p.SingletonPlugin):
       return {'link_to_user': self.link_to_user, 
               'get_datapreview': self.get_datapreview,
               'iso_to_goctime': self.iso_to_goctime,
-              'geojson_to_wkt': self.geojson_to_wkt }
+              'geojson_to_wkt': self.geojson_to_wkt,
+              'build_nav_icon': self.build_nav_icon }
 
 
     def link_to_user(self, user, maxlength=0):
@@ -97,6 +98,13 @@ class WetTheme(p.SingletonPlugin):
 
         wkt_str = wkt.dumps(shape)
         return wkt_str
+
+
+    def build_nav_icon(menu_item, title, **kwargs):
+        kwargs.update(
+            class_=u"button"
+        )
+        return _make_menu_item(menu_item, title, **kwargs)
 
 
 def _wet_pager(self, *args, **kwargs):
