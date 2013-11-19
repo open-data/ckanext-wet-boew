@@ -1,0 +1,33 @@
+{% ckan_extends %}
+
+{% block resource %}
+  <div>
+    {{ self.resource_inner() }}
+  </div>
+{% endblock %}
+
+{% block resource_actions %}{% endblock %}
+
+{% block resource_additional_information %}
+  <div>
+    {{ self.resource_additional_information_inner() }}
+  </div>
+{% endblock %}
+
+{% block resource_read_url %}
+  {% if res.url %}
+    <p class="muted ellipsis"><a href="{{ res.url }}" class="button" title="{{ res.url }}"><i class="icon-download"></i> {{ _('Download') }}</a></p>
+  {% endif %}
+{% endblock %}
+
+{% block secondary_content %}
+  <p>
+    <div class="module-related">
+      <h2><i class="icon-info-sign"></i> {{ _('This resource') }}</h2>
+      <ul>
+        {{ self.resource_actions_inner() }}
+      </ul>
+    </div>
+  </p>
+  {{ super() }}
+{% endblock %}
