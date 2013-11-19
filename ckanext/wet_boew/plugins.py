@@ -37,13 +37,13 @@ class WetTheme(p.SingletonPlugin):
         h.Page.pager = _wet_pager
         h.gravatar = _wet_no_gravatar
         h.SI_number_span = _SI_number_span_close
+        h.build_nav_icon = _build_nav_icon
         
     def get_helpers(self):
       return {'link_to_user': self.link_to_user, 
               'get_datapreview': self.get_datapreview,
               'iso_to_goctime': self.iso_to_goctime,
-              'geojson_to_wkt': self.geojson_to_wkt,
-              'build_nav_icon': self.build_nav_icon }
+              'geojson_to_wkt': self.geojson_to_wkt }
 
 
     def link_to_user(self, user, maxlength=0):
@@ -100,11 +100,14 @@ class WetTheme(p.SingletonPlugin):
         return wkt_str
 
 
-    def build_nav_icon(menu_item, title, **kwargs):
-        kwargs.update(
-            class_=u"button"
-        )
-        return _make_menu_item(menu_item, title, **kwargs)
+def _build_nav_icon(menu_item, title, **kwargs):
+    kwargs.update(
+        class_=u"button"
+    )
+    item = h._make_menu_item(menu_item, title, **kwargs)
+    if " class=\"active\"" in item:
+        return item.replace("button", "button button-accent")
+    return item
 
 
 def _wet_pager(self, *args, **kwargs):
