@@ -1,0 +1,12 @@
+{% ckan_extends %}
+
+{% block search_input %}
+  <label>{{ _('Search Datasets') }}</label>
+  {{ super() }}
+{% endblock %}
+
+{% block search_input_button %}{% endblock %}
+
+{% block search_sortby_button %}
+  <button type="submit" class="button button-large button-accent" value="Search" data-role="none">{{ _('Submit') }}</button>
+{% endblock %}
