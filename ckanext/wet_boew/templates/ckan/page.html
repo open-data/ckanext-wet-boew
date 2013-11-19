@@ -80,6 +80,11 @@
 {% block main_content %}
   <div id="wb-core">
     <div id="wb-core-in">
+      {% if self.content_action() | trim %}
+        <div class="span-8"><p>
+          {% block content_action %}{% endblock %}
+        </p></div>
+      {% endif %}
       <div id="wb-main" role="main">
         <div id="wb-main-in">
           <div class="span-6 float-right">
@@ -104,11 +109,6 @@
         <ul class="button-group margin-top-none">
           {% block content_primary_nav %}{% endblock %}
         </ul>
-        {% if self.content_action() | trim %}
-          <div class="float-right">
-            {% block content_action %}{% endblock %}
-          </div>
-        {% endif %}
       </header>
     {% endblock %}
     <div>
