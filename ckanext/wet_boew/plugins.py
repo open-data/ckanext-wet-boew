@@ -31,7 +31,7 @@ class WetTheme(p.SingletonPlugin):
         p.toolkit.add_resource('public/dist', 'ckanext-wet')
 
         # add our templates
-        p.toolkit.add_template_directory(config, 'templates/ckan')
+        p.toolkit.add_template_directory(config, 'templates')
         p.toolkit.add_public_directory(config, 'public')
         
         # monkey patch helpers.py pagination method
