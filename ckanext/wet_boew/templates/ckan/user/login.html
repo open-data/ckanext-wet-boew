@@ -1,0 +1,26 @@
+{% ckan_extends %}
+
+{% block primary_content %}
+  <h1>{{ self.page_heading() }}</h1>
+  {{ self.form() }}
+{% endblock %}
+
+{% block help_register %}
+  <section class="module module-info span-2">
+    {{ self.help_register_inner() }}
+  </section>
+{% endblock %}
+
+{% block help_register_button %}
+  <a class="button button-accent" href="{{ h.url_for(controller='user', action='register') }}">{{ _(' Create an Account') }}</a>
+{% endblock %}
+
+{% block help_forgotten %}
+  <section class="module module-attention span-2">
+    {{ self.help_forgotten_inner() }}
+  </section>
+{% endblock %}
+
+{% block help_forgotten_button %}
+  <a class="button button-attention" href="{{ h.url_for(controller='user', action='request_reset') }}">{{ _('Forgot your password?') }}</a>
+{% endblock %}

@@ -10,9 +10,13 @@
 {% endblock %}
 
 {% block flash_inner %}
-  <div class="span-8 module-attention">
+  {% if flash_messages %}
+    <div class="span-8 module-attention">
+      {{ super() }}
+    </div>
+  {% else %}
     {{ super() }}
-  </div>
+  {% endif %}
 {% endblock %}
 
 {% block header %}
