@@ -2,15 +2,15 @@
 ckanext-wet-boew
 ================
 
-This CKAN extension adds the Web Experience Toolkit base theme to CKAN 2.0. You will need WET release 3.1.0, which you can find here: https://github.com/wet-boew/wet-boew/wiki/Downloads . Copy
+This CKAN extension adds the Web Experience Toolkit base theme to CKAN 2.0. You will need WET release 3.1.0, which you can find here: http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html . Copy
 the contents of the 'dist' folder into 'ckanext-wet-boew/ckanext/wet_boew/public/dist'::
 
   cd ckanext/wet_boew/public/dist/
 
-  wget https://dl.dropboxusercontent.com/u/6526141/dist.zip
-  unzip dist.zip wet-boew-master-dist/dist/*
-  mv wet-boew-master-dist/dist/* .
-  rm -r master-dist.zip wet-boew-master-dist/
+  wget https://github.com/wet-boew/wet-boew-dist/archive/v3.1.7.zip
+  unzip v3.1.7.zip wet-boew-dist-3.1.7/dist/*
+  mv wet-boew-dist-3.1.7/dist/* .
+  rm -r v3.1.7.zip wet-boew-dist-3.1.7/
 
 The WET toolkit distribution includes only minimized versions of the required Javascript files. 
 However CKAN uses the Fanstatic resource manager which requires un-minimized Javascript files, so
