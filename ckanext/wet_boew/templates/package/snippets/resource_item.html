@@ -1,0 +1,29 @@
+{% ckan_extends %}
+
+{% block resource_item_title %}
+  <div class="span-1 row-start align-right">
+    <span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
+  </div>
+  <div class="span-5 row-end">
+    <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
+      {{ h.resource_display_name(res) | truncate(50) }}
+    </a>
+{% endblock %}
+
+{% block resource_item_explore %}
+    <ul class="menu-horizontal">
+      <li>
+        <a href="{{ url }}" class="button">
+          <span class="wb-icon-table"></span>
+          {{ _('Preview') }}
+        </a>
+      </li>
+      <li>
+        <a href="{{ res.url }}" class="button" target="_blank">
+          <span class="wb-icon-drive-download"></span>
+          {{ _('Download') }}
+        </a>
+      </li>
+    </ul>
+  </div>
+{% endblock %}

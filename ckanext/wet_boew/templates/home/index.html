@@ -1,0 +1,25 @@
+{% ckan_extends %}
+
+{% block primary_content %}
+  <div id="wb-core">
+    <div id="wb-core-in">
+      <div id="wb-main" role="main">
+        <div id="wb-main-in">
+          <div class="span-8 equalize">
+            <div class="span-4 row-start">
+              {% snippet 'home/snippets/promoted.html' %}
+            </div>
+            <div class="span-4 row-end">
+            {% snippet 'home/snippets/search.html' %}
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="span-8">
+            {% snippet 'home/snippets/featured_group.html' %}
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

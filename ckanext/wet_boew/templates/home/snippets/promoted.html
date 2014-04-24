@@ -1,0 +1,25 @@
+<div class="module-poster">
+  {% block home_image %} 
+    {% block home_image_content %}
+      <img src="http://placehold.it/420x220" alt="Placeholder (420x220)" width="420" height="220">
+    {% endblock %}
+  {% endblock %}
+  <div class="image-caption">
+  {% block home_primary %}
+    <h4>{% block home_image_caption %}{{ _("This is a featured section") }}{% endblock %}</h4>
+    {% if g.site_intro_text %}
+      {{ h.render_markdown(g.site_intro_text) }}
+    {% else %}
+      {% block home_primary_content %}
+        <p>
+        {% block home_primary_text %}
+          {% trans %}This is a nice introductory paragraph about CKAN or the site
+          in general. We don't have any copy to go here yet but soon we will
+          {% endtrans %}
+        {% endblock %}
+        </p>
+      {% endblock %}
+    {% endif %}
+  {% endblock %}
+  </div>
+</div>

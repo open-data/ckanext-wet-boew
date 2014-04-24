@@ -1,0 +1,27 @@
+{% ckan_extends %}
+
+{% block page_primary_action %}
+  {% if h.check_access('package_create') %}
+    {% link_for _('Add Dataset'), controller='package', action='new', class_='button button-accent', icon='plus-sign-alt' %}
+  {% endif %}
+{% endblock %}
+
+{% block primary_content %}
+  {{ self.page_primary_action() }}
+  <p>
+    <div class="module-poster">
+      {{ self.form() }}
+      {{ self.package_search_results_list() }}
+      {{ self.page_pagination() }}
+    </div>
+  </p>
+  <p>
+    <div class="module-poster">
+      {{ self.package_search_results_api() }}
+    </div>
+  </p>
+{% endblock %}
+
+{% block package_search_results_api %}
+  {{ self.package_search_results_api_inner() }}
+{% endblock %}

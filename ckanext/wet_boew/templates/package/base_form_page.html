@@ -1,0 +1,20 @@
+{% ckan_extends %}
+
+{% block info_module %}
+  <section class="module module-info">
+    <h2>{{ _('What are datasets?') }}</h2>
+    <div><p>
+      {% trans %}
+    	  Datasets are simply used to group related pieces of data. These can
+    	  then be found under a single url with a description and licensing
+    	  information.
+    	{% endtrans %}
+    <p></div>
+  </section>
+{% endblock %}
+
+{% block primary_content %}
+  <div class="module-poster">
+    {{ self.primary_content_inner() }}
+  </div>
+{% endblock %}

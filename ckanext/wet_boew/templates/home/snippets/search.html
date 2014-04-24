@@ -1,0 +1,26 @@
+{% block home_search %}
+  <form method="get" action="{% url_for controller='package', action='search' %}">
+    <h3 class="background-accent">
+      <span class="wb-icon-gear"></span>
+      {{ _("Search Your Data") }}
+    </h3>
+    <div class="module">
+      <p>
+        <input type="text" class="search" name="q" id="q" size="45" value="" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}">
+        <button type="submit" class="button button-accent" value="{{ _('Search') }}">
+          {{_('Submit')}}
+        </button>
+      </p>
+    </div>
+  </form>
+{% endblock %}
+
+{% block home_tags %}
+  {% set tags = h.get_facet_items_dict('tags', limit=3) %}
+  <h3>{{ _('Popular Tags') }}</h3>
+  <ul class="menu-horizontal margin-top-none">
+    {% for tag in tags %}
+      <li><a class="button" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

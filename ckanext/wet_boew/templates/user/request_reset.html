@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block primary_content %}
+  {{ self.primary_content_inner() }}
+{% endblock %}
+
+{% block form_button %}
+  <button class="button button-xlarge button-accent" type="submit" name="save">{{ _("Request Reset") }}</button>
+{% endblock %}
+
+{% block help %}
+  <section class="module module-info span-2">
+    {{ self.help_inner() }}
+  </section>
+{% endblock %}

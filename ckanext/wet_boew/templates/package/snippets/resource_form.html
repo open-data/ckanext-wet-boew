@@ -1,0 +1,17 @@
+{% ckan_extends %}
+
+{% block previous_button %}
+  <button class="button" name="save" value="go-dataset" type="submit">{{ _('Previous') }}</button>
+{% endblock %}
+
+{% block again_button %}
+  <button class="button" name="save" value="again" type="submit">{{ _('Save & add another') }}</button>
+{% endblock %}
+
+{% block save_button %}
+  <button class="button button-accent" name="save" value="go-metadata" type="submit">{% block save_button_text %}{{ _('Next: Additional Info') }}{% endblock %}</button>
+{% endblock %}
+
+{% block add_button %}
+  <button class="button button-accent" name="save" value="go-dataset-complete" type="submit">{{ _('Add') }}</button>
+{% endblock %}

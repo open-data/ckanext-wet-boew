@@ -1,0 +1,22 @@
+{% ckan_extends %}
+
+{% block group_item %}
+  <section>
+    <div class="module-poster span-2">
+      {{ self.group_item_header() }}
+      {{ self.group_item_content() }}
+    </div>
+  </section>
+{% endblock %}
+
+{% block group_item_header_image %}
+  <h4 class="background-light">
+    <span class="wb-icon-gear"></span><a href={{ url }}>{{ group.title or group.name }}</a>
+  </h4>
+{% endblock %}
+
+{% block group_item_header_title %}
+  <a class="module-image" href="{{ url }}">
+    <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" />
+  </a>
+{% endblock %}

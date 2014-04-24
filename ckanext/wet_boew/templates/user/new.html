@@ -1,0 +1,11 @@
+{% ckan_extends %}
+
+{% block primary_content %}
+  {{ self.primary_content_inner() }}
+{% endblock %}
+
+{% block help %}
+  <section class="module module-info">
+    {{ self.help_inner() }}
+  </section>
+{% endblock %}
