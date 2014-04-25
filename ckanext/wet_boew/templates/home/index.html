@@ -1,5 +1,19 @@
 {% ckan_extends %}
 
+{% block content %}
+  <div role="main" class="hero">
+    <div id="content" class="container">
+      {{ self.flash() }}
+      {{ self.primary_content() }}
+    </div>
+  </div>
+  <div class="main homepage">
+    <div class="container">
+      {{ self.secondary_content() }}
+    </div>
+  </div>
+{% endblock %}
+
 {% block primary_content %}
   <div id="wb-core">
     <div id="wb-core-in">
@@ -23,3 +37,6 @@
     </div>
   </div>
 {% endblock %}
+
+{% block secondary_content %}{% endblock %}
+

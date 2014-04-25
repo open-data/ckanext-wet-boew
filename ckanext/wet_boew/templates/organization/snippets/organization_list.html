@@ -1,8 +1,15 @@
 {% ckan_extends %}
 
 {% block organization_list %}
-  <div class="align-center equalize">
-    {{ self.organization_list_inner() }}
+
+  <div class="span-6 equalize">
+
+  {% for organization in organizations %}
+    {% snippet "organization/snippets/organization_item.html", organization=organization, position=loop.index %}
+  {% if loop.index is divisibleby 3 %}
+    </div><div class="span-6 equalize">
+  {% endif %}
+  {% endfor %}
   </div>
   <div class="clear"></div>
 {% endblock %}

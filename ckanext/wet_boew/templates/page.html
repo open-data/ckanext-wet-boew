@@ -1,5 +1,16 @@
 {% ckan_extends %}
 
+{% block styles %}
+  {% resource 'ckanext-wet/wet_base' %}
+  {% resource 'ckanext-wet/ckan' %}
+{% endblock %}
+
+{% block page %}
+  <div id="wb-body">
+    {{ super() }}
+  </div>
+{% endblock %}
+
 {% block skip %}
   <div id="wb-skip">
     <ul id="wb-tphp">
@@ -19,27 +30,33 @@
   {% endif %}
 {% endblock %}
 
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock %}
+
 {% block header %}
   {% set lang = h.lang() %}
   {% set current_url = request.environ.CKAN_CURRENT_URL %}
   <div id="wb-head">
     <div id="wb-head-in">
       <header>
-        <div id="base-fullhd">
-          <h2>Full-width header area</h2>
-          <div id="base-fullhd-in">
-            <ul>
-              {# This format only works for a bilingual format #}
-              <li id="base-fullhd-lang">
-                {% if lang == 'en'%}
-                  <a href="{% url_for current_url, locale='fr' %}" lang="fr">Français</a>
-                {% else %}
-                  <a href="{% url_for current_url, locale='en' %}" lang="en">English</a>
-                {% endif %}
-              </li>
-            </ul>
+        <section>
+          <div id="base-fullhd">
+            <h2>Header Bar</h2>
+            <div id="base-fullhd-in">
+              <ul>
+                {# This format only works for a bilingual format #}
+                <li id="base-fullhd-lang">
+                  {% if lang == 'en'%}
+                    <a href="{% url_for current_url, locale='fr' %}" lang="fr">Français</a>
+                  {% else %}
+                    <a href="{% url_for current_url, locale='en' %}" lang="en">English</a>
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
+        </section>
         <div id="base-bnr" role="banner">
           <div id="base-bnr-in">
             <div id="base-title">
@@ -51,13 +68,11 @@
         </div>
         <nav role="navigation">
           <div id="base-psnb">
-            <h2><span>Site </span>menu</h2>
+            <h2>Site menu</h2>
             <div id="base-psnb-in">
               <div class="wet-boew-menubar mb-mega">
                 <div>
-                  <ul class="mb-menu">
-                    {% snippet "snippets/menu.html", user=c.userobj %}
-                  </ul>
+                  {% snippet "snippets/menu.html", user=c.userobj %}
                 </div>
               </div>
             </div>
@@ -81,29 +96,31 @@
   </div>
 {% endblock %}
 
-{% block main_content %}
-  <div id="wb-core">
-    <div id="wb-core-in">
-      {% if self.content_action() | trim %}
-        <div class="span-8"><p>
-          {% block content_action %}{% endblock %}
-        </p></div>
-      {% endif %}
-      <div id="wb-main" role="main">
-        <div id="wb-main-in">
-          <div class="span-6 float-right">
-            {% block pre_primary %}{% endblock %}
-            {{ self.primary() }}
+{% block content %}
+  {% block main_content %}
+    <div id="wb-core">
+      <div id="wb-core-in">
+        {% if self.content_action() | trim %}
+          <div class="span-8"><p>
+            {% block content_action %}{% endblock %}
+          </p></div>
+        {% endif %}
+        <div id="wb-main" role="main">
+          <div id="wb-main-in">
+            <div class="span-6 float-right">
+              {% block pre_primary %}{% endblock %}
+              {{ self.primary() }}
+            </div>
+            <div class="span-2 float-left">
+              {{ self.secondary() }}
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="span-2 float-left">
-            {{ self.secondary() }}
-          </div>
-          <div class="clear"></div>
         </div>
+        {% block sec_menu %}{% endblock %}
       </div>
-      {% block sec_menu %}{% endblock %}
     </div>
-  </div>
+  {% endblock %}
 {% endblock %}
 
 {% block primary_content %}

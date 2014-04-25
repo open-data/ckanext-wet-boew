@@ -1,32 +1,50 @@
-{% ckan_extends %}
 
 {% set first = position % 3 == 1 %}
-{% set last = position % 3 == 3 %}
+{% set last = position % 3 == 0 %}
 
 {% block item %}
-  <div class="span-2 module{% if first %} row-start{% endif %}{% if last %} row-end{% endif %}">
-    {{ self.item_inner() }}
+   <div class="span-2 align-center {% if first %} row-start{% endif %}{% if last %} row-end{% endif %}">
+
+  {% block item_inner %}
+    {% block image %}
+      <img src="{{ organization.image_url or h.url_for_static('/base/images/placeholder-organization.png') }}" alt="{{ organization.name }}" class="media-image">
+    {% endblock %}
+
+    {% block title %}
+      <h4>
+        <a href="{{ url }}" title="{{ _('View {name}').format(name=organization.display_name) }}">
+          {{ organization.display_name }}
+        </a>
+      </h4>
+    {% endblock %}
+
+    {% block description %}
+      {% if organization.description %}
+        <p>{{ h.markdown_extract(organization.description, extract_length=80) }}</p>
+      {% else %}
+        <p class="empty">{{ _('This organization has no description') }}</p>
+      {% endif %}
+    {% endblock %}
+
+    {% block datasets %}
+      <p>
+        {% if organization.packages %}
+          <a class="button" href="{{ url }}">
+            {{ ungettext('{num} Dataset', '{num} Datasets', organization.packages).format(num=organization.packages) }}
+          </a>
+        {% else %}
+          <button class="button disabled">{{ _('0 Datasets') }}</button>
+        {% endif %}
+      </p>
+    {% endblock %}
+
+  {% block link %}{% endblock %}
+  {% endblock %}
+
   </div>
 {% endblock %}
 
-{% block title %}
-  <h4>
-    <a href="{{ url }}" title="{{ _('View {name}').format(name=organization.display_name) }}">
-      {{ organization.display_name }}
-    </a>
-  </h4>
-{% endblock %}
+{% if position is divisibleby 3 %}
+  <div class="clear"></div>
+{% endif %}
 
-{% block datasets %}
-  <p>
-    {% if organization.packages %}
-      <a class="button" href="{{ url }}">
-        {{ ungettext('{num} Dataset', '{num} Datasets', organization.packages).format(num=organization.packages) }}
-      </a>
-    {% else %}
-      <button class="button disabled">{{ _('0 Datasets') }}</button>
-    {% endif %}
-  </p>
-{% endblock %}
-
-{% block link %}{% endblock %}

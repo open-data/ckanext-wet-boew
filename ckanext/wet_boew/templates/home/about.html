@@ -1,0 +1,16 @@
+{% ckan_extends %}
+
+{% block primary %}
+
+<h1 class="background-accent">{{ _('About') }}</h1>
+<div class="module">
+  {% block about %}
+    {% if g.site_about %}
+      {{ h.render_markdown(g.site_about) }}
+    {% else %}
+      {% snippet 'home/snippets/about_text.html' %}
+    {% endif %}
+  {% endblock %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% ckan_extends %}
+
+{% block page_header %}
+  <div>
+    <ul class="button-group margin-top-none">
+      {{ h.build_nav_icon('user_dashboard', _('News feed')) }}
+      {{ h.build_nav_icon('user_dashboard_datasets', _('My Datasets')) }}
+      {{ h.build_nav_icon('user_dashboard_organizations', _('My Organizations')) }}
+      {{ h.build_nav_icon('user_dashboard_groups', _('My Groups')) }}
+    </ul>
+  </div>
+{% endblock %}
