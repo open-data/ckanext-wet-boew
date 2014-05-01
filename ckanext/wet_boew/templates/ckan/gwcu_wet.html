@@ -193,7 +193,8 @@
         <div id="wb-core-in" class="equalize">
           <div id="wb-main" style="min-height: 400px;">
             <div id="wb-main-in">
-            {%- block page %}{% endblock -%} 
+          {% block site_banner %}{% endblock %}
+            {%- block page %}{% endblock -%}
             </div>
           </div>
         {% block sec_menu %}{% endblock sec_menu %}
