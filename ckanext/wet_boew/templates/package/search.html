@@ -8,20 +8,25 @@
 
 {% block primary_content %}
   {{ self.page_primary_action() }}
-  <p>
-    <div class="module-poster">
-      {{ self.form() }}
-      {{ self.package_search_results_list() }}
-      {{ self.page_pagination() }}
-    </div>
-  </p>
-  <p>
-    <div class="module-poster">
-      {{ self.package_search_results_api() }}
-    </div>
-  </p>
+
+  <div class="panel">
+    {{ self.form() }}
+    {{ self.package_search_results_list() }}
+    <div class="center-block">{{ self.page_pagination() }}</div>
+    <div class="center-block">{{ self.package_search_results_api() }}</div>
+  </div>
+
+
 {% endblock %}
 
 {% block package_search_results_api %}
   {{ self.package_search_results_api_inner() }}
+{% endblock %}
+
+{% block secondary %}
+<div class="col-md-3 col-md-pull-9">
+  {% for facet in c.facet_titles %}
+      {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
+  {% endfor %}
+</div>
 {% endblock %}

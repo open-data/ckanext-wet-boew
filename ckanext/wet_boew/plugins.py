@@ -27,12 +27,10 @@ class WetTheme(p.SingletonPlugin):
 
     def update_config(self, config):
 
-        # add the WET JS directory as a fanstatic resource
-        p.toolkit.add_resource('public/dist', 'ckanext-wet')
-
-        # add our templates
+        # add our templates - note that the Web Experience Toolkit distribution
+        # files should be installed in the public folder
         p.toolkit.add_template_directory(config, 'templates')
-        p.toolkit.add_public_directory(config, 'public')
+        p.toolkit.add_public_directory(config, 'public/themes-dist-4.0.1-theme-base')
         
         # monkey patch helpers.py pagination method
         h.Page.pager = _wet_pager
@@ -155,9 +153,9 @@ def _wet_pager(self, *args, **kwargs):
     ## and instead hardcodes the pagination html in helpers.py
     
     kwargs.update(
-        format=u"<div class='pagination pagination-centered'><ul class='menu-horizontal ckan-paginate'>$link_previous ~2~ $link_next</ul></div>",
+        format=u"<ul class='pagination'>$link_previous ~2~ $link_next</ul>",
         symbol_previous=gettext('Previous').decode('utf-8'), symbol_next=gettext('Next').decode('utf-8'),
-        curpage_attr={'class': 'disabled_paginator'}, link_attr={'class': 'button button-small'}
+        curpage_attr={'class': 'disabled'}, link_attr={'class': 'active'}
     )
     
     return super(h.Page, self).pager(*args, **kwargs)

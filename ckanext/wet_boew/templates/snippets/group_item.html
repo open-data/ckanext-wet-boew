@@ -1,22 +1,19 @@
-{% ckan_extends %}
 
 {% block group_item %}
+  <div class="panel panel-default">
+  <div class="panel-heading">
+  {% block group_item_header_image %}
+      <span class="glyphicon glyphicon-cog"></span><h4><a href={{ url }}>{{ group.title or group.name }}</a></h4>
+  {% endblock %}
+  </div>
+  {% block group_item_header_title %}
+    <a class="module-image" href="{{ url }}">
+      <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}"
+          class="img-responsive"/>
+    </a>
+  {% endblock %}
 
-    <div class="module-poster span-2">
-      {{ self.group_item_header() }}
-      {{ self.group_item_content() }}
-    </div>
+  {% snippet 'snippets/package_list.html', packages=group.packages, list_class=list_class, item_class=item_class, truncate=120 %}
+  </div>
 
-{% endblock %}
-
-{% block group_item_header_image %}
-  <h4 class="background-light">
-    <span class="wb-icon-gear"></span><a href={{ url }}>{{ group.title or group.name }}</a>
-  </h4>
-{% endblock %}
-
-{% block group_item_header_title %}
-  <a class="module-image" href="{{ url }}">
-    <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" />
-  </a>
 {% endblock %}

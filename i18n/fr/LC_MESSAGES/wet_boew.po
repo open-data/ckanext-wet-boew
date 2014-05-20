@@ -1,0 +1,25 @@
+# This file is meant to be combined with CKAN v2.x's
+# "ckan/i18n/fr/LC_MESSAGES/ckan.po" file using msgcat --use-first
+#
+# Thia file is being maintained by hand so that changes are visible
+# in source control.  CKAN's .po file is reported as binary by git
+# for some reason.
+
+msgid "Web Experience Toolkit"
+msgstr "Boîte à outils de l'expérience Web"
+
+msgid "Collaborative open source project led by the Government of Canada"
+msgstr "Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada "
+
+msgid "Skip to main content"
+msgstr "Passer au contenu principal"
+
+msgid "Skip to site information"
+msgstr "Passer aux informations sur le site"
+
+msgid "Item"
+msgstr "Article"
+
+msgid "Heading"
+msgstr "En-tête"
+

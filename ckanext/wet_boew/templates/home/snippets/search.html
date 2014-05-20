@@ -1,16 +1,9 @@
 {% block home_search %}
-  <form method="get" action="{% url_for controller='package', action='search' %}">
-    <h3 class="background-accent">
-      <span class="wb-icon-gear"></span>
-      {{ _("Search Your Data") }}
-    </h3>
-    <div class="module">
-      <p>
-        <input type="text" class="search" name="q" id="q" size="45" value="" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}">
-        <button type="submit" class="button button-accent" value="{{ _('Search') }}">
-          {{_('Submit')}}
-        </button>
-      </p>
+  <form method="get" action="{% url_for controller='package', action='search' %}" role="search" class="form-inline">
+    <div class="form-group"><label for="wb-srch-q">{{ _("Search Your Data") }}</label>
+      <input id="wb-srch-q" class="form-control" name="q" type="search" value="" size="27" maxlength="150"/>
+      <input type="hidden" name="q" value="{{ _('Search') }}"/>
+      <button type="submit" id="wb-srch-sub" class="btn btn-default">Search</button>
     </div>
   </form>
 {% endblock %}

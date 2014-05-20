@@ -1,17 +1,14 @@
 {% ckan_extends %}
 
-{% block facet_list %}
-  {{ super() }}
-  <br>
-{% endblock %}
-
 {% block facet_list_heading %}
-  <h4 class="background-accent"></span>{{ title or h.get_facet_title(name) }}</h4>
+  <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span><strong>{{ title or h.get_facet_title(name) }}</strong></div>
 {% endblock %}
 
 {% block facet_list_item %}
+<div class="panel panel-info">
   {{ self.facet_list_heading() }}
-  <div class="module">
+  <div class="panel panel-body">
     {{ self.facet_list_items() }}
   </div>
+</div>
 {% endblock %}

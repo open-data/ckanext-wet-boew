@@ -1,145 +1,146 @@
 {% ckan_extends %}
 
-{% block styles %}
-  {% resource 'ckanext-wet/wet_base' %}
-  {% resource 'ckanext-wet/ckan' %}
-{% endblock %}
-
 {% block page %}
-  <div id="wb-body">
-    {{ super() }}
-  </div>
-{% endblock %}
 
-{% block skip %}
-  <div id="wb-skip">
-    <ul id="wb-tphp">
-      <li id="wb-skip1"><a href="#content">Skip to main content</a></li>
-      <li id="wb-skip2"><a href="#footer">Skip to footer</a></li>
-    </ul>
-  </div>
-{% endblock %}
+  {% block skip %}
+  {% snippet 'snippets/skip.html' %}
+  {% endblock %}
 
-{% block flash_inner %}
-  {% if flash_messages %}
-    <div class="span-8 module-attention">
-      {{ super() }}
-    </div>
-  {% else %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}
-
-{% block footer %}
-  {% include "footer.html" %}
-{% endblock %}
-
-{% block header %}
-  {% set lang = h.lang() %}
+  {# This format only works for a bilingual format #}
   {% set current_url = request.environ.CKAN_CURRENT_URL %}
-  <div id="wb-head">
-    <div id="wb-head-in">
-      <header>
-        <section>
-          <div id="base-fullhd">
-            <h2>Header Bar</h2>
-            <div id="base-fullhd-in">
-              <ul>
-                {# This format only works for a bilingual format #}
-                <li id="base-fullhd-lang">
-                  {% if lang == 'en'%}
-                    <a href="{% url_for current_url, locale='fr' %}" lang="fr">Français</a>
-                  {% else %}
-                    <a href="{% url_for current_url, locale='en' %}" lang="en">English</a>
-                  {% endif %}
+
+  <header role="banner">
+    <div id="wb-bnr">
+      <div id="wb-bar">
+        <div class="container">
+          <div class="row">
+            <section id="wb-lng" class="visible-md visible-lg">
+              <h2>Language selection</h2>
+              <ul class="text-right">
+                {% if h.lang() == 'fr' %}
+                <li><a lang="en" hreflang="en" href="{% url_for current_url, locale='en' %}">English</a></li>
+                <li class="curr">Français&#32;<span>(actuel)</span></li>
+                {% else %}
+                <li><a lang="fr" hreflang="fr" href="{% url_for current_url, locale='fr' %}">Français</a></li>
+                <li class="curr">English&#32;<span>(current)</span></li>
+                {% endif %}
+              </ul>
+            </section>
+            <section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn"><h2>Menu</h2>
+              <ul class="pnl-btn list-inline text-right">
+                <li><a href="#mb-pnl" title="Menu" aria-controls="mb-pnl" class="overlay-lnk btn btn-xs btn-default"
+                       role="button"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">Menu</span></span></a>
                 </li>
               </ul>
-            </div>
-          </div>
-        </section>
-        <div id="base-bnr" role="banner">
-          <div id="base-bnr-in">
-            <div id="base-title">
-              <p id="base-title-in">
-                <a href="/">{{ _('Open Data') }}</a>
-              </p>
-            </div>
+              <div id="mb-pnl"></div>
+            </section>
           </div>
         </div>
-        <nav role="navigation">
-          <div id="base-psnb">
-            <h2>Site menu</h2>
-            <div id="base-psnb-in">
-              <div class="wet-boew-menubar mb-mega">
-                <div>
-                  {% snippet "snippets/menu.html", user=c.userobj %}
+      </div>
+      <div class="container">
+        <div class="row">
+          <div id="wb-sttl" class="col-md-8">
+            <a href="/"> <span>{{ _('Web Experience Toolkit') }}<span class="wb-inv">, </span><small>{{ _("Collaborative open source project led by the Government of Canada") }}</small></span> </a>
+          </div>
+          <section id="wb-srch" class="col-md-4 visible-md visible-lg"><h2>{{ _("Search") }}</h2>
+              <form method="get" action="{% url_for controller='package', action='search' %}" role="search" class="form-inline">
+                <div class="form-group"><label for="wb-srch-q">{{ _("Search Your Data") }}</label>
+                  <input id="wb-srch-q" class="form-control" name="q" type="search" value="" size="27" maxlength="150"/>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div id="base-bc">
-            <h2>Breadcrumb trail</h2>
-            <div id="base-bc-in">
-              {% block breadcrumb %}
-                {% if self.breadcrumb_content() | trim %}
-                  <ol>
-                    {% snippet 'snippets/home_breadcrumb_item.html' %}
-                    {% block breadcrumb_content %}{% endblock %}
-                  </ol>
-                {% endif %}
-              {% endblock %}
-            </div>
-          </div>
-        </nav>
-      </header>
-    </div>
-  </div>
-{% endblock %}
-
-{% block content %}
-  {% block main_content %}
-    <div id="wb-core">
-      <div id="wb-core-in">
-        {% if self.content_action() | trim %}
-          <div class="span-8"><p>
-            {% block content_action %}{% endblock %}
-          </p></div>
-        {% endif %}
-        <div id="wb-main" role="main">
-          <div id="wb-main-in">
-            <div class="span-6 float-right">
-              {% block pre_primary %}{% endblock %}
-              {{ self.primary() }}
-            </div>
-            <div class="span-2 float-left">
-              {{ self.secondary() }}
-            </div>
-            <div class="clear"></div>
-          </div>
+                <button type="submit" id="wb-srch-sub" class="btn btn-default">{{ _("Search") }}</button>
+              </form>
+          </section>
         </div>
-        {% block sec_menu %}{% endblock %}
       </div>
     </div>
+
+
+   <nav role="navigation" id="wb-sm" data-ajax-fetch="{% url_for '/snippets/menu.html' %}" data-trgt="mb-pnl"
+         class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+      <div class="container nvbar"><h2>Site menu</h2>
+
+        <div class="row">
+          <ul class="list-inline menu">
+            <li><a href="./index-en.html">WET project</a></li>
+            <li><a href="http://wet-boew.github.io/wet-boew/docs/start-en.html#implement">Implement WET</a></li>
+            <li><a href="http://wet-boew.github.io/wet-boew/docs/start-en.html">Contribute to WET</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+</nav>
+
+    {% block breadcrumb %}
+    <nav role="navigation" id="wb-bc" property="breadcrumb"><h2>You are here:</h2>
+
+      <div class="container">
+        <div class="row">
+          <ol class="breadcrumb">
+            {% snippet 'snippets/home_breadcrumb_item.html' %}
+            {% block breadcrumb_content %}{% endblock %}
+          </ol>
+        </div>
+      </div>
+    </nav>
+    {% endblock %}
+  </header>
+  {% block toolbar %}{% endblock %}
+
+  {% set lang = h.lang() %}
+
+  {% block content %}
+  <div class="container">
+    <div class="row">
+    {% block pre_primary %}{% endblock %}
+    {% block primary %}
+
+    <main role="main" property="mainContentOfPage" class="col-md-9 col-md-push-3">
+
+      {% block flash %}
+      <div class="row">
+        {% for message in flash_messages %}
+        <div class="alert fade in {{ message.category }}">
+          {{ h.literal(message) }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endblock flash %}
+
+      <div class="row">
+      <h2 class="h2">{% block subtitle %}{% endblock %}</h2>
+      </div>
+
+      {% block primary_content %}
+      <div class="row">
+      {% block primary_content_inner %}{% endblock %}
+      </div>
+      {% endblock primary_content %}
+
+    </main>
+    {% endblock primary %}
+
+    {% block secondary %}
+      <div class="col-md-3 col-md-pull-9">
+      {% block secondary_content %}
+      {% endblock %}
+      </div>
+    {% endblock secondary %}
+
+    </div>
+  </div>
+  {% endblock content %}
+
+  {% block footer %}
+    {% include "footer.html" %}
   {% endblock %}
+
 {% endblock %}
 
-{% block primary_content %}
-  <article>
-    {% block page_header %}
-      <header>
-        <ul class="button-group margin-top-none">
-          {% block content_primary_nav %}{% endblock %}
-        </ul>
-      </header>
-    {% endblock %}
-    <div>
-      {% if self.page_primary_action() | trim %}
-        <p><div class="page_primary_action">
-          {% block page_primary_action %}{% endblock %}
-        </div></p>
-      {% endif %}
-      {% block primary_content_inner %}
-      {% endblock %}
-    </div>
-  </article>
-{% endblock %}
+{% block scripts %}{% endblock %}
+
+
+
+
+

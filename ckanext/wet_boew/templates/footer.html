@@ -1,56 +1,33 @@
 
 {% block footer_content %}
-  <div id="wb-foot">
-    <div id="wb-foot-in">
-      <footer>
-        <h2>Footer</h2>
-        <nav role="navigation">
-          <div id="base-sft">
-            <h3>Site footer</h3>
-            <div id="base-sft-in">
-              <section>
-                {% set api_url = 'http://docs.ckan.org/{0}/{1}/api.html'.format(request.environ.CKAN_LANG, g.ckan_doc_version) %}
-                <div class="span-2">
-                  <h4 class="base-col-head">{{ _('About {0}').format(g.site_title) }}</h4>
-                  <ul>
-                    <li><a href="#">{{ _('Terms and Conditions') }}</a></li>
-                    <li><a href="#">{{ _('Accessibility') }}</a></li>
-                    <li><a href="#">{{ _('Code of conduct') }}</a></li>
-                    <li><a href="#">{{ _('Moderation policy') }}</a></li>
-                  </ul>
-                </div>
-              </section>
-              <section>
-                <div class="span-2">
-                  <h4 class="base-col-head">{{ _('News') }}</h4>
-                  <ul>
-                    <li><a href="#">{{ _('FAQ') }}</a></li>
-                    <li><a href="#">{{ _('Privacy') }}</a></li>
-                    <li><a href="#">{{ _('Contact us') }}</a></li>
-                    <li><a href="{{ api_url }}">{{ _('CKAN API') }}</a></li>
-                  </ul>
-                </div>
-              </section>
-              <section>
-                <div class="span-4">
-                  <h4 class="base-col-head">{{ _('Powered by')}}</h4>
-                  <ul>
-                    <li><a rel="external" href="http://ckan.org">CKAN</a></li>
-                  </ul>
-                </div>
-              </section>
-            </div>
-          </div>
-        </nav>
-        <section>
-        <div id="base-fullft">
-          <h3>Footer Bar</h3>
-          <p></p>
-          <div id="base-fullft-in"><p></p></div>
-        </div>
+<footer role="contentinfo" id="wb-info" class="visible-sm visible-md visible-lg wb-navcurr">
+  <div class="container">
+
+    <nav role="navigation" class="row"><h2>{% set api_url = 'http://docs.ckan.org/{0}/{1}/api.html'.format(request.environ.CKAN_LANG, g.ckan_doc_version) %}</h2>
+      <section class="col-sm-3"><h3>{{ _('About {0}').format(g.site_title) }}</h3>
+          <ul class="list-unstyled">
+            <li><a href="#">{{ _('Terms and Conditions') }}</a></li>
+            <li><a href="#">{{ _('Accessibility') }}</a></li>
+            <li><a href="#">{{ _('Code of conduct') }}</a></li>
+            <li><a href="#">{{ _('Moderation policy') }}</a></li>
+          </ul>
       </section>
-      </footer>
-    </div>
+      <section class="col-sm-3"><h3>{{ _('News') }}</h3>
+          <ul class="list-unstyled">
+            <li><a href="#">{{ _('FAQ') }}</a></li>
+            <li><a href="#">{{ _('Privacy') }}</a></li>
+            <li><a href="#">{{ _('Contact us') }}</a></li>
+            <li><a href="{{ api_url }}">{{ _('CKAN API') }}</a></li>
+          </ul>
+      </section>
+      <section class="col-sm-3"><h3>{{ _('Powered by')}}</h3>
+          <ul class="list-unstyled">
+            <li><a rel="external" href="http://ckan.org">CKAN</a></li>
+          </ul>
+      </section>
+    </nav>
   </div>
+</footer>
+
 {% endblock %}
 
