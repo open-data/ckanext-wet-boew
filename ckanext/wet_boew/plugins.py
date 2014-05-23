@@ -11,11 +11,13 @@ import json as json
 import shapely as shapely
 import shapely.wkt as wkt
 
-from webhelpers import paginate
 from webhelpers.html import HTML, literal
 from webhelpers.html.tags import link_to
+from pylons import config
 from pylons.i18n import gettext
-import re
+
+WET_URL_OPTION = 'wet_theme.url'
+WET_URL_DEFAULT = 'http://localhost/'
 
 class WetTheme(p.SingletonPlugin):
     """
@@ -43,7 +45,8 @@ class WetTheme(p.SingletonPlugin):
       return {'link_to_user': self.link_to_user, 
               'get_datapreview': self.get_datapreview,
               'iso_to_goctime': self.iso_to_goctime,
-              'geojson_to_wkt': self.geojson_to_wkt }
+              'geojson_to_wkt': self.geojson_to_wkt,
+              'wet_url': self.wet_url}
 
 
     def link_to_user(self, user, maxlength=0):
@@ -98,6 +101,9 @@ class WetTheme(p.SingletonPlugin):
 
         wkt_str = wkt.dumps(shape)
         return wkt_str
+
+    def wet_url(self):
+        return str(config.get(WET_URL_OPTION, WET_URL_DEFAULT))
 
 
 def _build_nav_icon(menu_item, title, **kwargs):

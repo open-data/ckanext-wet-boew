@@ -35,6 +35,7 @@ nosetests.xml
 .pydevproject
 
 # WET Toolkit
+*.tgz
 ckanext/wet_boew/public/dist/grids
 ckanext/wet_boew/public/dist/js
 ckanext/wet_boew/public/dist/theme-base

@@ -1,12 +1,45 @@
-{% ckan_extends %}
+{# It is not possible to use to ckan_extends due to the very different formatting that WET uses with forms #}
+{% import 'macros/form.html' as form %}
 
+{% set placeholder = placeholder if placeholder else _('Search...') %}
+{% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc')] %}
+{% set search_class = search_class if search_class else 'search-giant' %}
+
+<form class="form-inline" role="form" method="get" data-module="select-switch">
 {% block search_input %}
-  <label>{{ _('Search Datasets') }}</label>
-  {{ super() }}
+
+ <label for="search_field" class="wb-inv">{{ _('Search Datasets') }}</label>
+
+  <div class="input-group">
+    <input type="text" class="form-control" id="search_field" autocomplete="off" name="q" placeholder="{{ placeholder }}">
+    <span class="input-group-btn">
+      {% block search_input_button %}
+      <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span><span class="wb-inv">{{ _('Submit') }}</span></button>
+      {% endblock %}
+    </span>
+  </div><!-- /input-group -->
+
+
 {% endblock %}
 
-{% block search_input_button %}{% endblock %}
-
-{% block search_sortby_button %}
-  <button type="submit" class="button button-large button-accent" value="Search" data-role="none">{{ _('Submit') }}</button>
+{% block search_search_fields %}
+  {% if fields -%}
+    <span>{{ form.hidden_from_list(fields=fields) }}</span>
+  {%- endif %}
 {% endblock %}
+
+{% block search_title %}
+  {% if not no_title %}
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="h3 mrgn-tp-md">{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</h3>
+      </div>
+      <div class="col-md-6 mrgn-tp-md">
+        {% snippet "snippets/sort_by.html" %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block search_form_footer %}{% endblock %}
+</form>

@@ -12,6 +12,7 @@
   <header role="banner">
     <div id="wb-bnr">
       <div id="wb-bar">
+        {% block wet_banner_bar %}
         <div class="container">
           <div class="row">
             <section id="wb-lng" class="visible-md visible-lg">
@@ -36,12 +37,18 @@
             </section>
           </div>
         </div>
+        {% endblock %}
       </div>
+
       <div class="container">
         <div class="row">
+          {% block wet_search_box %}
           <div id="wb-sttl" class="col-md-8">
+            {% block site_title %}
             <a href="/"> <span>{{ _('Web Experience Toolkit') }}<span class="wb-inv">, </span><small>{{ _("Collaborative open source project led by the Government of Canada") }}</small></span> </a>
+            {% endblock %}
           </div>
+
           <section id="wb-srch" class="col-md-4 visible-md visible-lg"><h2>{{ _("Search") }}</h2>
               <form method="get" action="{% url_for controller='package', action='search' %}" role="search" class="form-inline">
                 <div class="form-group"><label for="wb-srch-q">{{ _("Search Your Data") }}</label>
@@ -50,12 +57,13 @@
                 <button type="submit" id="wb-srch-sub" class="btn btn-default">{{ _("Search") }}</button>
               </form>
           </section>
+        {% endblock %}
         </div>
       </div>
     </div>
 
-
-   <nav role="navigation" id="wb-sm" data-ajax-fetch="{% url_for '/snippets/menu.html' %}" data-trgt="mb-pnl"
+    {% block wet_megamenu %}
+    <nav role="navigation" id="wb-sm" data-ajax-fetch="{% url_for '/snippets/menu.html' %}" data-trgt="mb-pnl"
          class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
       <div class="container nvbar"><h2>Site menu</h2>
 
@@ -68,6 +76,7 @@
         </div>
       </div>
     </nav>
+    {% endblock %}
 
 
 </nav>
@@ -122,7 +131,7 @@
     {% endblock primary %}
 
     {% block secondary %}
-      <div class="col-md-3 col-md-pull-9">
+      <div class="col-md-3 col-md-pull-9" id="wb-sec" >
       {% block secondary_content %}
       {% endblock %}
       </div>

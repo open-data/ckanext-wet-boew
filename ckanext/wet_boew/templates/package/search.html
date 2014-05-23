@@ -6,11 +6,12 @@
   {% endif %}
 {% endblock %}
 
-{% block primary_content %}
+{% block primary_content_inner %}
   {{ self.page_primary_action() }}
 
   <div class="panel">
     {{ self.form() }}
+    {% block search_form_footer %}{% endblock %}
     {{ self.package_search_results_list() }}
     <div class="center-block">{{ self.page_pagination() }}</div>
     <div class="center-block">{{ self.package_search_results_api() }}</div>
@@ -23,10 +24,10 @@
   {{ self.package_search_results_api_inner() }}
 {% endblock %}
 
-{% block secondary %}
-<div class="col-md-3 col-md-pull-9">
+{% block secondary_content %}
+
   {% for facet in c.facet_titles %}
       {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
   {% endfor %}
-</div>
+
 {% endblock %}
