@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block info_module %}
-  <section class="module module-info">
+  <section class="panel">
     <h2>{{ _('What are datasets?') }}</h2>
     <div><p>
       {% trans %}
@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block primary_content %}
-  <div class="module-poster">
+  <div class="panel">
     {{ self.primary_content_inner() }}
   </div>
 {% endblock %}

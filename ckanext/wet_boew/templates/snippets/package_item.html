@@ -1,14 +1,46 @@
 {% ckan_extends %}
 
-{% block heading %}
-  <strong>{{ self.heading_title() }}</strong>
+{% set client_lang = h.lang() %}
+{% set truncate = truncate or 180 %}
+{% set truncate_title = truncate_title or 80 %}
+{% set title = package.title or package.name %}
+{% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
+
+{% block package_item %}
+<li>
+  <div class="panel panel-default">
+
+    <div class="panel-heading"><h3 class="h4">
+      {% block heading %}
+        {% block heading_private %}{{ super() }}{% endblock %}
+        {{ self.heading_title() }}
+        {% block heading_meta %}{{ super() }}{% endblock %}
+      {% endblock %}
+    </h3></div>
+
+    <div class="panel-body">
+    {% block banner %}{{ super() }}{% endblock %}
+    {% block notes %}{{ super() }}{% endblock %}
+    {% block publisher_info %}{% endblock %}
+    {% block resources %}
+      {% if package.resources and not hide_resources %}
+      {% block resources_outer %}
+        <div class="row"><div class="col-md-3"><em>{{ _('Resource Formats:') }}</em></div>
+        <div class="col-md-9">
+        <ul class="list-inline list-unstyled">
+          {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+            <li><span class="badge">{{ resource }}</span></li>
+          {% endfor %}
+        </ul>
+        </div></div>
+      {% endblock %}
+      {% endif %}
+    {% endblock %}
+    </div>
+  </div>
+</li>
+
 {% endblock %}
 
-{% block resources_outer %}
-    {{ _('Resource Formats:') }}
-  <ul class="list-inline list-unstyled">
-    {% for resource in h.dict_list_reduce(package.resources, 'format') %}
-      <li><span class="badge">{{ resource }}</span></li>
-    {% endfor %}
-  </ul>
-{% endblock %}
+
+

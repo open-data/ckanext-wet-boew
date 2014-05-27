@@ -7,7 +7,7 @@
   {% endblock %}
 
   {# This format only works for a bilingual format #}
-  {% set current_url = request.environ.CKAN_CURRENT_URL %}
+
 
   <header role="banner">
     <div id="wb-bnr">
@@ -18,6 +18,7 @@
             <section id="wb-lng" class="visible-md visible-lg">
               <h2>Language selection</h2>
               <ul class="text-right">
+                {% set current_url = request.environ.CKAN_CURRENT_URL %}
                 {% if h.lang() == 'fr' %}
                 <li><a lang="en" hreflang="en" href="{% url_for current_url, locale='en' %}">English</a></li>
                 <li class="curr">Français&#32;<span>(actuel)</span></li>

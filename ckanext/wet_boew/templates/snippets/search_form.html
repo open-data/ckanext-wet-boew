@@ -5,10 +5,12 @@
 {% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc')] %}
 {% set search_class = search_class if search_class else 'search-giant' %}
 
-<form class="form-inline" role="form" method="get" data-module="select-switch">
+<form class="form-inline mrgn-bttm-lg" role="form" method="get" data-module="select-switch">
 {% block search_input %}
 
- <label for="search_field" class="wb-inv">{{ _('Search Datasets') }}</label>
+  {% block search_input_label %}
+  <label for="search_field" class="wb-inv">{{ _('Search Datasets') }}</label>
+  {% endblock %}
 
   <div class="input-group">
     <input type="text" class="form-control" id="search_field" autocomplete="off" name="q" placeholder="{{ placeholder }}">
@@ -17,9 +19,7 @@
       <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span><span class="wb-inv">{{ _('Submit') }}</span></button>
       {% endblock %}
     </span>
-  </div><!-- /input-group -->
-
-
+  </div>
 {% endblock %}
 
 {% block search_search_fields %}
@@ -28,13 +28,15 @@
   {%- endif %}
 {% endblock %}
 
+{% block search_form_midsection %}{% endblock %}
+
 {% block search_title %}
   {% if not no_title %}
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <h3 class="h3 mrgn-tp-md">{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</h3>
       </div>
-      <div class="col-md-6 mrgn-tp-md">
+      <div class="col-md-8 mrgn-tp-md">
         {% snippet "snippets/sort_by.html" %}
       </div>
     </div>

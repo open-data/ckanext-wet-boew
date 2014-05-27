@@ -9,7 +9,9 @@
 {% endblock %}
 
 {% block heading %}
+  {% if group %}
   <h3 class="align-center">{{ group.display_name }}</h3>
+  {% endif %}
 {% endblock %}
 
 {% block nums %}
@@ -38,5 +40,4 @@
 {% endblock %}
 
 {% block follow %}
-  <p>{{ h.follow_button('organization', organization.id) }}</p>
 {% endblock %}

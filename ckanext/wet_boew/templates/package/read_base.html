@@ -1,5 +1,38 @@
 {% ckan_extends %}
 
+{% block primary %}
+
+<main role="main" property="mainContentOfPage" class="col-md-9">
+
+  {% block flash %}
+  <div class="row">
+    {% for message in flash_messages %}
+    <div class="alert fade in {{ message.category }}">
+      {{ h.literal(message) }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock flash %}
+
+  {% block primary_content %}
+  <div class="row">
+    <div class="col-md-12">
+  {% block primary_content_inner %}{% endblock %}
+    </div>
+  </div>
+  {% endblock primary_content %}
+
+</main>
+{% endblock primary %}
+
+
+{% block secondary %}
+  <div class="col-md-3" id="wb-sec" >
+  {% block secondary_content %}
+  {% endblock %}
+  </div>
+{% endblock secondary %}
+
 {% block package_groups %}
   {% if pkg.groups %}
     <p>
