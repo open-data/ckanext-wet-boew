@@ -18,6 +18,8 @@ from pylons.i18n import gettext
 
 WET_URL_OPTION = 'wet_theme.url'
 WET_URL_DEFAULT = 'http://localhost/'
+GEO_MAP_TYPE_OPTION = 'wet_theme.geo_map_type'
+GEO_MAP_TYPE_DEFAULT = 'static'
 
 class WetTheme(p.SingletonPlugin):
     """
@@ -32,7 +34,7 @@ class WetTheme(p.SingletonPlugin):
         # add our templates - note that the Web Experience Toolkit distribution
         # files should be installed in the public folder
         p.toolkit.add_template_directory(config, 'templates')
-        p.toolkit.add_public_directory(config, 'public/themes-dist-4.0.1-theme-base')
+        p.toolkit.add_public_directory(config, 'public')
         
         # monkey patch helpers.py pagination method
         h.Page.pager = _wet_pager
@@ -46,7 +48,8 @@ class WetTheme(p.SingletonPlugin):
               'get_datapreview': self.get_datapreview,
               'iso_to_goctime': self.iso_to_goctime,
               'geojson_to_wkt': self.geojson_to_wkt,
-              'wet_url': self.wet_url}
+              'wet_url': self.wet_url,
+              'get_map_type': self.get_map_type}
 
 
     def link_to_user(self, user, maxlength=0):
@@ -104,6 +107,9 @@ class WetTheme(p.SingletonPlugin):
 
     def wet_url(self):
         return str(config.get(WET_URL_OPTION, WET_URL_DEFAULT))
+
+    def get_map_type(self):
+        return str(config.get(GEO_MAP_TYPE_OPTION, GEO_MAP_TYPE_DEFAULT))
 
 
 def _build_nav_icon(menu_item, title, **kwargs):
