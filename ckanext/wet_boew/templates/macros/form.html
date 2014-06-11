@@ -21,7 +21,7 @@ Examples:
   {%- set extra_html = caller() if caller -%}
 
   {% call input_block(id or name, label or name, error, classes, extra_html=extra_html) %}
-    <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" {% if placeholder != '' %} placeholder="{{ placeholder }}" {% endif %} {{ attributes(attrs) }} />
+    <input id="{{ id or name }}" class="form-control" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" {% if placeholder != '' %} placeholder="{{ placeholder }}" {% endif %} {{ attributes(attrs) }} />
   {% endcall %}
 {% endmacro %}
 
@@ -44,15 +44,15 @@ Example:
 #}
 {% macro checkbox(name, id='', label='', value='', checked=false, placeholder='', error="", classes=[], attrs={}, is_required=false) %}
   {%- set extra_html = caller() if caller -%}
-  <div class="control-group{{ " " ~ classes | join(" ") }}{% if error %} error{% endif %}">
-    <div class="controls span-1">
-      <label class="checkbox" for="{{ id or name }}">
+  <div class="checkbox{{ " " ~ classes | join(" ") }}{% if error %} error{% endif %}">
+
+      <label>
         <input id="{{ id or name }}" type="checkbox" name="{{ name }}" value="{{ value | empty_and_escape }}" {{ "checked " if checked }} {{ attributes(attrs) }} />
         {{ label or name }}
         {% if error and error is iterable %}<strong class="error-inline">{{ error|join(', ') }}</strong>{% endif %}
       </label>
       {{ extra_html }}
-    </div>
+
   </div>
 {% endmacro %}
 
@@ -275,17 +275,15 @@ Example:
 
 #}
 {% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false) %}
-   <div class="span-1 row-start{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
+   <div class="form-group{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
      {% if label != '' %}
       <label {% if for != '' %} for="{{ for }}" {% endif %} >{{ label or _('Custom') }}</label>
      {% endif %}
-   </div>
-   <div class="span-4 row-end{{ " " ~ control_classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
+
       {{ caller() }}
       {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
       {{ extra_html }}
    </div>
-   <div class="clear"></div>
 {% endmacro %}
 
 {#
@@ -303,7 +301,7 @@ Example:
 #}
 {% macro errors(errors={}, type="error", classes=[]) %}
   {% if errors %}
-    <div class="error-explanation module-alert margin-bottom-large alert-{{ type }}{{ " " ~ classes | join(' ') }}">
+    <div class="alert mrgn-bttm-md alert-{{ type }}{{ " " ~ classes | join(' ') }}">
       <p>{{ _('The form contains invalid entries:') }}</p>
       <ul>
         {% for key, error in errors.items() %}

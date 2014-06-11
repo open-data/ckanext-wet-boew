@@ -26,4 +26,6 @@
   <a class="btn btn-default" href="{{ h.url_for(controller='user', action='request_reset') }}">{{ _('Forgot your password?') }}</a>
 {% endblock %}
 
-
+{% block form %}
+  {% snippet "user/snippets/login_form.html", action=c.login_handler, error_summary=errors %}
+{% endblock %}
