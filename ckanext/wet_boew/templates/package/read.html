@@ -5,6 +5,10 @@
 {% set pkg = c.pkg_dict %}
 {% set client_lang = h.lang() %}
 
+{% block font_awesome %}
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+{% endblock %}
+
 {% block primary_content_inner %}
 
   <div class="row">
@@ -60,5 +64,6 @@
     </div>
 
     {% block package_item_geo_preview %}{% endblock %}
+    {% block package_comments %}{% endblock %}
   </div>
 {% endblock %}
