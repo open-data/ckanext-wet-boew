@@ -1,9 +1,10 @@
 {% ckan_extends %}
 
 {% block primary %}
-
-<h1 class="background-accent">{{ _('About') }}</h1>
-<div class="module">
+<main role="main" property="mainContentOfPage" class="col-md-12">
+<div class="row">
+<div class="col-md-12"><h2>{{ _('About') }}</h2></div>
+<div class="col-md-12">
   {% block about %}
     {% if g.site_about %}
       {{ h.render_markdown(g.site_about) }}
@@ -12,5 +13,6 @@
     {% endif %}
   {% endblock %}
 </div>
-
+</div>
+</main>
 {% endblock %}

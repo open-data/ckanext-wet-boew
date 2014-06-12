@@ -4,6 +4,7 @@
 {% set placeholder = placeholder if placeholder else _('Search...') %}
 {% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc')] %}
 {% set search_class = search_class if search_class else 'search-giant' %}
+{% set sort_arg = request.params.get('sort') %}
 
 <form class="form-inline mrgn-bttm-lg" role="form" method="get" data-module="select-switch">
 {% block search_input %}
@@ -32,14 +33,20 @@
 
 {% block search_title %}
   {% if not no_title %}
-    <div class="row">
-      <div class="col-md-4">
-        <h3 class="h3 mrgn-tp-md">{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</h3>
-      </div>
-      <div class="col-md-8 mrgn-tp-md">
-        {% snippet "snippets/sort_by.html" %}
-      </div>
+  <div class="row">
+    {% if count==0 %}
+    <div class="col-md-12 mrgn-tp-md text-center text-warning">
+      <strong>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</strong>
     </div>
+    {% else %}
+    <div class="col-md-6 mrgn-tp-md text-left text-success">
+        <strong>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</strong>
+    </div>
+    <div class="col-md-6 mrgn-tp-md text-right">
+      {% snippet "snippets/sort_by.html", sort=sort_arg %}
+    </div>
+    {% endif %}
+  </div>
   {% endif %}
 {% endblock %}
 
