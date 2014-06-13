@@ -1,44 +1,51 @@
 {% macro followee_icon(type) -%}
   {% if type == 'dataset' %}
-    <i class="icon-sitemap"></i>
+    <span class="fa fa-sitemap"></span>
   {% elif type == 'user' %}
-    <i class="icon-user"></i>
+    <span class="fa fa-user"></span>
   {% elif type == 'group' %}
-    <i class="icon-group"></i>
+    <span class="fa fa-group"></span>
   {% endif %}
 {%- endmacro %}
 
-<div id="followee-filter" class="module-question span-6">
-  <h3>{{ _('Activity from:') }} <strong>{{ context.context }}</strong></h3>
-
-  <form id="followee-popover" action="/dashboard">
-    <div class="span-3">
-        <span class="add-on"><i class="icon-search"></i></span>
-        <input type="text" name="q" placeholder="{{ _('Search list...') }}" value="{{context.q}}" autocomplete="off">
-    </div>
-    <div class="clear"></div>
-    {% if followees %}
-      <div class="button-toolbar margin-top-none">
-        <ul class="button-toolbar">
-          <li class="everything {% if context.selected_id == False %} active{% endif %}">
-            <a href="{{ h.url_for(controller='user', action='dashboard') }}">
-              <i class="icon-star"></i>
-              <span>Everything</span>
-            </a>
-          </li>
-          {% for followee in followees %}
-          <li{% if context.selected_id == followee.dict.id %} class="active"{% endif %} data-search="{{followee.display_name|lower}}">
-            <a href="{{ h.url_for(controller='user', action='dashboard', type=followee.type, name=followee.dict.name) }}" title="{{followee.display_name}}">
-              {{followee_icon(followee.type)}}
-              <span>{{followee.display_name}}</span>
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
+<div id="followee-filter" class="panel panel-default">
+  <div class="panel-heading h3">
+  {{ _('Activity from:') }} {{ context.context }}
+  </div>
+  <div class="panel-body">
+    <form id="followee-popover" action="/dashboard">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="input-group">
+            <label class="wb-inv" for="activity-search-input">{{_('Search')}}</label>
+            <input type="text" class="form-control" name="q" placeholder="{{ _('Search list...') }}"
+                   value="{{context.q}}" autocomplete="off" id="activity-search-input">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">{{_('Search')}}</button>
+            </span>
+          </div>
+        </div>
       </div>
-    {% else %}
-      <p class="empty">{{ _('You are not following anything') }}</p>
-    {% endif %}
-  </form>
-
+    </form>
+      <div class="row mrgn-tp-md"><div class="panel">
+      {% if followees %}
+        {% block followees %}
+        <ul class="nav nav-pills">
+            <li>
+              <a href="{{ h.url_for(controller='user', action='dashboard') }}" >Everything</a>
+            </li>
+            {% for followee in followees %}
+            <li>
+              <a href="{{ h.url_for(controller='user', action='dashboard', type=followee.type, name=followee.dict.name) }}"
+                 title="{{followee.display_name}}">{{followee.display_name}}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        {% endblock %}
+      {% else %}
+        <p>{{ _('You are not following anything') }}</p>
+      {% endif %}
+      </div>
+    </div>
+  </div>
 </div>

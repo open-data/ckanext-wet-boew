@@ -1,5 +1,7 @@
 {% ckan_extends %}
 
+{% block font_awesome %}<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">{% endblock %}
+
 {% block page_header %}
   <div class="col-md-12">
     <ul class="nav nav-pills">
@@ -11,8 +13,54 @@
   </div>
 {% endblock %}
 
+
 {% block primary_content_inner %}
   <div data-module="dashboard" class="col-md-12">
-    {{ super() }}
+    {% snippet 'user/snippets/followee_dropdown.html', context=c.dashboard_activity_stream_context, followees=c.followee_list %}
+    <div data-module="dashboard" class="panel">
+      <div class="panel-heading h4">
+        {% block page_heading %}{{ _('News feed') }}{% endblock %}
+      </div>
+      <div class="panel-body">
+      {{ _('Activity from items that you follow') }}
+      {% block activity_stream %}
+      {{ c.dashboard_activity_stream }}
+      {% endblock %}
+      </div>
+    </div>
   </div>
+{% endblock %}
+
+
+{% block secondary_content %}
+  {% if not c.dashboard_activity_stream_context.dict == None %}
+    <div class="panel panel-info">
+      <span class="arrow"></span>
+      {% snippet 'snippets/context.html', type=c.dashboard_activity_stream_context.filter_type, dict=c.dashboard_activity_stream_context.dict %}
+    </div>
+  {% endif %}
+  <div class="panel panel-info mrgn-bttm-md" >
+    <div class="panel-heading">
+      <span class="fa fa-sitemap"></span>
+      {{ _('My Datasets') }}
+    </div>
+    <div class="panel-body">
+    {% if c.user_dict['datasets'] %}
+      <ul class="list-group">
+        {% for package in c.user_dict['datasets'][0:10] %}
+          {% set title = package.title or package.name %}
+          <li class="list-group-item">
+            {{ h.link_to(h.truncate(title, 80), h.url_for(controller='package', action='read', id=package.name)) }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}>
+      <span>{{ _('You do not have any datasets') }}</span>
+    {% endif %}
+    </div>
+  </div>
+
+  <a href="{{ h.url_for(controller='package', action='new') }}" class="btn btn-primary">
+    {{ _('Add Dataset') }}
+  </a>
 {% endblock %}
