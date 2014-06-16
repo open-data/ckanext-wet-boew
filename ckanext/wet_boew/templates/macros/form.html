@@ -116,7 +116,8 @@ Examples:
 
   {%- set extra_html = caller() if caller -%}
   {% call input_block(id or name, label or name, error, classes, control_classes=["editor"], extra_html=extra_html) %}
-    <textarea id="{{ id or name }}" name="{{ name }}" cols="60" rows="5" placeholder="{{ placeholder }}" {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
+    <textarea id="{{ id or name }}" name="{{ name }}" cols="60" rows="5" class="form-control"
+              placeholder="{{ placeholder }}" {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
     <div class="module-content">
       {% trans %}You can use <a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'>Markdown formatting</a> here{% endtrans %}
     </div>
