@@ -84,7 +84,7 @@ Examples:
 
   {%- set extra_html = caller() if caller -%}
   {% call input_block(id or name, label or name, error, classes, extra_html=extra_html) %}
-    <select id="{{ id or name }}" name="{{ name }}" {{ attributes(attrs) }}>
+    <select id="{{ id or name }}" name="{{ name }}" {{ attributes(attrs) }} class="form-control">
       {% for option in options %}
         <option value="{{ option.value }}"{% if option.value == selected %} selected{% endif %}>{{ option.text or option.value }}</option>
       {% endfor %}
@@ -276,13 +276,13 @@ Example:
 
 #}
 {% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false) %}
-   <div class="form-group{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
+   <div class="form-group{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} has-error {% endif %}">
      {% if label != '' %}
       <label {% if for != '' %} for="{{ for }}" {% endif %} >{{ label or _('Custom') }}</label>
      {% endif %}
 
       {{ caller() }}
-      {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
+      {% if error and error is iterable %}<span class="text-danger">{{ error|join(', ') }}</span><br>{% endif %}
       {{ extra_html }}
    </div>
 {% endmacro %}
@@ -302,14 +302,14 @@ Example:
 #}
 {% macro errors(errors={}, type="error", classes=[]) %}
   {% if errors %}
-    <div class="alert mrgn-bttm-md alert-{{ type }}{{ " " ~ classes | join(' ') }}">
-      <p>{{ _('The form contains invalid entries:') }}</p>
+    <section class="alert mrgn-bttm-md alert-{{ type }}{{ " " ~ classes | join(' ') }}">
+      <h3>{{ _('The form contains invalid entries:') }}</h3>
       <ul>
         {% for key, error in errors.items() %}
           <li data-field-label="{{ key }}">{% if key %}{{ key }}: {% endif %}{{ error }}</li>
         {% endfor %}
       </ul>
-    </div>
+    </section>
   {% endif %}
 {% endmacro %}
 
@@ -331,10 +331,7 @@ Example
 #}
 {% macro info(text='', inline=false, classes=[]) %}
   {%- if text -%}
-    <div class="info-block{{ ' info-inline' if inline }}{{ " " ~ classes | join(' ') }}">
-      <i class="icon-info-sign"></i>
-      {{ text }}
-    </div>
+    <small class="text-info">{{ text }}</small>
   {%- endif -%}
 {% endmacro %}
 

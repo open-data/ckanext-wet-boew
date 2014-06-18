@@ -1,9 +1,53 @@
-{% ckan_extends %}
+{# Currently cannot extend the CKAN form in order to apply the necessary CSS class #}
 
-{% block save_button %}
-  <button class="btn btn-primary" type="submit" name="save">{{ self.save_button_text() }}</button>
-{% endblock %}
+<form class="form" method="post" action="{{ action }}" data-module="basic-form">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    {% block stages %}
+      <h3 class="panel-title">{{ h.snippet('package/snippets/stages.html', stages=stage) }}</h3>
+    {% endblock %}
+    </div>
+    <div class="panel-body">
 
-{% block cancel_button %}
-  <a class="btn btn-warming" href="">{{ self.cancel_button_text() }}</a>
-{% endblock %}
+    <input type="hidden" name="_ckan_phase" value="dataset_new_1" />
+    {# pkg_name used in 3 stage edit #}
+    <input type="hidden" name="pkg_name" value="{{ data.id }}" />
+    {% block errors %}{{ form.errors(error_summary) }}{% endblock %}
+
+    {% block basic_fields %}
+      {% snippet 'package/snippets/package_basic_fields.html', data=data, errors=errors, licenses=c.licenses, groups_available=c.groups_available %}
+    {% endblock %}
+
+    {% block metadata_fields %}
+      {% snippet 'package/snippets/package_metadata_fields.html', data=data, errors=errors %}
+    {% endblock %}
+
+    {% block form_actions %}
+      <div class="form-actions">
+        {% block disclaimer %}
+          <p class="action-info small">
+            {%- trans -%}
+            Important: By submitting content, you
+            agree to release your contributions under the Open Database
+            License.
+            {%- endtrans -%}
+          </p>
+        {% endblock %}
+        {% block delete_button %}
+          {% if h.check_access('package_delete', {'id': data.id})  %}
+            {% set locale = h.dump_json({'content': _('Are you sure you want to delete this dataset?')}) %}
+            <a class="btn btn-danger pull-left" href="{% url_for controller='package', action='delete', id=data.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
+          {% endif %}
+        {% endblock %}
+        {% block cancel_button %}
+          <a class="btn btn-warning" href="">{% block cancel_button_text %}{{ _('Cancel') }}{% endblock %}</a>
+        {% endblock %}
+        {% block save_button %}
+        <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{{ _('Next: Add Data') }}{% endblock %}</button>
+        {% endblock %}
+      </div>
+    {% endblock %}
+    </div>
+  </div>
+</form>
+

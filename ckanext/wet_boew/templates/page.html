@@ -118,11 +118,13 @@
       </div>
       {% endblock flash %}
 
+      {% block page_title %}
       <div class="row">
-      <div class="col-md-12">
-      <h2 class="h3">{% block subtitle %}{% endblock %}</h2>
+        <div class="col-md-12">
+        <h2 class="h3">{% block subtitle %}{% endblock %}</h2>
+        </div>
       </div>
-      </div>
+      {% endblock %}
 
       {% block primary_content %}
       <div class="row">
