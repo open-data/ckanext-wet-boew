@@ -1,7 +1,7 @@
 {# Currently cannot extend the CKAN form in order to apply the necessary CSS class #}
 
-<form class="form" method="post" action="{{ action }}" data-module="basic-form">
-  <div class="panel panel-default">
+<form role="form" method="post" action="{{ action }}" data-module="basic-form">
+  <div class="panel">
     <div class="panel-heading">
     {% block stages %}
       <h3 class="panel-title">{{ h.snippet('package/snippets/stages.html', stages=stage) }}</h3>
@@ -36,18 +36,20 @@
         {% block delete_button %}
           {% if h.check_access('package_delete', {'id': data.id})  %}
             {% set locale = h.dump_json({'content': _('Are you sure you want to delete this dataset?')}) %}
-            <a class="btn btn-danger pull-left" href="{% url_for controller='package', action='delete', id=data.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
+            <a class="btn btn-danger pull-left mrgn-rght-sm" href="{% url_for controller='package', action='delete', id=data.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
           {% endif %}
         {% endblock %}
         {% block cancel_button %}
-          <a class="btn btn-warning" href="">{% block cancel_button_text %}{{ _('Cancel') }}{% endblock %}</a>
+          <a class="btn btn-warning mrgn-rght-sm" href="">{% block cancel_button_text %}{{ _('Cancel') }}{% endblock %}</a>
         {% endblock %}
         {% block save_button %}
-        <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{{ _('Next: Add Data') }}{% endblock %}</button>
+        <button class="btn btn-primary mrgn-rght-sm" type="submit" name="save">{% block save_button_text %}{{ _('Next: Add Data') }}{% endblock %}</button>
         {% endblock %}
       </div>
     {% endblock %}
     </div>
   </div>
 </form>
+
+
 

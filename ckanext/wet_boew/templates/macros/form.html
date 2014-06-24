@@ -300,7 +300,7 @@ Example:
   {{ form.errors(error_summary, type="warning") }}
 
 #}
-{% macro errors(errors={}, type="error", classes=[]) %}
+{% macro errors(errors={}, type="danger", classes=[]) %}
   {% if errors %}
     <section class="alert mrgn-bttm-md alert-{{ type }}{{ " " ~ classes | join(' ') }}">
       <h3>{{ _('The form contains invalid entries:') }}</h3>

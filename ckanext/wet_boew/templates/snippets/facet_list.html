@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block facet_list_heading %}
-  <div class="panel-heading">{{ title or h.get_facet_title(name) }} <span class="glyphicon glyphicon-filter"></span></div>
+  <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ title or h.get_facet_title(name) }}</div>
 {% endblock %}
 
 {% block facet_list_item %}

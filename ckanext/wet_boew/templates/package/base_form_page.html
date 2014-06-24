@@ -19,11 +19,13 @@
 {% endblock %}
 
 {% block primary_content %}
-  <div class="panel">
-    <div class="panel-body">
+  <div class="col-md-12">
+
       {% block form %}{{ c.form | safe }}{% endblock %}
-    </div>
+
   </div>
 {% endblock %}
 
 {% block page_title %}{% endblock %}
+
+{% block page_header %}{% endblock %}

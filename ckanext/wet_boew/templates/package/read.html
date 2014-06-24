@@ -10,8 +10,20 @@
 {% endblock %}
 
 {% block primary_content_inner %}
+  {% block actions_content %}
+  <div class="row"><div class="col-md-12">
+    <ul class="nav nav-pills">
+      <li class="active"></li>
 
+       {% if h.check_access('package_update', {'id':pkg.id }) %}
+          <li>{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='' %}</li>
+        {% endif %}
+        <li>{{ h.follow_button('dataset', pkg.id) }}</li>
+        <li>{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='' %}</li>
+    </ul>
+  </div></div>
   <div class="row">
+  {% endblock %}
 
     {% if pkg.state == "deleted" %}
     <div class="alert alert-warning col-md-12">
@@ -20,10 +32,18 @@
     {% endif %}
 
     {% block package_item_title %}
+
+    {% if pkg.private %}
+    <div class="col-md-12">
+      <p class="text-left">L
+      <span class="fa fa-lock"></span> {{ _('Private') }}
+      </p>
+    </div>
+    {% endif %}
     <div class="col-md-12">
       <h2>{{ pkg.title or pkg.name }}
         {% if pkg.state.startswith('draft') %}
-          [{{ _('Draft') }}]
+          <span class="text-info">[{{ _('Draft') }}]</span>
         {% endif %}
       </h2>
     </div>

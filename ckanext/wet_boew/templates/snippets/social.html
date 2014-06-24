@@ -1,10 +1,8 @@
 {% ckan_extends %}
 
 {% block social %}
-  <p>
-    <div class="module-related">
-      {{ self.social_title() }}
-      {{ self.social_nav() }}
-    </div>
-  </p>
+  <div class="panel panel-default">
+    <header class="panel-heading">{{ self.social_title() }}</header>
+    <div class="panel-body">  {{ self.social_nav() }}</div>
+  </div>
 {% endblock %}
