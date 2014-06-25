@@ -131,14 +131,13 @@ def _link_to(text, *args, **kwargs):
         class_ = kwargs.pop('class_', None)
         suppress_active_class = kwargs.pop('suppress_active_class', False)
         if not suppress_active_class and h._link_active(kwargs):
-            active = ' active'
+            active = ' btn-primary'
         else:
             active = ''
         kwargs.pop('highlight_actions', '')
         if class_ and 'btn' in class_:
-            class_ = class_.replace('btn', 'button')
             if active:
-                active = ' button-accent'
+                active = ' btn-primary'
         if class_:
             return class_ + active
         return None
