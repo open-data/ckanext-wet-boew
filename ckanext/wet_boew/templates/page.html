@@ -10,6 +10,7 @@
 
 
   <header role="banner">
+    {% block wet_banner %}
     <div id="wb-bnr">
       <div id="wb-bar">
         {% block wet_banner_bar %}
@@ -95,7 +96,9 @@
       </div>
     </nav>
     {% endblock %}
+  {% endblock %}
   </header>
+
   {% block toolbar %}{% endblock %}
 
   {% set lang = h.lang() %}
