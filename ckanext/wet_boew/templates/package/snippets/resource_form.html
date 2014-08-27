@@ -1,0 +1,6 @@
+{% ckan_extends %}
+
+{% block basic_fields_url %}
+      {{ form.input('url', id='field-url', label=_('URL'), placeholder=_('http://whatever'), value=data.url, error=errors.name) }}
+{% endblock %}
+
