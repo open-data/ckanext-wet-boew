@@ -2,8 +2,8 @@
 
 {% block primary_content %}
 
-      {% block form %}{{ c.form | safe }}{% endblock %}
-
+      {# block form %}{{ c.form | safe }}{% endblock #}
+  {{- h.snippet('package/snippets/package_form.html', c=c, **form_vars) -}}
 {% endblock %}
 
 {% block secondary_content %}

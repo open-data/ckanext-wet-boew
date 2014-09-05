@@ -57,6 +57,11 @@
     {% endif %}
     {% endblock %}
 
+    {% block package_additional_info %}
+    {# We implement our own so that additional fields blend seamlessly into the page #}
+    {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
+    {% endblock %}
+
     <div class="col-md-12">
       <h4>{{_('Licence')}}: </h4>
     </div>
