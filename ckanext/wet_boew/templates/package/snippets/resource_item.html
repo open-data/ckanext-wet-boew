@@ -1,0 +1,25 @@
+
+{% set url = h.url_for(controller='package', action='resource_read', id=pkg.name, resource_id=res.id) %}
+
+<tr>
+
+  {% block resource_item_title %}
+  <td>
+      {{ h.resource_display_name(res) | truncate(50) }}
+  </td>
+  <td>
+    <span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
+    {{ h.popular('views', res.tracking_summary.total, min=10) }}
+  </td>
+  {% endblock %}
+
+  {% block resource_item_description %}
+  <td >
+    <a href="{{ url }}" title="{{ res.name or res.description }}">
+      <span class="badge">{{ _('Download') }}</span>
+    </a>
+  </td>
+  {% endblock %}
+
+
+</tr>
