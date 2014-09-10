@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block resource_actions %}{% endblock %}
-
+l
 {% block resource_additional_information %}
   <div>
     {{ self.resource_additional_information_inner() }}
@@ -29,5 +29,11 @@
       </ul>
     </div>
   </p>
-  {{ super() }}
+  {% block resources_list %}
+    {% snippet "package/snippets/resources.html", pkg=pkg, active=res.id %}
+  {% endblock %}
+
+  {% block resource_license %}
+    {{- h.snippet('snippets/share_page.html') -}}
+  {% endblock %}
 {% endblock %}
