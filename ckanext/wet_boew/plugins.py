@@ -20,6 +20,9 @@ WET_URL_OPTION = 'wet_theme.url'
 WET_URL_DEFAULT = 'http://localhost/'
 GEO_MAP_TYPE_OPTION = 'wet_theme.geo_map_type'
 GEO_MAP_TYPE_DEFAULT = 'static'
+CANADACA_URL_OPTION = 'wet_theme.canadaca_url'
+CANADACA_URL_DEFAULT = 'http://www.canada.ca'
+
 
 class WetTheme(p.SingletonPlugin):
     """
@@ -49,7 +52,8 @@ class WetTheme(p.SingletonPlugin):
               'iso_to_goctime': self.iso_to_goctime,
               'geojson_to_wkt': self.geojson_to_wkt,
               'wet_url': self.wet_url,
-              'get_map_type': self.get_map_type}
+              'get_map_type': self.get_map_type,
+              'canada_url': self.canada_url}
 
 
     def link_to_user(self, user, maxlength=0):
@@ -110,6 +114,9 @@ class WetTheme(p.SingletonPlugin):
 
     def get_map_type(self):
         return str(config.get(GEO_MAP_TYPE_OPTION, GEO_MAP_TYPE_DEFAULT))
+
+    def canada_url(self):
+        return str(config.get(CANADACA_URL_OPTION, CANADACA_URL_DEFAULT))
 
 
 def _build_nav_icon(menu_item, title, **kwargs):

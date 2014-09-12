@@ -1,14 +1,14 @@
 {% ckan_extends %}
 
 {% block primary_content %}
-
-      {# block form %}{{ c.form | safe }}{% endblock #}
-  {{- h.snippet('package/snippets/package_form.html', c=c, **form_vars) -}}
+    <div class="col-md-12">
+      <div class="panel"><div class="panel-body">
+      {{ super() }}
+      </div></div>
+    </div>
 {% endblock %}
 
 {% block secondary_content %}
-
-
   <div class="panel panel-info">
     <div class="panel-heading">
       <div class="panel-title"><span class="glyphicon glyphicon-book"></span> {{_('Resources')}}</div>
@@ -17,6 +17,4 @@
     {% snippet "package/snippets/resources.html", pkg=pkg %}
     </div>
   </div>
-
-
 {% endblock %}
