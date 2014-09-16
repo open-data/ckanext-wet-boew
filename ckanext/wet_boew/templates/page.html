@@ -106,10 +106,18 @@
   {% block content %}
   <div class="container">
     <div class="row">
+
+    {% block secondary %}
+      <div class="col-md-3 col-md-push-9" >
+      {% block secondary_content %}
+      {% endblock %}
+      </div>
+    {% endblock secondary %}
+
     {% block pre_primary %}{% endblock %}
     {% block primary %}
-
-    <main role="main" property="mainContentOfPage" class="col-md-9 col-md-push-3">
+    <div class="col-md-9 col-md-pull-3">
+    <main role="main" property="mainContentOfPage">
 
       {% block flash %}
       <div class="row">
@@ -136,14 +144,8 @@
       {% endblock primary_content %}
 
     </main>
+    </div>
     {% endblock primary %}
-
-    {% block secondary %}
-      <div class="col-md-3 col-md-pull-9" id="wb-sec" >
-      {% block secondary_content %}
-      {% endblock %}
-      </div>
-    {% endblock secondary %}
 
     </div>
   </div>
