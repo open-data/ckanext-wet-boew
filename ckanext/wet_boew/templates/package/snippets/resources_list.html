@@ -1,7 +1,7 @@
 {% block resource_list %}
 {% if resources %}
 
-    <h4>{{ _('Dataset Resources') }}</h4>
+    <h4>{% block resource_list_title %}{{ _('Dataset Resources') }}{% endblock %}</h4>
     {% if pkg.resources %}
     {% block resource_list_inner %}
       <table class="table table-striped">
