@@ -8,15 +8,15 @@
 
 {% block package_item %}
 <li>
-  <div class="panel panel-default">
+  <div class="panel panel-default mrgn-bttm-sm">
 
-    <div class="panel-heading"><h3 class="h4">
+    <header class="panel-heading"><h3 class="panel-title">
       {% block heading %}
         {% block heading_private %}{{ super() }}{% endblock %}
         {{ self.heading_title() }}
         {% block heading_meta %}{{ super() }}{% endblock %}
       {% endblock %}
-    </h3></div>
+    </h3></header>
 
     <div class="panel-body">
     {% block banner %}{{ super() }}{% endblock %}
@@ -25,14 +25,16 @@
     {% block resources %}
       {% if package.resources and not hide_resources %}
       {% block resources_outer %}
-        <div class="row"><div class="col-md-3"><em>{{ _('Resource Formats:') }}</em></div>
-        <div class="col-md-9">
-        <ul class="list-inline list-unstyled">
-          {% for resource in h.dict_list_reduce(package.resources, 'format') %}
-            <li><span class="badge">{{ resource }}</span></li>
-          {% endfor %}
-        </ul>
-        </div></div>
+        <div class="row">
+          <div class="col-md-3"><em>{{ _('Resource Formats:') }}</em></div>
+          <div class="col-md-9">
+            <ul class="list-inline list-unstyled">
+              {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+                <li><span class="badge">{{ resource }}</span></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
       {% endblock %}
       {% endif %}
     {% endblock %}

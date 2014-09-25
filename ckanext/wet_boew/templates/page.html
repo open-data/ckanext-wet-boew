@@ -120,6 +120,7 @@
     <main role="main" property="mainContentOfPage">
 
       {% block flash %}
+      {% if flash_messages %}
       <div class="row">
         {% for message in flash_messages %}
         <div class="alert fade in {{ message.category }}">
@@ -127,6 +128,7 @@
         </div>
         {% endfor %}
       </div>
+      {% endif %}
       {% endblock flash %}
 
       {% block page_title %}
