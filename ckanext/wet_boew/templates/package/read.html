@@ -17,9 +17,8 @@
 
        {% if h.check_access('package_update', {'id':pkg.id }) %}
           <li>{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='btn btn-default' %}</li>
-
-        <li>{{ h.follow_button('dataset', pkg.id) }}</li>
-        <li>{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn btn-default' %}</li>
+          <li>{{ h.follow_button('dataset', pkg.id) }}</li>
+          <li>{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn btn-default' %}</li>
         {% endif %}
     </ul>
   </div></div>
@@ -62,6 +61,8 @@
     {# We implement our own so that additional fields blend seamlessly into the page #}
     {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
     {% endblock %}
+
+    {% block package_organization %}{% endblock %}
 
     <div class="col-md-12">
       <h4>{{_('Licence')}}: </h4>

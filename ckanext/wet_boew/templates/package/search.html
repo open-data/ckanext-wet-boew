@@ -6,19 +6,23 @@
   {% endif %}
 {% endblock %}
 
-{% block primary_content_inner %}
+{% block primary_content %}
   {{ self.page_primary_action() }}
 
-  <div class="panel">
+  <div class="row">
     {{ self.form() }}
-    {% block search_form_footer %}{% endblock %}
-    {{ self.package_search_results_list() }}
-    <div class="center-block">{{ self.page_pagination() }}</div>
-    <div class="center-block">{{ self.package_search_results_api() }}</div>
   </div>
 
-
+  <div class="row">
+    <div class="col-md-12">
+      {{ self.package_search_results_list() }}
+    </div>
+  </div>
+  <div class="col-md-12">{{ self.page_pagination() }}</div>
+  <div class="col-md-12">{{ self.package_search_results_api() }}</div>
 {% endblock %}
+
+{% block search_form_footer %}{% endblock %}
 
 {% block package_search_results_api %}
   {{ self.package_search_results_api_inner() }}
