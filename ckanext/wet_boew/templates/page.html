@@ -65,8 +65,15 @@
     </div>
 
     {% block wet_megamenu %}
-    <nav role="navigation" id="wb-sm" data-ajax-fetch="{% url_for '/snippets/menu.html' %}" data-trgt="mb-pnl"
+    {% if h.lang() == 'fr' %}
+    <nav role="navigation" id="wb-sm" data-ajax-fetch="http://www.canada.ca/dist/ajax/sitemenu-fr.html" data-trgt="mb-pnl"
          class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+    {% else %}
+    <nav role="navigation" id="wb-sm" data-ajax-fetch="http://www.canada.ca/dist/ajax/sitemenu-en.html" data-trgt="mb-pnl"
+         class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+    {% endif %}
+
+
       <div class="container nvbar"><h2>Site menu</h2>
 
         <div class="row">
