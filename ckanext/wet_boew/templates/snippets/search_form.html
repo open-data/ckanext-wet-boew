@@ -17,7 +17,7 @@
     <input type="text" class="form-control" id="search_field" autocomplete="off" name="q" placeholder="{{ placeholder }}">
     <span class="input-group-btn">
       {% block search_input_button %}
-      <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span><span class="wb-inv">{{ _('Submit') }}</span></button>
+      <button class="btn btn-primary btn-small" id="wb-srch-sub" type="submit"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">{{ _('Search') }}</span></button>
       {% endblock %}
     </span>
   </div>
