@@ -13,11 +13,15 @@
   <label for="search_field" class="wb-inv">{{ _('Search Datasets') }}</label>
   {% endblock %}
 
-  <div class="input-group">
+  <div class="input-group col-md-12">
+
     <input type="text" class="form-control" id="search_field" autocomplete="off" name="q" placeholder="{{ placeholder }}">
     <span class="input-group-btn">
       {% block search_input_button %}
-      <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span><span class="wb-inv">{{ _('Submit') }}</span></button>
+      <button class="btn btn-primary btn-small" id="wb-srch-sub" type="submit">
+        <span class="glyphicon-search glyphicon"></span>
+        <label class="wb-inv" for="search_field">{{ _('Search') }}</label>
+      </button>
       {% endblock %}
     </span>
   </div>
@@ -33,18 +37,19 @@
 
 {% block search_title %}
   {% if not no_title %}
-  <div class="row">
+  <div class="row mrgn-tp-md ">
     {% if count==0 %}
-    <div class="col-md-12 mrgn-tp-md text-center text-warning">
+    <div class="col-md-12 text-center text-warning">
       <strong>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</strong>
     </div>
     {% else %}
-    <div class="col-md-6 mrgn-tp-md text-left text-success">
+    <div class="col-md-6 mrgn-tp-sm text-left text-success">
         <strong>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</strong>
     </div>
-    <div class="col-md-6 mrgn-tp-md text-right">
+     <div class="col-md-6 text-left">
       {% snippet "snippets/sort_by.html", sort=sort_arg %}
     </div>
+
     {% endif %}
   </div>
   {% endif %}
