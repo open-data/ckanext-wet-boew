@@ -55,5 +55,29 @@
   {% endif %}
 {% endblock %}
 
+{% block filter_list %}
+<div class="col-md-12 mrgn-tp-md mrgn-bttm-md">
+  <ul class="list-inline">
+  {% set alternative_url=h.get_site_url(h.lang()) %}
+  {% for field in facets['fields'] %}
+    {% set search_facets_items = facets['search'].get(field)['items'] %}
+    {% for value in facets['fields'][field] %}
+      <a href="{{ h.remove_url_param(field, value, extras=extras, alternative_url=alternative_url) }}"
+         class="btn btn-info btn-xs mrgn-lft-sm mrgn-bttm-sm" title="{{ _('Remove') }}">
+        {%- if facets['translated_fields'] and facets['translated_fields'].has_key((field,value)) -%}
+          {{ facets['translated_fields'][(field,value)] }}
+        {%- else -%}
+          {% set label_value = h.list_dict_filter(search_facets_items , 'name', 'display_name', value) %}
+          {{ form.pipe_field(label_value, h.lang()) }}
+
+        {%- endif %}
+        <span class="glyphicon glyphicon-remove"></span>
+      </a>
+    {% endfor %}
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}
+
 {% block search_form_footer %}{% endblock %}
 </form>
