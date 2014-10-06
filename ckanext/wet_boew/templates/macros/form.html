@@ -396,3 +396,11 @@ Example
 {%- endmacro -%}
 
 {% macro required_message() %}{% endmacro %}
+
+{%- macro pipe_field(value, client_lang) -%}
+  {%- if value != None and ' | ' in value -%}
+    {{- value.split(' | ')[1 if client_lang == 'fr' else 0] -}}
+  {%- else -%}
+    {{- value -}}
+  {%- endif -%}
+{%- endmacro -%}
