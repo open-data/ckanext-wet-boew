@@ -68,8 +68,7 @@
           {{ facets['translated_fields'][(field,value)] }}
         {%- else -%}
           {% set label_value = h.list_dict_filter(search_facets_items , 'name', 'display_name', value) %}
-          {{ form.pipe_field(label_value, h.lang()) }}
-
+          {{ form.canada_field(label_value, h.lang()) }}
         {%- endif %}
         <span class="glyphicon glyphicon-remove"></span>
       </a>
