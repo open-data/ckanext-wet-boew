@@ -397,10 +397,24 @@ Example
 
 {% macro required_message() %}{% endmacro %}
 
-{%- macro pipe_field(value, client_lang) -%}
+{%- macro canada_field(value, client_lang) -%}
   {%- if value != None and ' | ' in value -%}
     {{- value.split(' | ')[1 if client_lang == 'fr' else 0] -}}
   {%- else -%}
-    {{- value -}}
+    {%- if '  ' in value -%}
+      {{ value.split('  ')[1 if client_lang == 'fr' else 0] }}
+    {%- else -%}
+      {{- value -}}
+    {%- endif -%}
   {%- endif -%}
+{%- endmacro -%}
+
+{%- macro tag_vocab_field(f, pkg, client_lang) -%}
+  <ul class='menu-horizontal margin-top-none margin-bottom-none'>
+    {%- for tag in pkg[f.id] -%}
+      <li>
+          <code>{{ tag.split('  ')[1 if client_lang == 'fr' else 0] }}</code>
+      </li>
+    {%- endfor -%}
+  </ul>
 {%- endmacro -%}
