@@ -69,7 +69,7 @@
     </div>
     <div class="col-md-12">
     {% block package_item_license_inner %}
-      <a href="{{ pkg.license_url }}">{{ _(pkg.license_title) }}</a>
+      <a href="{{ _(pkg.license_url) }}">{{ _(pkg.license_title) }}</a>
     {% endblock %}
     </div>
 

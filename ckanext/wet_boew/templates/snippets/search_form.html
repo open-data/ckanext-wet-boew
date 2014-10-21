@@ -15,7 +15,8 @@
 
   <div class="input-group col-md-12">
 
-    <input type="text" class="form-control" id="search_field" autocomplete="off" name="q" placeholder="{{ placeholder }}">
+    <input type="text" class="form-control" id="search_field" autocomplete="off" name="q"
+           value="{{ query }}" placeholder="{{ placeholder }}">
     <span class="input-group-btn">
       {% block search_input_button %}
       <button class="btn btn-primary btn-small" id="wb-srch-sub" type="submit">

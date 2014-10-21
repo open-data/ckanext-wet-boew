@@ -26,7 +26,7 @@
       {% if package.resources and not hide_resources %}
       {% block resources_outer %}
         <div class="row">
-          <div class="col-md-3"><em>{{ _('Resource Formats:') }}</em></div>
+          <div class="col-md-3"><em>{{ _('Resource Formats') }}:</em></div>
           <div class="col-md-9">
             <ul class="list-inline list-unstyled">
               {% for resource in h.dict_list_reduce(package.resources, 'format') %}
