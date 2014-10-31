@@ -4,9 +4,10 @@
 
 {% set pkg = c.pkg_dict %}
 {% set client_lang = h.lang() %}
+{% set wet_server = h.wet_url() %}
 
 {% block font_awesome %}
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="{{ wet_server }}/font-awesome/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
 
 {% block primary_content_inner %}
