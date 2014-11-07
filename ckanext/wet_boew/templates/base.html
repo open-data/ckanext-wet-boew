@@ -28,6 +28,8 @@
   <script src="{{ wet_server }}/js/ie8-wet-boew.min.js"></script><![endif]-->
   {% block font_awesome %}{% endblock %}
 
+  {% block links %}{% endblock %}
+
   <noscript>
     <link rel="stylesheet" href="{{ wet_server }}/css/noscript.min.css"/>
   </noscript>
@@ -44,5 +46,6 @@
     <script src="{{ wet_server }}/js/ie8-wet-boew2.min.js"></script>
     <![endif]-->
     {% block page_extra_scripts %}{% endblock %}
+    {% block wet_scripts %}{% endblock %}
   </body>
 </html>
