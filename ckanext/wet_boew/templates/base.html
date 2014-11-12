@@ -15,6 +15,8 @@
     <meta name="description" content=""/>
 
   {% set wet_server = h.wet_url() %}
+
+  {% block styles %}
   <!--[if gte IE 9 | !IE ]><!-->
   <link href="{{ wet_server }}/assets/favicon.ico" rel="icon" type="image/x-icon"/>
   <link rel="stylesheet" href="{{ wet_server }}/css/wet-boew.min.css"/>
@@ -27,6 +29,8 @@
   <script src="{{ wet_server }}/jquery-1.11.min.js"></script>
   <script src="{{ wet_server }}/js/ie8-wet-boew.min.js"></script><![endif]-->
   {% block font_awesome %}{% endblock %}
+
+  {% endblock %}
 
   <noscript>
     <link rel="stylesheet" href="{{ wet_server }}/css/noscript.min.css"/>
