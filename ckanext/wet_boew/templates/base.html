@@ -17,19 +17,26 @@
   {% set wet_server = h.wet_url() %}
 
   <!--[if gte IE 9 | !IE ]><!-->
-  <link href="{{ wet_server }}/assets/favicon.ico" rel="icon" type="image/x-icon"/>
   <link rel="stylesheet" href="{{ wet_server }}/css/wet-boew.min.css"/>
   <!--<![endif]-->
   {% block theme %}
   <link rel="stylesheet" href="{{ wet_server }}/css/theme.min.css"/>
   {% endblock %}
   <!--[if lt IE 9]>
-  <link href="{{ wet_server }}/assets/favicon.ico" rel="shortcut icon"/>
   <link rel="stylesheet" href="{{ wet_server }}/css/ie8-wet-boew.min.css"/>
   <link rel="stylesheet" href="{{ wet_server }}/css/ie8-theme.min.css"/>
   <script src="{{ wet_server }}/jquery-1.11.min.js"></script>
   <script src="{{ wet_server }}/js/ie8-wet-boew.min.js"></script><![endif]-->
   {% block font_awesome %}{% endblock %}
+
+  {% block favicon %}
+  <!--[if gte IE 9 | !IE ]><!-->
+  <link href="{{ wet_server }}/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+  <!--<![endif]-->
+  <!--[if lt IE 9]>
+  <link href="{{ wet_server }}/assets/favicon.ico" rel="shortcut icon"/>
+  <![endif]-->
+  {% endblock %}
 
   <noscript>
     <link rel="stylesheet" href="{{ wet_server }}/css/noscript.min.css"/>
