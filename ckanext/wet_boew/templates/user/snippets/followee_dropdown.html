@@ -9,8 +9,8 @@
 {%- endmacro %}
 
 <div id="followee-filter" class="panel panel-default">
-  <div class="panel-heading h3">
-  {{ _('Activity from:') }} {{ context.context }}
+  <div class="panel-heading">
+      <h3 class="panel-title">{{ _('Activity from:') }} {{ context.context }}</h3>
   </div>
   <div class="panel-body">
     <form id="followee-popover" action="/dashboard">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </form>
-      <div class="row mrgn-tp-md"><div class="panel">
+      <div class="mrgn-tp-md"><div class="panel">
       {% if followees %}
         {% block followees %}
         <ul class="nav nav-pills">
