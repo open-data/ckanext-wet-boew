@@ -148,6 +148,9 @@
 
       {% block primary_content %}
       <div class="row">
+          <ul class="nav nav-tabs">
+              {% block content_primary_nav %}{% endblock %}
+          </ul>
       {% block primary_content_inner %}{% endblock %}
       </div>
       {% endblock primary_content %}
