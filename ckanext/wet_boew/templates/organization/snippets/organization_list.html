@@ -2,7 +2,7 @@
 
 {% block organization_list %}
 
-  <ul class="colcount-sm-3 list-unstyled">
+  <ul class="list-unstyled">
 
   {% for organization in organizations %}
     {% snippet "organization/snippets/organization_item.html", organization=organization, position=loop.index %}
