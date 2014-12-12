@@ -37,12 +37,14 @@
 
   {% block links %}
       {{super()}}
+      {% block favicon %}
       <!--[if gte IE 9 | !IE ]><!-->
       <link href="{{ wet_server }}/assets/favicon.ico" rel="icon" type="image/x-icon"/>
       <!--<![endif]-->
       <!--[if lt IE 9]>
       <link href="{{ wet_server }}/assets/favicon.ico" rel="shortcut icon"/>
       <![endif]-->
+      {% endblock %}
   {% endblock %}
 
   <noscript>

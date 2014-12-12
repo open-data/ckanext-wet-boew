@@ -128,6 +128,11 @@
               {% block content_primary_nav %}{% endblock %}
           </ul>
           <div class="col-md-12">
+              {% if self.page_primary_action() | trim %}
+                <div class="page_primary_action">
+                {% block page_primary_action %}{% endblock %}
+                </div>
+              {% endif %}
               {% block primary_content_inner %}{% endblock %}
           </div>
       </div>
