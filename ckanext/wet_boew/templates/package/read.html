@@ -79,8 +79,8 @@
     {% block package_resources %}
       {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
     {% endblock %}
-    {% endif %}
     </div>
+    {% endif %}
 
     {% block related_items %}{% endblock %}
 
@@ -96,5 +96,5 @@
 
     {% block package_item_geo_preview %}{% endblock %}
     {% block package_comments %}{% endblock %}
-  
+
 {% endblock %}
