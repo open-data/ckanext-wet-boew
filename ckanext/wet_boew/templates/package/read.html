@@ -57,6 +57,15 @@
     {% endif %}
     {% endblock %}
 
+    {% if pkg.resources %}
+
+    <div class="col-md-12">
+    {% block package_resources %}
+      {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+    {% endblock %}
+    </div>
+    {% endif %}
+
     {% block package_additional_info %}
     {# We implement our own so that additional fields blend seamlessly into the page #}
     {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
@@ -72,15 +81,6 @@
       <a href="{{ _(pkg.license_url) }}">{{ _(pkg.license_title) }}</a>
     {% endblock %}
     </div>
-
-    {% if pkg.resources %}
-
-    <div class="col-md-12">
-    {% block package_resources %}
-      {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
-    {% endblock %}
-    </div>
-    {% endif %}
 
     {% block related_items %}{% endblock %}
 
