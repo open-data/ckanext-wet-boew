@@ -23,3 +23,8 @@ msgstr "Article"
 msgid "Heading"
 msgstr "En-tête"
 
+msgid "You are here"
+msgstr "Vous êtes ici"
+
+msgid "Language selection"
+msgstr "Sélection de la langue"
