@@ -5,6 +5,13 @@
 # in source control.  CKAN's .po file is reported as binary by git
 # for some reason.
 
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 msgid "Web Experience Toolkit"
 msgstr "Boîte à outils de l'expérience Web"
 
