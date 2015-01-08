@@ -4,6 +4,12 @@
 # Thia file is being maintained by hand so that changes are visible
 # in source control.  CKAN's .po file is reported as binary by git
 # for some reason.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Web Experience Toolkit"
 msgstr "Boîte à outils de l'expérience Web"
@@ -23,3 +29,8 @@ msgstr "Article"
 msgid "Heading"
 msgstr "En-tête"
 
+msgid "You are here"
+msgstr "Vous êtes ici"
+
+msgid "Language selection"
+msgstr "Sélection de la langue"

@@ -24,8 +24,9 @@
   <link href="{{ wet_server }}/assets/favicon.ico" rel="shortcut icon"/>
   <link rel="stylesheet" href="{{ wet_server }}/css/ie8-wet-boew.min.css"/>
   <link rel="stylesheet" href="{{ wet_server }}/css/ie8-theme.min.css"/>
-  <script src="{{ wet_server }}/jquery-1.11.min.js"></script>
+  <script src="{{ wet_server }}/jquery-1.11.1.min.js"></script>
   <script src="{{ wet_server }}/js/ie8-wet-boew.min.js"></script><![endif]-->
+  {% block custom_wet_css %}{% endblock %}
   {% block font_awesome %}{% endblock %}
 
   {% block links %}{% endblock %}
@@ -43,7 +44,7 @@
     {% block page %}{% endblock %}
 
     <!--[if gte IE 9 | !IE ]><!-->
-    <script src="{{ wet_server }}/jquery-2.1.min.js" type="text/javascript"></script>
+    <script src="{{ wet_server }}/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="{{ wet_server }}/js/wet-boew.min.js" type="text/javascript"></script>
     <!--<![endif]--><!--[if lt IE 9]>
     <script src="{{ wet_server }}/js/ie8-wet-boew2.min.js"></script>
