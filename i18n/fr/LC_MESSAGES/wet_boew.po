@@ -34,3 +34,6 @@ msgstr "Vous êtes ici"
 
 msgid "Language selection"
 msgstr "Sélection de la langue"
+
+msgid "en"
+msgstr "fr"
