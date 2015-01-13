@@ -234,9 +234,6 @@ Examples:
   {%- set extra_html = caller() if caller -%}
   {%- do classes.append('control-custom') -%}
 
-    <div class="span-1 margin-bottom-none row-start{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} form-attention {% endif %}">
-        <label for="{{ for }}">{{ label or _('Custom') }}</label>
-     </div>
     <div class="input-prepend" style="display: inline-block;" {{ attributes(attrs) }}>
       <label for="{{ label_id }}" class="add-on span-1">Key</label>
       <div class="span-4">
