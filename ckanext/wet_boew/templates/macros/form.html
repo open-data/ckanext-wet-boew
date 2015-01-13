@@ -276,7 +276,7 @@ Example:
 
 #}
 {% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false) %}
-   <div class="form-group{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} has-error {% endif %}">
+   <div style="margin: 0" class="form-group{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} has-error {% endif %}">
      {% if label != '' %}
       <label {% if for != '' %} for="{{ for }}" {% endif %} >{{ label or _('Custom') }}</label>
      {% endif %}
