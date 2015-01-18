@@ -1,6 +1,8 @@
 <div class="container">
     <div class="row">
         <section id="wb-lng" class="visible-md visible-lg">
+            {%- block pre_top_nav -%}
+            {%- endblock -%}
             <h2>Accounts menu and Language selection</h2>
             <ul class="text-right">
                 {% set current_url = request.environ.CKAN_CURRENT_URL %}
