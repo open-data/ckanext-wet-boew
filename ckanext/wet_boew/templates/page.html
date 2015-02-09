@@ -14,31 +14,7 @@
     <div id="wb-bnr">
       <div id="wb-bar">
         {% block wet_banner_bar %}
-        <div class="container">
-          <div class="row">
-            <section id="wb-lng" class="visible-md visible-lg">
-              <h2>{{ _('Language selection') }}</h2>
-              <ul class="text-right">
-                {% set current_url = request.environ.CKAN_CURRENT_URL %}
-                {% if h.lang() == 'fr' %}
-                <li><a lang="en" hreflang="en" href="{% url_for current_url, locale='en' %}">English</a></li>
-                <li class="curr">Français&#32;<span>(actuel)</span></li>
-                {% else %}
-                <li><a lang="fr" hreflang="fr" href="{% url_for current_url, locale='fr' %}">Français</a></li>
-                <li class="curr">English&#32;<span>(current)</span></li>
-                {% endif %}
-              </ul>
-            </section>
-            <section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn"><h2>{{ _('Menu') }}</h2>
-              <ul class="pnl-btn list-inline text-right">
-                <li><a href="#mb-pnl" title="Menu" aria-controls="mb-pnl" class="overlay-lnk btn btn-xs btn-default"
-                       role="button"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">{{ _('Menu') }}</span></span></a>
-                </li>
-              </ul>
-              <div id="mb-pnl"></div>
-            </section>
-          </div>
-        </div>
+            {% include 'header.html' %}
         {% endblock %}
       </div>
 
@@ -77,11 +53,16 @@
       <div class="container nvbar"><h2>Site menu</h2>
 
         <div class="row">
-          <ul class="list-inline menu">
-            <li><a href="./index-en.html">WET project</a></li>
-            <li><a href="http://wet-boew.github.io/wet-boew/docs/start-en.html#implement">{{ _('Implement WET') }}</a></li>
-            <li><a href="http://wet-boew.github.io/wet-boew/docs/start-en.html">{{ _('Contribute to WET') }}</a></li>
-          </ul>
+            <ul class="list-inline menu">
+            {% block header_site_navigation_tabs %}
+            {{ h.build_nav_main(
+                ('search', _('Datasets')),
+                ('organizations_index', _('Organizations')),
+                ('group_index', _('Groups')),
+                ('about', _('About'))
+                ) }}
+                {% endblock %}
+            </ul>
         </div>
       </div>
     </nav>
@@ -124,7 +105,7 @@
     {% block pre_primary %}{% endblock %}
     {% block primary %}
     <div class="col-md-9 col-md-pull-3">
-    <main role="main" property="mainContentOfPage">
+    <main role="main" property="mainContentOfPage" style="padding-left: 10px">
 
       {% block flash %}
       {% if flash_messages %}
@@ -148,7 +129,17 @@
 
       {% block primary_content %}
       <div class="row">
-      {% block primary_content_inner %}{% endblock %}
+          <ul class="nav nav-tabs">
+              {% block content_primary_nav %}{% endblock %}
+          </ul>
+          <div class="col-md-12">
+              {% if self.page_primary_action() | trim %}
+                <div class="page_primary_action">
+                {% block page_primary_action %}{% endblock %}
+                </div>
+              {% endif %}
+              {% block primary_content_inner %}{% endblock %}
+          </div>
       </div>
       {% endblock primary_content %}
 
@@ -167,8 +158,3 @@
 {% endblock %}
 
 {% block scripts %}{% endblock %}
-
-
-
-
-

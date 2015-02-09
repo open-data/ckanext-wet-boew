@@ -11,7 +11,7 @@
 
 {% block primary_content_inner %}
   {% block actions_content %}
-  <div class="row"><div class="col-md-12">
+  <div class="col-md-12">
     <ul class="nav nav-pills">
       <li class="active"></li>
 
@@ -21,8 +21,8 @@
           <li>{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn btn-default' %}</li>
         {% endif %}
     </ul>
-  </div></div>
-  <div class="row">
+  </div>
+
   {% endblock %}
 
     {% if pkg.state == "deleted" %}
@@ -57,6 +57,15 @@
     {% endif %}
     {% endblock %}
 
+    {% if pkg.resources %}
+
+    <div class="col-md-12">
+    {% block package_resources %}
+      {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+    {% endblock %}
+    </div>
+    {% endif %}
+
     {% block package_additional_info %}
     {# We implement our own so that additional fields blend seamlessly into the page #}
     {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
@@ -73,15 +82,6 @@
     {% endblock %}
     </div>
 
-    {% if pkg.resources %}
-
-    <div class="col-md-12">
-    {% block package_resources %}
-      {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
-    {% endblock %}
-    {% endif %}
-    </div>
-
     {% block related_items %}{% endblock %}
 
     {% block developer_tools %}
@@ -96,5 +96,5 @@
 
     {% block package_item_geo_preview %}{% endblock %}
     {% block package_comments %}{% endblock %}
-  </div>
+
 {% endblock %}
