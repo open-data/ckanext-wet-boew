@@ -1,61 +1,48 @@
-{% ckan_extends %}
-
-{% set wet_server = h.wet_url() %}
-
-{% block htmltag %}
-<!--[if lt IE 9]>
-<html class="no-js lt-ie9" lang="{{ h.lang() }}" dir="ltr"><![endif]--> <!--[if gt IE 8]><!-->
-<html class="no-js" lang="{{ h.lang() }}" dir="ltr"> <!--<![endif]-->
-{% endblock %}
-
-    {% block meta %}
+<!DOCTYPE html> <!--[if lt IE 9]>
+<html class="no-js lt-ie9" lang="{{ _('en') }}" dir="ltr"><![endif]--> <!--[if gt IE 8]><!-->
+<html class="no-js" lang="{{ _('en') }}" dir="ltr"> <!--<![endif]-->
+<head{% block headtag %}{% endblock %}>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <meta name="description" content=""/>
-    {% endblock %}
-
+    {% block meta %}{% endblock %}
+    <title>
     {%- block title -%}
       {%- block subtitle %}{% endblock -%}
       {%- if self.subtitle()|trim %} {{ g.template_title_deliminater }} {% endif -%}
       {{ g.site_title }}
     {%- endblock -%}
+    </title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="description" content=""/>
 
-  {% block styles %}
-      <!--[if gte IE 9 | !IE ]><!-->
-      <link rel="stylesheet" href="{{ wet_server }}/css/wet-boew.min.css"/>
-      <!--<![endif]-->
-      {% block themes %}
-      <link rel="stylesheet" href="{{ wet_server }}/css/theme.min.css"/>
-      {% endblock %}
-      <!--[if lt IE 9]>
-      <link rel="stylesheet" href="{{ wet_server }}/css/ie8-wet-boew.min.css"/>
-      <link rel="stylesheet" href="{{ wet_server }}/css/ie8-theme.min.css"/>
-      <script src="{{ wet_server }}/jquery-1.11.1.min.js"></script>
-      <script src="{{ wet_server }}/js/ie8-wet-boew.min.js"></script><![endif]-->
-      {% block font_awesome %}{% endblock %}
-  {% endblock %}
+  {% set wet_server = h.wet_url() %}
+  <!--[if gte IE 9 | !IE ]><!-->
+  <link href="{{ wet_server }}/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+  <link rel="stylesheet" href="{{ wet_server }}/css/wet-boew.min.css"/>
+  <!--<![endif]-->
+  <link rel="stylesheet" href="{{ wet_server }}/css/theme.min.css"/>
+  <!--[if lt IE 9]>
+  <link href="{{ wet_server }}/assets/favicon.ico" rel="shortcut icon"/>
+  <link rel="stylesheet" href="{{ wet_server }}/css/ie8-wet-boew.min.css"/>
+  <link rel="stylesheet" href="{{ wet_server }}/css/ie8-theme.min.css"/>
+  <script src="{{ wet_server }}/jquery-1.11.1.min.js"></script>
+  <script src="{{ wet_server }}/js/ie8-wet-boew.min.js"></script><![endif]-->
+  {% block custom_wet_css %}{% endblock %}
+  {% block font_awesome %}{% endblock %}
 
-  {% block links %}
-      {{super()}}
-      {% block favicon %}
-      <!--[if gte IE 9 | !IE ]><!-->
-      <link href="{{ wet_server }}/assets/favicon.ico" rel="icon" type="image/x-icon"/>
-      <!--<![endif]-->
-      <!--[if lt IE 9]>
-      <link href="{{ wet_server }}/assets/favicon.ico" rel="shortcut icon"/>
-      <![endif]-->
-      {% endblock %}
+  {% block links %}{% endblock %}
+
   <noscript>
     <link rel="stylesheet" href="{{ wet_server }}/css/noscript.min.css"/>
   </noscript>
-
-  {% endblock %}
-
-  {% block bodytag %} {{ super() }} vocab="http://schema.org/" typeof="WebPage" {% endblock %}
-
+  <script>dataLayer1 = [];</script>
+  </head>
+  <body vocab="http://schema.org/" typeof="WebPage">
+    <!-- Google Tag Manager -->
+    <noscript><iframe title="Google Tag Manager" src="//www.googletagmanager.com/ns.html?id=GTM-TLGQ9K" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer1'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer1','GTM-TLGQ9K');</script>
+    <!-- End Google Tag Manager -->
     {% block page %}{% endblock %}
 
-    {% block scripts %}
     <!--[if gte IE 9 | !IE ]><!-->
     <script src="{{ wet_server }}/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="{{ wet_server }}/js/wet-boew.min.js" type="text/javascript"></script>
@@ -64,4 +51,5 @@
     <![endif]-->
     {% block page_extra_scripts %}{% endblock %}
     {% block wet_scripts %}{% endblock %}
-    {% endblock -%}
+  </body>
+</html>
