@@ -1,3 +1,0 @@
-[submodule "ckanext/wet_boew/public/theme-base"]
-	path = ckanext/wet_boew/public/theme-base
-	url = https://github.com/wet-boew/wet-boew-dist.git
