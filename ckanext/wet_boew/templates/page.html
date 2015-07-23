@@ -96,7 +96,9 @@
     </nav>
     {% endblock %}
   {% endblock %}
-  {% block header_extras %}{% endblock header_extras %}
+  {% block header_extras %}
+    {% block site_banner %}{% endblock %}
+  {% endblock header_extras %}
   </header>
 
   {% block toolbar %}{% endblock %}
