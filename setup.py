@@ -26,6 +26,6 @@ setup(
 	"""
   [ckan.plugins]
 	# Add plugins here, eg
-	wet_theme=ckanext.wet_boew.plugins:WetTheme
+	wet_boew=ckanext.wet_boew.plugins:WetTheme
 	""",
 )
