@@ -3,110 +3,23 @@
 {% block page %}
 
   {% block skip %}
-  {% snippet 'snippets/skip.html' %}
+    {% snippet 'snippets/wet-boew/skip.html' %}
   {% endblock %}
 
   {# This format only works for a bilingual format #}
 
-
-  <header role="banner">
-    {% block wet_banner %}
-    <div id="wb-bnr">
-      <div id="wb-bar">
-        {% block wet_banner_bar %}
-            {% include 'header.html' %}
-        {% endblock %}
-      </div>
-
-      <div class="container">
-        <div class="row">
-          {% block wet_search_box %}
-          <div id="wb-sttl" class="col-md-8">
-            {% block site_title %}
-            <a href="/"> <span>{{ _('Web Experience Toolkit') }}<span class="wb-inv">, </span><small>{{ _("Collaborative open source project led by the Government of Canada") }}</small></span> </a>
-            {% endblock %}
-          </div>
-
-          <section id="wb-srch" class="col-md-4 visible-md visible-lg"><h2>{{ _("Search") }}</h2>
-              <form method="get" action="{% url_for controller='package', action='search' %}" role="search" class="form-inline">
-                <div class="form-group"><label for="wb-srch-q">{{ _("Search Your Data") }}</label>
-                  <input id="wb-srch-q" class="form-control" name="q" type="search" value="" size="27" maxlength="150"/>
-                </div>
-                <button type="submit" id="wb-srch-sub" class="btn btn-default">{{ _("Search") }}</button>
-              </form>
-          </section>
-        {% endblock %}
-        </div>
-      </div>
-    </div>
-
-    {% block wet_megamenu %}
-    {% if h.lang() == 'fr' %}
-    <nav role="navigation" id="wb-sm" data-ajax-fetch="http://www.canada.ca/dist/ajax/sitemenu-fr.html" data-trgt="mb-pnl"
-         class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
-    {% else %}
-    <nav role="navigation" id="wb-sm" data-ajax-fetch="http://www.canada.ca/dist/ajax/sitemenu-en.html" data-trgt="mb-pnl"
-         class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
-    {% endif %}
-
-
-      <div class="container nvbar"><h2>Site menu</h2>
-
-        <div class="row">
-            <ul class="list-inline menu">
-            {% block header_site_navigation_tabs %}
-            {{ h.build_nav_main(
-                ('search', _('Datasets')),
-                ('organizations_index', _('Organizations')),
-                ('group_index', _('Groups')),
-                ('about', _('About'))
-                ) }}
-                {% endblock %}
-            </ul>
-        </div>
-      </div>
-    </nav>
-    {% endblock %}
-
-
-</nav>
-
-    {% block breadcrumb %}
-    <nav role="navigation" id="wb-bc" property="breadcrumb"><h2>{{ _('You are here') }}:</h2>
-
-      <div class="container">
-        <div class="row">
-          <ol class="breadcrumb">
-            {% snippet 'snippets/home_breadcrumb_item.html' %}
-            {% block breadcrumb_content %}{% endblock %}
-          </ol>
-        </div>
-      </div>
-    </nav>
-    {% endblock %}
-  {% endblock %}
-  </header>
+  {%- block header %}
+    {{ super() }}
+  {% endblock -%}
 
   {% block toolbar %}{% endblock %}
 
   {% set lang = h.lang() %}
 
   {% block content %}
-  <div class="container">
-    <div class="row">
-
-    {% block secondary %}
-      <div class="col-md-3 col-md-push-9" >
-      {% block secondary_content %}
-      {% endblock %}
-      </div>
-    {% endblock secondary %}
-
     {% block pre_primary %}{% endblock %}
     {% block primary %}
-    <div class="col-md-9 col-md-pull-3">
-    <main role="main" property="mainContentOfPage" style="padding-left: 10px">
-
+    <main role="main" property="mainContentOfPage" class="container">
       {% block flash %}
       {% if flash_messages %}
       <div class="row">
@@ -144,17 +57,12 @@
       {% endblock primary_content %}
 
     </main>
-    </div>
     {% endblock primary %}
 
-    </div>
-  </div>
   {% endblock content %}
 
-  {% block footer %}
-    {% include "footer.html" %}
-  {% endblock %}
+  {%- block footer %}
+    {{ super() }}
+  {% endblock -%}
 
 {% endblock %}
-
-{% block scripts %}{% endblock %}
