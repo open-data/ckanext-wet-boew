@@ -23,7 +23,14 @@
           {% block wet_search_box %}
           <div id="wb-sttl" class="col-md-8">
             {% block site_title %}
-            <a href="/"> <span>{{ _('Web Experience Toolkit') }}<span class="wb-inv">, </span><small>{{ _("Collaborative open source project led by the Government of Canada") }}</small></span> </a>
+            <a href="/">
+              <span>{{ _(g.site_title|default("WET")) }}
+                <span class="wb-inv"></span>
+                {% if g.site_description %}
+                <small>{{ _(g.site_description) }}</small>
+                {% endif %}
+              </span>
+            </a>
             {% endblock %}
           </div>
 
