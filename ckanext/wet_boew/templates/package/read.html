@@ -50,7 +50,7 @@
     {% endblock %}
 
     {% block package_item_notes %}
-    {% if c.pkg_notes_formatted %}
+    {% if pkg.notes and c.pkg_notes_formatted %}
     <div class="col-md-12">
       {{ c.pkg_notes_formatted }}
     </div>

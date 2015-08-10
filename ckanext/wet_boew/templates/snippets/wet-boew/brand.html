@@ -1,4 +1,8 @@
 <a href="/">
 	<object type="image/svg+xml" tabindex="-1" data="{{ wet_server }}/{{ wet_theme }}/assets/logo.svg"></object>
-	<span>{{ _('Web Experience Toolkit') }}<span class="wb-inv">, </span><small>{{ _("Collaborative open source project led by the Government of Canada") }}</small></span> 
+	<span>
+    {{ _(g.site_title|default("WET")) }}
+    {% if g.site_description %}
+      <span class="wb-inv">, </span><small>{{ _(g.site_description) }}/small></span>
+    {% endif %}
 </a>
