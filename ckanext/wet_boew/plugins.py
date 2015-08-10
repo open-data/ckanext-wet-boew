@@ -55,7 +55,9 @@ class WetTheme(p.SingletonPlugin):
               'geojson_to_wkt': self.geojson_to_wkt,
               'wet_url': self.wet_url,
               'get_map_type': self.get_map_type,
-              'canada_url': self.canada_url}
+              'canada_url': self.canada_url,
+              'wet_theme': self.wet_theme
+            }
 
 
     def link_to_user(self, user, maxlength=0):
