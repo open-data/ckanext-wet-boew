@@ -1,11 +1,13 @@
 {% set wet_server = h.wet_url() %}
 {% set wet_theme = h.wet_theme() %}
-<a href="/">
-	<object type="image/svg+xml" tabindex="-1" data="{{ wet_server }}/{{ wet_theme }}/assets/logo.svg"></object>
-	<span>
-    {{ _(g.site_title|default("WET")) }}
-    {% if g.site_description %}
-      <span class="wb-inv">, </span><small>{{ _(g.site_description) }}</small>
-    {% endif %}
-  </span>
-</a>
+<div id="wb-sttl" class="col-md-8">
+  <a href="/">
+  	<object type="image/svg+xml" tabindex="-1" data="{{ wet_server }}/{{ wet_theme }}/assets/logo.svg"></object>
+  	<span>
+      {{ _(g.site_title|default("WET")) }}
+      {% if g.site_description %}
+        <span class="wb-inv">, </span><small>{{ _(g.site_description) }}</small>
+      {% endif %}
+    </span>
+  </a>
+</div>

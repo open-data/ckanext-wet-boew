@@ -5,20 +5,22 @@
     <div id="wb-bar">
       <div class="container">
         <div class="row">
-          <section id="wb-lng" class="visible-md visible-lg">
-              {%- block pre_top_nav -%}
-              {%- endblock -%}
-              <h2>{{ _('Language selection') }}</h2>
-              {%- block languagetoggle -%}
-                  {% snippet 'snippets/wet-boew/languagetoggle.html' %}
-              {%- endblock -%}
-          </section>
-          <section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn">
-            <h2>{{ _('Menu') }}</h2>
-            {%- block mobimenu -%}
-              {% snippet 'snippets/wet-boew/mobimenu.html' %}
+          {%- block headerbar -%}
+            {%- block languagetoggle -%}
+              {% snippet 'snippets/wet-boew/languagetoggle.html' %}
             {%- endblock -%}
-          </section>
+          {%- endblock -%}
+          {%- block mobimenu -%}
+            <section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn">
+              <h2>{{ _('Menu') }}</h2>
+              <ul class="pnl-btn list-inline text-right">
+                  <li><a href="#mb-pnl" title="Menu" aria-controls="mb-pnl" class="overlay-lnk btn btn-xs btn-default" role="button">
+                    <span class="glyphicon glyphicon-search"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">{{ _('Menu') }}</span></span></span>
+                  </a></li>
+              </ul>
+              <div id="mb-pnl"></div>
+            </section>
+          {%- endblock -%}
         </div>
       </div>
     </div>
@@ -27,58 +29,66 @@
     {%- endblock -%}
     <div class="container">
       <div class="row">
-
-        <div id="wb-sttl" class="col-md-8">
-          {% block brand %}
-            {% snippet 'snippets/wet-boew/brand.html' %}
-          {% endblock %}
-        </div>
-
-        <section id="wb-srch" class="col-md-4 visible-md visible-lg">
-          <h2>{{ _("Search") }}</h2>
-          {% block sitesearch %}
-            {% snippet 'snippets/wet-boew/sitesearch.html' %}
-          {% endblock %}
-        </section>
-
+        {% block brand %}
+          {% snippet 'snippets/wet-boew/brand.html' %}
+        {% endblock %}
+        {% block sitesearch %}
+          <section id="wb-srch" class="col-md-4 visible-md visible-lg">
+            <h2>{{ _("Search") }}</h2>
+            {% block sitesearchform %}
+            <form method="get" action="{% url_for controller='package', action='search' %}" role="search" class="form-inline">
+              <div class="form-group">
+                <label for="wb-srch-q">{{ _("Search Your Data") }}</label>
+                <input id="wb-srch-q" class="form-control" name="q" type="search" value="" size="27" maxlength="150"/>
+              </div>
+              <button type="submit" id="wb-srch-sub" class="btn btn-default">{{ _("Search") }}</button>
+            </form>
+            {% endblock %}
+          </section>
+        {% endblock %}
       </div>
     </div>
   </div>
 
-  <nav role="navigation" id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
-    <div class="container nvbar">
-      <h2>{{ _("Site menu") }}</h2>
-      {% block sitemenu %}
+  {% block sitemenu %}
+    <nav role="navigation" id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+      <div class="container nvbar">
+        <h2>{{ _("Site menu") }}</h2>
         <div class="row">
-            <ul class="list-inline menu">
-              {% block header_site_navigation_tabs %}
-                {{ super() }}
-              {% endblock %}
-            </ul>
-        </div>
-      {% endblock %}
-    </div>
-  </nav>
-
-  <nav role="navigation" id="wb-bc" property="breadcrumb">
-    <h2>{{ _('You are here') }}:</h2>
-    {% block breadcrumb %}
-      <div class="container">
-        <div class="row">
-          <ol class="breadcrumb">
-            {% snippet 'snippets/home_breadcrumb_item.html' %}
-            {% block breadcrumb_content %}{% endblock %}
-          </ol>
+          <ul class="list-inline menu">
+            {% block header_site_navigation_tabs %}
+              {{ super() }}
+            {% endblock %}
+          </ul>
         </div>
       </div>
-    {% endblock %}
-  </nav>
-  <div class="container">
-    <div class="row">
-      {% block header_account_logged %}
-        {% snippet 'snippets/user.html' %}
-      {% endblock %}
+    </nav>
+  {% endblock %}
+
+  {% block breadcrumb %}
+    {% if self.breadcrumb_content() | trim %}
+      <nav role="navigation" id="wb-bc" property="breadcrumb">
+        <h2>{{ _('You are here') }}:</h2>
+        <div class="container">
+          <div class="row">
+            <ol class="breadcrumb">
+              {% snippet 'snippets/home_breadcrumb_item.html' %}
+              {% block breadcrumb_content %}{% endblock %}
+            </ol>
+          </div>
+        </div>
+      </nav>
+    {% endif %}
+  {% endblock %}
+
+  {% block signed_on_off %}
+    <div class="container">
+      <div class="row">
+        {% block header_account_logged %}
+          {% snippet 'snippets/user.html' %}
+        {% endblock %}
+      </div>
     </div>
-  </div>
+  {% endblock %}
 </header>
 {% endblock %}
