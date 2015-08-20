@@ -17,14 +17,9 @@ from pylons import config
 from pylons.i18n import gettext
 
 WET_URL_OPTION = 'wet_boew.url'
-WET_URL_DEFAULT = 'http://localhost/'
-WET_THEME_OPTION = 'wet_boew.theme'
-WET_THEME_DEFAULT = 'theme-wet-boew'
+WET_URL_DEFAULT = ''
 GEO_MAP_TYPE_OPTION = 'wet_theme.geo_map_type'
 GEO_MAP_TYPE_DEFAULT = 'static'
-CANADACA_URL_OPTION = 'wet_theme.canadaca_url'
-CANADACA_URL_DEFAULT = 'http://www.canada.ca'
-
 
 class WetTheme(p.SingletonPlugin):
     """
@@ -55,7 +50,6 @@ class WetTheme(p.SingletonPlugin):
               'geojson_to_wkt': self.geojson_to_wkt,
               'wet_url': self.wet_url,
               'get_map_type': self.get_map_type,
-              'canada_url': self.canada_url,
               'wet_theme': self.wet_theme
             }
 
@@ -117,13 +111,10 @@ class WetTheme(p.SingletonPlugin):
         return str(config.get(WET_URL_OPTION, WET_URL_DEFAULT))
 
     def wet_theme(self):
-        return str(config.get(WET_THEME_OPTION, WET_THEME_DEFAULT))
+        return 'theme-wet-boew'
 
     def get_map_type(self):
         return str(config.get(GEO_MAP_TYPE_OPTION, GEO_MAP_TYPE_DEFAULT))
-
-    def canada_url(self):
-        return str(config.get(CANADACA_URL_OPTION, CANADACA_URL_DEFAULT))
 
 
 def _build_nav_icon(menu_item, title, **kwargs):

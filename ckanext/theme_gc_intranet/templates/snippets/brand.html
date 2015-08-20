@@ -1,0 +1,13 @@
+{% set wet_server = h.wet_url() %}
+{% set wet_theme = h.wet_theme() %}
+<div id="wb-sttl" class="col-md-12">
+  <a href="/">
+    <span>
+        {{ _(g.site_title|default("WET")) }}
+        {% if g.site_description %}
+          <span class="wb-inv">, </span><small>{{ _(g.site_description) }}</small>
+        {% endif %}
+    </span>
+  </a>
+  <object id="wmms" type="image/svg+xml" tabindex="-1" role="img" data="{{ wet_server }}/{{ wet_theme }}/assets/wmms-intra.svg" aria-label="{{ _('Symbol of the Government of Canada') }}:"></object>
+</div>
