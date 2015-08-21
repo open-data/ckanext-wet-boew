@@ -1,0 +1,34 @@
+{% ckan_extends %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <main property="mainContentOfPage" class="col-md-9 col-md-push-3" role="main">
+      {% block pre_primary %}{% endblock %}
+      {% block flash %}
+        {{ super() }}
+      {% endblock %}
+      {% block page_title %}
+        {{ super() }}
+      {% endblock %}
+      {% block primary_content %}
+        {{ super() }}
+      {% endblock %}
+      </main>
+      {% block site_navigation %}
+      <nav class="wb-sec col-md-3 col-md-pull-9" typeof="SiteNavigationElement" id="wb-sec" role="navigation">
+        <h2 id="wb-sec-h" class="wb-inv">{{ _("Section menu") }}</h2>
+        <ul class="list-group menu list-unstyled">
+          {% block site_navigation_tabs %}
+            {{ h.build_nav_main(
+              ('search', _('Datasets')),
+              ('organizations_index', _('Organizations')),
+              ('group_index', _('Groups')),
+              ('about', _('About'))
+            ) }}
+          {% endblock %}
+        </ul>
+      </nav>
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}
