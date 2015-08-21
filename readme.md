@@ -35,6 +35,7 @@ Configuration Settings
   mkdir theme-gc-intranet && curl -L https://github.com/wet-boew/themes-cdn/archive/$WET_VERSION-theme-gc-intranet.tar.gz | tar -zx --strip-components 1 --directory=theme-gc-intranet
   mkdir theme-gcwu-fegc && curl -L https://github.com/wet-boew/themes-cdn/archive/$WET_VERSION-theme-gcwu-fegc.tar.gz | tar -zx --strip-components 1 --directory=theme-gcwu-fegc
   mkdir theme-ogpl && curl -L https://github.com/wet-boew/themes-cdn/archive/$WET_VERSION-theme-ogpl.tar.gz | tar -zx --strip-components 1 --directory=theme-ogpl
+  mkdir theme-wet-boew && curl -L https://github.com/wet-boew/themes-cdn/archive/$WET_VERSION-theme-wet-boew.tar.gz | tar -zx --strip-components 1 --directory=theme-wet-boew
   ```
 
 
