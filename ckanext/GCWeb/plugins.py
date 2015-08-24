@@ -19,6 +19,8 @@ class GCWebTheme(wb.WetTheme):
     def wet_theme(self):
         return 'GCWeb'
 
+# Monkey Patched to inlude the 'list-group-item' class
+# TODO: Clean up and convert to proper HTML templates
 def build_nav_main(*args):
     ''' build a set of menu items.
 
@@ -28,7 +30,7 @@ def build_nav_main(*args):
     output = ''
     for item in args:
         menu_item, title = item[:2]
-        if len(item) == 3 and not check_access(item[2]):
+        if len(item) == 3 and not h.check_access(item[2]):
             continue
         output += h._make_menu_item(menu_item, title, class_='list-group-item')
     return output
