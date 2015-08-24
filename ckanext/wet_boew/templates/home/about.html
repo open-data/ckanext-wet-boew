@@ -2,6 +2,10 @@
 
 {% block subtitle %}{{ _('About') }}{% endblock %}
 
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('About'), controller='organization', action='index' %}</li>
+{% endblock %}
+
 {% block primary_content %}
   {% block about %}
     {% if g.site_about %}
