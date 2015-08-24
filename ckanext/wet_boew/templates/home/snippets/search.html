@@ -1,19 +1,29 @@
+{% set tags = h.get_facet_items_dict('tags', limit=3) %}
 {% block home_search %}
-  <form method="get" action="{% url_for controller='package', action='search' %}" role="search" class="form-inline">
-    <div class="form-group"><label for="wb-srch-q">{{ _("Search Your Data") }}</label>
-      <input id="wb-srch-q" class="form-control" name="q" type="search" value="" size="27" maxlength="150"/>
-      <input type="hidden" name="q" value="{{ _('Search') }}"/>
-      <button type="submit" id="wb-srch-sub" class="btn btn-default">Search</button>
+<form class="module-content search-form" method="get" action="{% url_for controller='package', action='search' %}">
+  <h2>{{ _("Search data") }}</h2>
+  <div class="form-group">
+    <div class="input-group">
+      <input type="text" class="form-control" title="{{ _("Search data") }}" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
+      <div class="input-group-btn">
+        <button type="submit" class="btn btn-default">
+          <span class="glyphicon glyphicon-search"></span>
+          <span class="wb-inv">{{ _('Search') }}</span>
+        </button>
+      </div>
     </div>
-  </form>
+  </div>
+</form>
 {% endblock %}
-
 {% block home_tags %}
-  {% set tags = h.get_facet_items_dict('tags', limit=3) %}
-  <h3>{{ _('Popular Tags') }}</h3>
-  <ul class="menu-horizontal margin-top-none">
+<div class="tags">
+  <h3>{{ _('Popular tags') }}</h3>
+  <ul class="list-inline">
     {% for tag in tags %}
-      <li><a class="button" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a></li>
+      <li>
+        <a class="tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
+      </li>
     {% endfor %}
   </ul>
+</div>
 {% endblock %}

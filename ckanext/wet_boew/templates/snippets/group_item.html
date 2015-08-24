@@ -1,19 +1,32 @@
-
 {% block group_item %}
   <div class="panel panel-default">
-  <div class="panel-heading">
-  {% block group_item_header_image %}
-      <span class="glyphicon glyphicon-cog"></span><h4><a href={{ url }}>{{ group.title or group.name }}</a></h4>
-  {% endblock %}
-  </div>
-  {% block group_item_header_title %}
-    <a class="module-image" href="{{ url }}">
-      <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}"
-          class="img-responsive"/>
-    </a>
-  {% endblock %}
+    {% block group_item_header %}
+      <div class="panel-heading">
+        <div class="row">
+          <img class="col-sm-4" src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" />
+          <div class="col-sm-8">
+            <h2 style="margin-top:0">
+              <a href={{ url }}>
 
-  {% snippet 'snippets/package_list.html', packages=group.packages, list_class=list_class, item_class=item_class, truncate=120 %}
+                {{ group.title or group.name }}
+              </a>
+            </h2>
+            {% block group_item_header_description %}
+              {% if group.description %}
+                {% if truncate == 0 %}
+                  <p>{{ h.markdown_extract(group.description)|urlize }}</p>
+                {% else %}
+                  <p>{{ h.markdown_extract(group.description, truncate)|urlize }}</p>
+                {% endif %}
+              {% endif %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+    <div class="panel-body">
+      {% snippet 'snippets/package_list.html', packages=group.packages, list_class=list_class, item_class=item_class, truncate=120 %}
+    </div>
   </div>
 
 {% endblock %}

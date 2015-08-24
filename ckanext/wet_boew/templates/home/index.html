@@ -1,76 +1,44 @@
 {% extends "page.html" %}
+{% set intro = g.site_intro_text %}
+{% set placeholder = _('E.g. environment') %}
 
-{% block primary_content_inner %}
+{% block subtitle %}{{ _("Welcome") }}{% endblock %}
 
-  <div class="col-md-6">
-    {% block home_primary %}
-    <div class="panel panel-default">
-      <div class="panel-heading">CKAN</div>
-      <div class="panel-body">
-          {% if g.site_intro_text %}
-          {{ h.render_markdown(g.site_intro_text) }}
-          {% else %}
-            {% block home_primary_content %}
-              <h1 class="page-heading">{% block home_primary_heading %}{{ _("Welcome to CKAN") }}{% endblock %}</h1>
-              <p>
-              {% block home_primary_text %}
-                {% trans %}This is a nice introductory paragraph about CKAN or the site
-                in general. We don't have any copy to go here yet but soon we will
-                {% endtrans %}
-              {% endblock %}
-              </p>
-            {% endblock %}
-          {% endif %}
-      </div>
-    </div>
-    {% endblock %}
-    {% block home_image %}
-    <div class="panel panel-info">
-      <div class="panel-heading">{% block home_image_caption %}{{ _("This is a featured section") }}{% endblock %}</div>
-      {% block home_image_content %}
-        <a href="#">
-          <img src="http://placehold.it/420x220" alt="Placeholder" class="img-responsive"/>
-        </a>
+{% block maintag %}{% endblock %}
+{% block toolbar %}{% endblock %}
+
+{% block primary_content %}
+  {% if intro %}
+    {{ h.render_markdown(intro) }}
+  {% else %}
+    <p>
+      {% trans %}This is a nice introductory paragraph about CKAN or the site
+      in general. We don't have any copy to go here yet but soon we will
+      {% endtrans %}
+    </p>
+  {% endif %}
+  <div class="row" style="margin-bottom: 1em">
+    <div class="col-md-6">
+      {% block promoted %}
+        {% snippet 'home/snippets/promoted.html' %}
       {% endblock %}
     </div>
-  {% endblock %}
-  </div>
-  <div class="col-md-6">
-  {% block home_search %}
-  <div class="panel">
-    <form method="get" action="{% url_for controller='package', action='search' %}" role="form">
-      <div class="form-group">
-        <label for="searchinput">{{ _("Search Your Data") }}</label>
-        <input type="text" class="form-control" name="q" id="searchinput" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>{{ _('Search') }}</span></button>
-      </div>
-    </form>
-
-  {% endblock %}
-  </div>
-  {% block home_tags %}
-  <div class="panel panel-default">
-    <div class="panel-heading">{{ _('Popular Tags') }}</div>
-    {% set tags = h.get_facet_items_dict('tags', limit=3) %}
-    {% for tag in tags %}
-      <a class="tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
-    {% endfor %}
-  </div>
-  {% endblock %}
-  </div>
-  <div class="col-md-12">
-    <div class="row">
-    {% for group in c.group_package_stuff %}
-      <div class="col-md-6">
-        {% snippet 'snippets/group_item.html', group=group.group_dict, truncate=50, truncate_title=35 %}
-      </div>
-    {% endfor %}
+    <div class="col-md-6">
+      {% block home_search %}
+        {% snippet 'home/snippets/search.html' %}
+      {% endblock %}
     </div>
   </div>
-
+  <div class="row">
+    <div class="col-md-6">
+      {% block featured_group %}
+          {% snippet 'home/snippets/featured_group.html' %}
+      {% endblock %}
+    </div>
+    <div class="col-md-6">
+      {% block featured_organization %}
+          {% snippet 'home/snippets/featured_organization.html' %}
+        {% endblock %}
+    </div>
+  </div>
 {% endblock %}
-
-
-
-
-
