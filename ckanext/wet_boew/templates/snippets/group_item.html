@@ -6,8 +6,7 @@
           <img class="col-sm-4" src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" />
           <div class="col-sm-8">
             <h2 style="margin-top:0">
-              <a href={{ url }}>
-
+              <a href="{{ h.url_for(controller='group', action='read', id=group.name) }}">
                 {{ group.title or group.name }}
               </a>
             </h2>
