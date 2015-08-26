@@ -16,6 +16,8 @@ from webhelpers.html.tags import link_to
 from pylons import config
 from pylons.i18n import gettext
 
+GRAVATAR_SHOW_OPTION = 'ckan.gravatar_show'
+GRAVATAR_SHOW_DEFAULT = 'True'
 WET_URL_OPTION = 'wet_boew.url'
 WET_URL_DEFAULT = ''
 GEO_MAP_TYPE_OPTION = 'wet_theme.geo_map_type'
@@ -38,11 +40,11 @@ class WetTheme(p.SingletonPlugin):
 
         # monkey patch helpers.py pagination method
         h.Page.pager = _wet_pager
-        h.gravatar = _wet_no_gravatar
         h.SI_number_span = _SI_number_span_close
 
     def get_helpers(self):
       return {'link_to_user': self.link_to_user,
+              'gravatar_show': self.gravatar_show,
               'get_datapreview': self.get_datapreview,
               'iso_to_goctime': self.iso_to_goctime,
               'geojson_to_wkt': self.geojson_to_wkt,
@@ -72,6 +74,8 @@ class WetTheme(p.SingletonPlugin):
             return html.tags.link_to(displayname,
                            h.url_for(controller='user', action='read', id=_name))
 
+    def gravatar_show(self):
+        return config.get(GRAVATAR_SHOW_OPTION, GRAVATAR_SHOW_DEFAULT) == 'True'
 
     def get_datapreview(self, res_id):
 
@@ -125,9 +129,6 @@ def _wet_pager(self, *args, **kwargs):
     )
 
     return super(h.Page, self).pager(*args, **kwargs)
-
-def _wet_no_gravatar(email_hash, size=100, default=None):
-    return ""
 
 def _SI_number_span_close(number):
     ''' outputs a span with the number in SI unit eg 14700 -> 14.7k '''
