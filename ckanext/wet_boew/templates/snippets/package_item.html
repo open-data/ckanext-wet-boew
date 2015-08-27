@@ -5,13 +5,11 @@
 {% block package_item %}
 <li>
   <article>
-    <header><h3>
+    <header>
       {% block heading %}
-        {% block heading_private %}{{ super() }}{% endblock %}
-        {{ self.heading_title() }}
-        {% block heading_meta %}{{ super() }}{% endblock %}
+        {{ super() }}
       {% endblock %}
-    </h3></header>
+    </header>
     {% block banner %}{{ super() }}{% endblock %}
     {% block notes %}{{ super() }}{% endblock %}
     {% block publisher_info %}{% endblock %}
