@@ -20,7 +20,7 @@
   {% set lang = h.lang() %}
 
   {% block content %}
-    <div class="container"><div class="row">
+    <div class="container"><div class="row wb-eqht">
       {% block maintag %}<main role="main" property="mainContentOfPage" class="{% if self.secondary_content()|trim != '' %}col-md-9{% else %}col-md-12{% endif %}">{% endblock %}
       {% block pre_primary %}{% endblock %}
       {% block primary %}
