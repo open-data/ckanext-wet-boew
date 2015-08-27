@@ -1,24 +1,17 @@
 {% ckan_extends %}
 
 {% set client_lang = h.lang() %}
-{% set truncate = truncate or 180 %}
-{% set truncate_title = truncate_title or 80 %}
-{% set title = package.title or package.name %}
-{% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 
 {% block package_item %}
 <li>
-  <div class="panel panel-default mrgn-bttm-sm">
-
-    <header class="panel-heading"><h3 class="panel-title">
+  <article>
+    <header><h3>
       {% block heading %}
         {% block heading_private %}{{ super() }}{% endblock %}
         {{ self.heading_title() }}
         {% block heading_meta %}{{ super() }}{% endblock %}
       {% endblock %}
     </h3></header>
-
-    <div class="panel-body">
     {% block banner %}{{ super() }}{% endblock %}
     {% block notes %}{{ super() }}{% endblock %}
     {% block publisher_info %}{% endblock %}
@@ -38,10 +31,8 @@
       {% endblock %}
       {% endif %}
     {% endblock %}
-    </div>
-  </div>
+  </article>
 </li>
-
 {% endblock %}
 
 
