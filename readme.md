@@ -49,7 +49,7 @@ Configuration Settings
 
 ## Selecting a theme ###
 
-1. Add the desired theme to the `ckan.plugins` configuration (`wet_boew`, `wet_boew_theme_gcweb`, `wet_boew_theme_base`, `wet_boew_theme_gc-intranet`, `wet_boew_theme_ogpl`)
+1. Add the desired theme to the `ckan.plugins` configuration (`wet_boew`, `wet_boew_theme_gcweb`, `wet_boew_theme_base`, `wet_boew_theme_gc_intranet`, `wet_boew_theme_ogpl`)
 
 
 ## Additional Configuration ##
