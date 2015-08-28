@@ -16,13 +16,12 @@ from webhelpers.html.tags import link_to
 from pylons import config
 from pylons.i18n import gettext
 
-WET_URL_OPTION = 'wet_theme.url'
-WET_URL_DEFAULT = 'http://localhost/'
+GRAVATAR_SHOW_OPTION = 'ckan.gravatar_show'
+GRAVATAR_SHOW_DEFAULT = 'True'
+WET_URL_OPTION = 'wet_boew.url'
+WET_URL_DEFAULT = ''
 GEO_MAP_TYPE_OPTION = 'wet_theme.geo_map_type'
 GEO_MAP_TYPE_DEFAULT = 'static'
-CANADACA_URL_OPTION = 'wet_theme.canadaca_url'
-CANADACA_URL_DEFAULT = 'http://www.canada.ca'
-
 
 class WetTheme(p.SingletonPlugin):
     """
@@ -38,27 +37,26 @@ class WetTheme(p.SingletonPlugin):
         # files should be installed in the public folder
         p.toolkit.add_template_directory(config, 'templates')
         p.toolkit.add_public_directory(config, 'public')
-        
+
         # monkey patch helpers.py pagination method
         h.Page.pager = _wet_pager
-        h.gravatar = _wet_no_gravatar
         h.SI_number_span = _SI_number_span_close
-        h.build_nav_icon = _build_nav_icon
-        h._link_to = _link_to
 
     def get_helpers(self):
-      return {'link_to_user': self.link_to_user, 
+      return {'link_to_user': self.link_to_user,
+              'gravatar_show': self.gravatar_show,
               'get_datapreview': self.get_datapreview,
               'iso_to_goctime': self.iso_to_goctime,
               'geojson_to_wkt': self.geojson_to_wkt,
               'wet_url': self.wet_url,
               'get_map_type': self.get_map_type,
-              'canada_url': self.canada_url}
+              'wet_theme': self.wet_theme
+            }
 
 
     def link_to_user(self, user, maxlength=0):
         """ Return the HTML snippet that returns a link to a user.  """
-        
+
         # Do not link to pseudo accounts
         if user in [model.PSEUDO_USER__LOGGED_IN, model.PSEUDO_USER__VISITOR]:
             return user
@@ -67,26 +65,28 @@ class WetTheme(p.SingletonPlugin):
             user = model.User.get(user_name)
             if not user:
                 return user_name
-            
+
         if user:
             _name = user.name if model.User.VALID_NAME.match(user.name) else user.id
             displayname = user.display_name
             if maxlength and len(user.display_name) > maxlength:
                 displayname = displayname[:maxlength] + '...'
             return html.tags.link_to(displayname,
-                           h.url_for(controller='user', action='read', id=_name)) 
-             
+                           h.url_for(controller='user', action='read', id=_name))
+
+    def gravatar_show(self):
+        return config.get(GRAVATAR_SHOW_OPTION, GRAVATAR_SHOW_DEFAULT) == 'True'
 
     def get_datapreview(self, res_id):
-     
+
         #import pdb; pdb.set_trace()
         dsq_results = ckan.logic.get_action('datastore_search')({}, {'resource_id': res_id, 'limit' : 100})
-        return h.snippet('package/wet_datatable.html', ds_fields=dsq_results['fields'], ds_records=dsq_results['records'])     
-      
+        return h.snippet('package/wet_datatable.html', ds_fields=dsq_results['fields'], ds_records=dsq_results['records'])
+
     def iso_to_goctime(self, isodatestr):
         dateobj = dateutil.parser.parse(isodatestr)
         return dateobj.strftime('%Y-%m-%d')
-      
+
     def geojson_to_wkt(self, gjson_str):
         ## Ths GeoJSON string should look something like:
         ##  u'{"type": "Polygon", "coordinates": [[[-54, 46], [-54, 47], [-52, 47], [-52, 46], [-54, 46]]]}']
@@ -112,75 +112,24 @@ class WetTheme(p.SingletonPlugin):
     def wet_url(self):
         return str(config.get(WET_URL_OPTION, WET_URL_DEFAULT))
 
+    def wet_theme(self):
+        return 'theme-wet-boew'
+
     def get_map_type(self):
         return str(config.get(GEO_MAP_TYPE_OPTION, GEO_MAP_TYPE_DEFAULT))
-
-    def canada_url(self):
-        return str(config.get(CANADACA_URL_OPTION, CANADACA_URL_DEFAULT))
-
-
-def _build_nav_icon(menu_item, title, **kwargs):
-    kwargs.update(
-        class_ = u"button"
-    )
-    item = h._make_menu_item(menu_item, title, **kwargs)
-    if " class=\"active\"" in item:
-        return item.replace("button", "button button-accent")
-    return item
-
-
-def _link_to(text, *args, **kwargs):
-    '''Common link making code for several helper functions'''
-    assert len(args) < 2, 'Too many unnamed arguments'
-
-    def _link_class(kwargs):
-        ''' creates classes for the link_to calls '''
-        class_ = kwargs.pop('class_', None)
-        suppress_active_class = kwargs.pop('suppress_active_class', False)
-        if not suppress_active_class and h._link_active(kwargs):
-            active = ' btn-primary'
-        else:
-            active = ''
-        kwargs.pop('highlight_actions', '')
-        if class_ and 'btn' in class_:
-            if active:
-                active = ' btn-primary'
-        if class_:
-            return class_ + active
-        return None
-
-    def _create_link_text(text, **kwargs):
-        ''' Update link text to add a icon or span if specified in the
-        kwargs '''
-        if kwargs.pop('inner_span', None):
-            text = literal('<span>') + text + literal('</span>')
-        if icon:
-            text = literal('<i class="icon-%s"></i> ' % icon) + text
-        return text
-
-    icon = kwargs.pop('icon', None)
-    class_ = _link_class(kwargs)
-    return link_to(
-        _create_link_text(text, **kwargs),
-        h.url_for(*args, **kwargs),
-        class_=class_
-    )
 
 def _wet_pager(self, *args, **kwargs):
     ## a custom pagination method, because CKAN doesn't expose the pagination to the templates,
     ## and instead hardcodes the pagination html in helpers.py
-    
+
     kwargs.update(
         format=u"<ul class='pagination'>$link_previous ~2~ $link_next</ul>",
         symbol_previous=gettext('Previous').decode('utf-8'), symbol_next=gettext('Next').decode('utf-8'),
         curpage_attr={'class': 'disabled'}, link_attr={'class': 'active'}
     )
-    
+
     return super(h.Page, self).pager(*args, **kwargs)
-    
-def _wet_no_gravatar(email_hash, size=100, default=None):
-    return ""
-    
+
 def _SI_number_span_close(number):
     ''' outputs a span with the number in SI unit eg 14700 -> 14.7k '''
     number = int(number)

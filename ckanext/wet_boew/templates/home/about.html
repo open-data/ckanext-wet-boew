@@ -1,10 +1,12 @@
-{% ckan_extends %}
+{% extends "page.html" %}
 
-{% block primary %}
-<main role="main" property="mainContentOfPage" class="col-md-12">
-<div class="row">
-<div class="col-md-12"><h2>{{ _('About') }}</h2></div>
-<div class="col-md-12">
+{% block subtitle %}{{ _('About') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('About'), controller='home', action='about' %}</li>
+{% endblock %}
+
+{% block primary_content %}
   {% block about %}
     {% if g.site_about %}
       {{ h.render_markdown(g.site_about) }}
@@ -12,7 +14,4 @@
       {% snippet 'home/snippets/about_text.html' %}
     {% endif %}
   {% endblock %}
-</div>
-</div>
-</main>
 {% endblock %}
