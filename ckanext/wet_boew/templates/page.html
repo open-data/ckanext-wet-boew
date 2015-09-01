@@ -42,9 +42,11 @@
 
         {% block primary_content %}
         <div class="row">
+            {% if self.content_primary_nav()|trim != '' %}
             <ul class="nav nav-tabs">
                 {% block content_primary_nav %}{% endblock %}
             </ul>
+            {% endif %}
             <div class="col-md-12">
                 {% if self.page_primary_action() | trim %}
                   <div class="page_primary_action">
