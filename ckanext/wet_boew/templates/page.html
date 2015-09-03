@@ -20,21 +20,20 @@
   {% set lang = h.lang() %}
 
   {% block content %}
-    <div class="container"><div class="row wb-eqht">
+    <div class="container"><div class="row">
+      {% block flash %}
+        <aside class="container">
+        {% for message in h.flash.pop_messages() | list %}
+          <div class="row alert fade in {{ message.category }}">
+            <p>{{ h.literal(message) }}</p>
+          </div>
+        {% endfor %}
+        </aside>
+      {% endblock flash %}
+      <div class="wb-eqht">
       {% block maintag %}<main role="main" property="mainContentOfPage" class="{% if self.secondary_content()|trim != '' %}col-md-9{% else %}col-md-12{% endif %}">{% endblock %}
       {% block pre_primary %}{% endblock %}
       {% block primary %}
-        {% block flash %}
-        {% if flash_messages %}
-        <div class="row">
-          {% for message in flash_messages %}
-          <div class="alert fade in {{ message.category }}">
-            {{ h.literal(message) }}
-          </div>
-          {% endfor %}
-        </div>
-        {% endif %}
-        {% endblock flash %}
 
         {% block page_title %}
           <h1 property="name" id="wb-cont">{% block page_heading %}{% block subtitle %}{{ _('About') }}{% endblock %}{% endblock %}</h1>
@@ -42,9 +41,11 @@
 
         {% block primary_content %}
         <div class="row">
+            {% if self.content_primary_nav()|trim != '' %}
             <ul class="nav nav-tabs">
                 {% block content_primary_nav %}{% endblock %}
             </ul>
+            {% endif %}
             <div class="col-md-12">
                 {% if self.page_primary_action() | trim %}
                   <div class="page_primary_action">
@@ -64,6 +65,7 @@
           </aside>
         {% endif %}
       {% endblock %}
+      </div>
     </div></div>
   {% endblock content %}
 
@@ -75,5 +77,4 @@
 
 {%- block scripts %}
   {% snippet 'snippets/wet-boew/footerresources.html' %}
-  {{ super() }}
 {% endblock -%}

@@ -2,11 +2,11 @@
 {% block content %}
   <div class="container">
     <div class="row">
-      <main property="mainContentOfPage" class="col-md-push-3 {% if self.secondary_content()|trim != '' %}col-md-6{% else %}col-md-9{% endif %}" role="main">
-      {% block pre_primary %}{% endblock %}
       {% block flash %}
         {{ super() }}
       {% endblock %}
+      <main property="mainContentOfPage" class="col-md-push-3 {% if self.secondary_content()|trim != '' %}col-md-6{% else %}col-md-9{% endif %}" role="main">
+      {% block pre_primary %}{% endblock %}
       {% block page_title %}
         {{ super() }}
       {% endblock %}
