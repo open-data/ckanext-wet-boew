@@ -18,7 +18,7 @@ from pylons import config
 from pylons.i18n import gettext
 
 GRAVATAR_SHOW_OPTION = 'ckan.gravatar_show'
-GRAVATAR_SHOW_DEFAULT = 'True'
+GRAVATAR_SHOW_DEFAULT = True
 WET_URL_OPTION = 'wet_boew.url'
 WET_URL_DEFAULT = ''
 WET_JQUERY_OFFLINE_OPTION = 'wet_boew.jquery.offline'
@@ -79,7 +79,7 @@ class WetTheme(p.SingletonPlugin):
                            h.url_for(controller='user', action='read', id=_name))
 
     def gravatar_show(self):
-        return config.get(GRAVATAR_SHOW_OPTION, GRAVATAR_SHOW_DEFAULT) == 'True'
+        return t.asbool(config.get(GRAVATAR_SHOW_OPTION, GRAVATAR_SHOW_DEFAULT))
 
     def get_datapreview(self, res_id):
 
