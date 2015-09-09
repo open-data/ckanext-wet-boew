@@ -7,7 +7,7 @@
 <!--[if lt IE 9]>
 <link href="{{ wet_server }}/{{ wet_theme }}/assets/favicon.ico" rel="shortcut icon" />
 <link rel="stylesheet" href="{{ wet_server }}/{{ wet_theme }}/css/ie8-theme.min.css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{% if h.wet_jquery_offline() == false %}http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js{% else %}{{ wet_server }}/wet-boew/js/jquery/1.11.1/jquery.min.js{% endif %}"></script>
 <script src="{{ wet_server }}/wet-boew/js/ie8-wet-boew.min.js"></script>
 <![endif]-->
 

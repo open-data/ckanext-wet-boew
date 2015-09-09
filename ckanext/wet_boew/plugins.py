@@ -2,6 +2,7 @@
 
 import ckan as ckan
 import ckan.plugins as p
+import ckan.plugins.toolkit as t
 import ckan.lib.helpers as h
 import ckan.lib.formatters as formatters
 import ckan.model as model
@@ -20,6 +21,8 @@ GRAVATAR_SHOW_OPTION = 'ckan.gravatar_show'
 GRAVATAR_SHOW_DEFAULT = 'True'
 WET_URL_OPTION = 'wet_boew.url'
 WET_URL_DEFAULT = ''
+WET_JQUERY_OFFLINE_OPTION = 'wet_boew.jquery.offline'
+WET_JQUERY_OFFLINE_DEFAULT = False
 GEO_MAP_TYPE_OPTION = 'wet_theme.geo_map_type'
 GEO_MAP_TYPE_DEFAULT = 'static'
 
@@ -49,8 +52,9 @@ class WetTheme(p.SingletonPlugin):
               'iso_to_goctime': self.iso_to_goctime,
               'geojson_to_wkt': self.geojson_to_wkt,
               'wet_url': self.wet_url,
-              'get_map_type': self.get_map_type,
-              'wet_theme': self.wet_theme
+              'wet_theme': self.wet_theme,
+              'wet_jquery_offline': self.wet_jquery_offline,
+              'get_map_type': self.get_map_type
             }
 
 
@@ -114,6 +118,9 @@ class WetTheme(p.SingletonPlugin):
 
     def wet_theme(self):
         return 'theme-wet-boew'
+
+    def wet_jquery_offline(self):
+        return t.asbool(config.get(WET_JQUERY_OFFLINE_OPTION, WET_JQUERY_OFFLINE_DEFAULT))
 
     def get_map_type(self):
         return str(config.get(GEO_MAP_TYPE_OPTION, GEO_MAP_TYPE_DEFAULT))

@@ -1,8 +1,8 @@
 {% set wet_server = h.wet_url() %}
 {% set wet_theme = h.wet_theme() %}
 <!--[if gte IE 9 | !IE ]><!-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="{{ wet_server }}/wet-boew/js/wet-boew.js"></script>
+<script src="{% if h.wet_jquery_offline() == false %}https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js{% else %}{{ wet_server }}/wet-boew/js/jquery/2.1.4/jquery.min.js{% endif %}"></script>
+<script src="{{ wet_server }}/wet-boew/js/wet-boew.min.js"></script>
 <!--<![endif]-->
 <!--[if lt IE 9]>
 <script src="{{ wet_server }}/wet-boew/js/ie8-wet-boew2.min.js"></script>
