@@ -7,91 +7,66 @@
 
 {% block primary_content_inner %}
   {% block actions_content %}
-  <div class="col-md-12">
     <ul class="nav nav-pills">
-      <li class="active"></li>
-
        {% if h.check_access('package_update', {'id':pkg.id }) %}
           <li>{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='btn btn-default' %}</li>
-          <li>{{ h.follow_button('dataset', pkg.id) }}</li>
         {% endif %}
     </ul>
-  </div>
-
   {% endblock %}
 
-    {% if pkg.state == "deleted" %}
-    <div class="alert alert-warning col-md-12">
-      {{ _('This dataset has been deleted and is no longer accessible to non-admin users') }}.
-    </div>
-    {% endif %}
+  {% if pkg.state == "deleted" %}
+  <div class="alert alert-warning">
+    {{ _('This dataset has been deleted and is no longer accessible to non-admin users') }}.
+  </div>
+  {% endif %}
 
-    {% block package_item_title %}
+  {% block package_item_title %}
 
     {% if pkg.private %}
-    <div class="col-md-12">
       <p class="text-left">L
       <span class="fa fa-lock"></span> {{ _('Private') }}
       </p>
-    </div>
     {% endif %}
-    <div class="col-md-12">
-      <h2>{{ pkg.title or pkg.name }}
-        {% if pkg.state.startswith('draft') %}
-          <span class="text-info">[{{ _('Draft') }}]</span>
-        {% endif %}
-      </h2>
-    </div>
-    {% endblock %}
 
-    {% block package_item_notes %}
+  {% endblock %}
+
+  {% block package_item_notes %}
     {% if pkg.notes and c.pkg_notes_formatted %}
-    <div class="col-md-12">
       {{ c.pkg_notes_formatted }}
-    </div>
     {% endif %}
-    {% endblock %}
+  {% endblock %}
 
-    {% if pkg.resources %}
-
-    <div class="col-md-12">
+  {% if pkg.resources %}
     {% block package_resources %}
       {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
     {% endblock %}
-    </div>
-    {% endif %}
+  {% endif %}
 
-    {% block package_additional_info %}
+  {% block package_additional_info %}
     {# We implement our own so that additional fields blend seamlessly into the page #}
     {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
-    {% endblock %}
+  {% endblock %}
 
-    {% block package_organization %}{% endblock %}
+  {% block package_organization %}{% endblock %}
 
-    {% block package_license %}
-    <div class="col-md-12">
-      <h4>{{_('Licence')}}: </h4>
-    </div>
-    <div class="col-md-12">
+  {% block package_license %}
+    <h4>{{_('Licence')}}: </h4>
     {% block package_item_license_inner %}
       <a href="{{ _(pkg.license_url) }}">{{ _(pkg.license_title) }}</a>
     {% endblock %}
-    </div>
-    {% endblock %}
+  {% endblock %}
 
-    {% block related_items %}{% endblock %}
+  {% block related_items %}{% endblock %}
 
-    {% block developer_tools %}
-    <div class="col-md-12">
-      <h4>{{ _('Developer Tools') }}</h4>
-        <ul class="list-unstyled">
-          <li class="mrgn-bttm-md">{{ _('The information on this page (the publication metadata) is also available in JSON format') }} <br/>
-          <a href="{{h.url_for_static('/', qualified=true)}}api/action/package_show?id={{pkg.id}}">{{ _('Link to JSON format') }}</a></li>
-        </ul>
-    </div>
-    {% endblock developer_tools %}
+  {% block developer_tools %}
+    <h4>{{ _('Developer Tools') }}</h4>
+    <ul class="list-unstyled">
+      <li class="mrgn-bttm-md">{{ _('The information on this page (the publication metadata) is also available in JSON format') }} <br/>
+      <a href="{{h.url_for_static('/', qualified=true)}}api/action/package_show?id={{pkg.id}}">{{ _('Link to JSON format') }}</a></li>
+    </ul>
+  {% endblock developer_tools %}
 
-    {% block package_item_geo_preview %}{% endblock %}
-    {% block package_comments %}{% endblock %}
+  {% block package_item_geo_preview %}{% endblock %}
+  {% block package_comments %}{% endblock %}
 
 {% endblock %}
