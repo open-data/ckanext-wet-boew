@@ -5,10 +5,6 @@
 {% set pkg = c.pkg_dict %}
 {% set client_lang = h.lang() %}
 
-{% block font_awesome %}
-    <link href="{{ wet_server }}/font-awesome/css/font-awesome.css" rel="stylesheet">
-{% endblock %}
-
 {% block primary_content_inner %}
   {% block actions_content %}
   <div class="col-md-12">
@@ -18,7 +14,6 @@
        {% if h.check_access('package_update', {'id':pkg.id }) %}
           <li>{% link_for _('Edit'), controller='package', action='edit', id=pkg.name, class_='btn btn-default' %}</li>
           <li>{{ h.follow_button('dataset', pkg.id) }}</li>
-          <li>{% link_for _('History'), controller='package', action='history', id=pkg.name, class_='btn btn-default' %}</li>
         {% endif %}
     </ul>
   </div>
