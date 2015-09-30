@@ -1,5 +1,13 @@
 {% ckan_extends %}
 
+{%- block subtitle %}
+    {{ _('Edit') }} {{ pkg.title or pkg.name }}
+{% endblock -%}
+
+{% block page_heading %}
+    {{ _('Edit') }} {{ pkg.title or pkg.name }}
+{% endblock %}
+
 {% block primary_content %}
     <div class="col-md-12">
       <div class="panel"><div class="panel-body">
