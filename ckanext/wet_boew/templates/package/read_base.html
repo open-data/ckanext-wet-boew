@@ -10,8 +10,3 @@
     </p>
   {% endif %}
 {% endblock %}
-
-{% block content_primary_nav %}
-  {{  super()  }}
-  {{ h.build_nav_icon('dataset_history', _('History'), id=pkg.name) }}
-{% endblock %}
