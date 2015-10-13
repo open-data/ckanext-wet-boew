@@ -17,12 +17,7 @@
 {% endblock %}
 
 {% block secondary_content %}
-  <div class="panel panel-info">
-    <div class="panel-heading">
-      <div class="panel-title"><span class="glyphicon glyphicon-book"></span> {{_('Resources')}}</div>
-    </div>
-    <div class="panel-body">
-    {% snippet "package/snippets/resources.html", pkg=pkg %}
-    </div>
-  </div>
+  {% if resources %}
+      {% snippet "package/snippets/resources.html", pkg=pkg %}
+  {% endif %}
 {% endblock %}
