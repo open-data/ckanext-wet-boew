@@ -1,8 +1,8 @@
 {% ckan_extends %}
 
 {% block page_primary_action %}
-  {{ super }}
+  {{ super() }}
   {% if h.check_access('organization_update', {'id': c.group_dict.id}) %}
-    {% link_for _('Edit'), controller='organization', action='edit', id=pkg.name, class_='btn btn-default', icon='wrench' %}
+    {% link_for _('Edit Organization'), controller='organization', action='edit', id=c.group_dict.id, class_='btn btn-default', icon='wrench' %}
   {% endif %}
 {% endblock %}
