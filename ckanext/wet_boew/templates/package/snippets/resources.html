@@ -1,22 +1,22 @@
 {% ckan_extends %}
 
 {% block resources %}
-    <section class="panel panel-default">
-      {% block resources_title %}
-        <div class="panel-heading"><i class="icon-copy"></i> {{ _("Resources") }}</div>
+  <section class="panel panel-default">
+    {% block resources_title %}
+      <div class="panel-heading"> <h2 class="panel-title"><i class="icon-copy"></i> {{ _("Resources") }}</h2></div>
+    {% endblock %}
+    <div class="panel-body">
+    {% block resources_inner %}
+      {% block resources_list %}
+        <ul class="unstyled nav nav-simple">
+          {% for resource in resources %}
+            <li class="nav-item{{ ' active' if active == resource.id }}">
+              {% link_for h.resource_display_name(resource)|truncate(35) + ':' + resource.get('format', ''), controller='package', action=action or 'resource_read', id=pkg.name, resource_id=resource.id, inner_span=true %}
+            </li>
+          {% endfor %}
+        </ul>
       {% endblock %}
-      <div class="panel-body">
-      {% block resources_inner %}
-        {% block resources_list %}
-          <ul class="unstyled nav nav-simple">
-            {% for resource in resources %}
-              <li class="nav-item{{ ' active' if active == resource.id }}">
-                {% link_for h.resource_display_name(resource)|truncate(35) + ':' + resource.get('format', ''), controller='package', action=action or 'resource_read', id=pkg.name, resource_id=resource.id, inner_span=true %}
-              </li>
-            {% endfor %}
-          </ul>
-        {% endblock %}
-      {% endblock %}
-      </div>
-    </section>
-  {% endblock %}
+    {% endblock %}
+    </div>
+  </section>
+{% endblock %}
