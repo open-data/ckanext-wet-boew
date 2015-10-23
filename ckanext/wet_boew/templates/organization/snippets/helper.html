@@ -1,8 +1,7 @@
-
 <div class="panel panel-info">
   <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"></span> {{ _('What are Organizations?') }}</div>
   <div class="panel-body">
-    {% trans %}
+    {% if h.lang() == 'en' %}
       Organizations act like publishing departments for datasets (for
       example, the Department of Health). This means that datasets can be
       published by and belong to a department instead of an individual
@@ -10,7 +9,14 @@
       Within organizations, admins can assign roles and authorisation its
       members, giving individual users the right to publish datasets from
       that particular organisation (e.g. Office of National Statistics).
-      {% endtrans %}
+    {% elif h.lang() == 'fr' %}
+      <p>Une organisation est semblable à un ministère qui publie des ensembles de données
+      (par exemple, le ministère de la Santé). Cela signifie que les ensembles de données
+      peuvent être publiés par un ministère, et appartiennent à celui-ci, plutôt qu’à un
+      utilisateur individuel.</p> <p>Au sein d’une organisation, les administrateurs peuvent
+      attribuer des rôles et des autorisations aux membres et donner aux utilisateurs
+      individuels le droit de publier des ensembles de données provenant de cette organisation
+      (p. ex. Office of National Statistics).</p>
+    {% endif %}
   </div>
 </div>
-
