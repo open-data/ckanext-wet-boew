@@ -20,8 +20,8 @@ Examples:
 {% macro input(name, id='', label='', value='', placeholder='', type='text', error="", classes=[], attrs={}, is_required=false) %}
   {%- set extra_html = caller() if caller -%}
 
-  {% call input_block(id or name, label or name, error, classes, extra_html=extra_html) %}
-    <input id="{{ id or name }}" class="form-control" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" {% if placeholder != '' %} placeholder="{{ placeholder }}" {% endif %} {{ attributes(attrs) }} />
+  {% call input_block(id or name, label or name, error, classes, extra_html=extra_html, is_required=is_required) %}
+    <input id="{{ id or name }}" class="form-control" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" {% if placeholder != '' %} placeholder="{{ placeholder }}" {% endif %} {% if is_required %}required="required"{% endif %} {{ attributes(attrs) }} />
   {% endcall %}
 {% endmacro %}
 
@@ -83,8 +83,8 @@ Examples:
   {% do classes.append('control-select') %}
 
   {%- set extra_html = caller() if caller -%}
-  {% call input_block(id or name, label or name, error, classes, extra_html=extra_html) %}
-    <select id="{{ id or name }}" name="{{ name }}" {{ attributes(attrs) }} class="form-control">
+  {% call input_block(id or name, label or name, error, classes, extra_html=extra_html, is_required=is_required) %}
+    <select id="{{ id or name }}" name="{{ name }}" {% if is_required %}required="required"{% endif %} {{ attributes(attrs) }} class="form-control">
       {% for option in options %}
         <option value="{{ option.value }}"{% if option.value == selected %} selected{% endif %}>{{ option.text or option.value }}</option>
       {% endfor %}
@@ -115,9 +115,9 @@ Examples:
   {% do classes.append('control-full') %}
 
   {%- set extra_html = caller() if caller -%}
-  {% call input_block(id or name, label or name, error, classes, control_classes=["editor"], extra_html=extra_html) %}
+  {% call input_block(id or name, label or name, error, classes, control_classes=["editor"], extra_html=extra_html, is_required=is_required) %}
     <textarea id="{{ id or name }}" name="{{ name }}" cols="60" rows="5" class="form-control"
-              placeholder="{{ placeholder }}" {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
+              placeholder="{{ placeholder }}" {% if is_required %}required="required"{% endif %} {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
     <div class="module-content">
       {% trans %}You can use <a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'>Markdown formatting</a> here{% endtrans %}
     </div>
@@ -147,8 +147,8 @@ Examples:
   {% do classes.append('control-full') %}
 
   {%- set extra_html = caller() if caller -%}
-  {% call input_block(id or name, label or name, error, classes, extra_html=extra_html) %}
-    <textarea id="{{ id or name }}" name="{{ name }}" cols="{{ cols }}" rows="{{ rows }}" placeholder="{{ placeholder }}" {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
+  {% call input_block(id or name, label or name, error, classes, extra_html=extra_html, is_required=is_required) %}
+    <textarea id="{{ id or name }}" name="{{ name }}" cols="{{ cols }}" rows="{{ rows }}" placeholder="{{ placeholder }}" {% if is_required %}required="required"{% endif %} {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
   {% endcall %}
 {% endmacro %}
 
@@ -178,10 +178,10 @@ Examples:
   {% set classes = (classes|list) %}
   {% do classes.append('error') if error %}
   {%- set extra_html = caller() if caller -%}
-  {% call input_block(id or name, label or name, error='', classes=classes, extra_html=extra_html) %}
+  {% call input_block(id or name, label or name, error='', classes=classes, extra_html=extra_html, is_required=is_required) %}
     <div class="form-input-prepend {% if error and error is iterable %} form-attention {% endif %}">
       {% if prepend %}<span class="form-addon">{{ prepend }}</span>{%- endif -%}
-      <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ attributes(attrs) }} />
+      <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {% if is_required %}required="required"{% endif %} {{ attributes(attrs) }} />
       {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
     </div>
   {% endcall %}
@@ -192,9 +192,9 @@ Examples:
   {% set classes = (classes|list) %}
   {% do classes.append('error') if error %}
   {%- set extra_html = caller() if caller -%}
-  {% call input_block(id or name, label or name, error='', classes=classes, extra_html=extra_html) %}
+  {% call input_block(id or name, label or name, error='', classes=classes, extra_html=extra_html, is_required=is_required) %}
     <div class="form-input-append {% if error and error is iterable %} form-attention {% endif %}">
-      <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ attributes(attrs) }} style="margin-right:0; padding-right:0;" />
+      <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {% if is_required %}required="required"{% endif %} {{ attributes(attrs) }} style="margin-right:0; padding-right:0;" />
       {% if append %}<span class="form-addon">{{ append }}</span>{%- endif -%}
       {% if error and error is iterable %}<span class="error-block form-text-inline">{{ error|join(', ') }}</span>{% endif %}
     </div>
@@ -275,7 +275,12 @@ Example:
 {% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false) %}
    <div style="margin: 0" class="form-group{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} has-error {% endif %}">
      {% if label != '' %}
-      <label {% if for != '' %} for="{{ for }}" {% endif %} >{{ label or _('Custom') }}</label>
+      <label {% if for != '' %} for="{{ for }}" {% endif %} {% if is_required %}class="required" aria-required="true"{% endif %}>
+        {{ label or _('Custom') }}
+        {% if is_required %}
+          <strong aria-required="true" class="required">{{ _('(required)') }}</strong>
+        {% endif %}
+      </label>
      {% endif %}
 
       {{ caller() }}
