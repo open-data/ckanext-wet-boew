@@ -173,7 +173,7 @@ def _wet_pager(self, *args, **kwargs):
     kwargs.update(
         format=u"<ul class='pagination'>$link_previous ~2~ $link_next</ul>",
         symbol_previous=gettext('Previous').decode('utf-8'), symbol_next=gettext('Next').decode('utf-8'),
-        curpage_attr={'class': 'disabled'}, link_attr={'class': 'active'}
+        curpage_attr={'class': 'active'}, link_attr={'class': 'active'}
     )
     
     return super(h.Page, self).pager(*args, **kwargs)
