@@ -104,7 +104,7 @@
     <p>
     <small class="module-poster">
       {% set api_link = h.link_to(_('API'), h.url_for(controller='api', action='get_api', ver=3)) %}
-      {% set api_doc_link = h.link_to(_('API Docs'), 'http://docs.ckan.org/{0}/{1}/api.html'.format(request.environ.CKAN_LANG, g.ckan_doc_version)) %}
+      {% set api_doc_link = h.link_to(_('API Docs'), 'http://docs.ckan.org/{0}/{1}/api/'.format(request.environ.CKAN_LANG, g.ckan_doc_version)) %}
       {% if g.dumps_url -%}
         {% trans %}
           You can also access this registry using the {{ api_link }} (see {{ api_doc_link}}).
