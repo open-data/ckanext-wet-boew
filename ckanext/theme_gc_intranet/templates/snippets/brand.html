@@ -1,7 +1,7 @@
 {% set wet_server = h.wet_url() %}
 {% set wet_theme = h.wet_theme() %}
 <div id="wb-sttl" class="col-md-12">
-  <a href="/">
+  <a href="{{ h.url_for(controller='home', action='index') }}">
     <span>
         {{ _(g.site_title|default("WET")) }}
         {% if g.site_description %}

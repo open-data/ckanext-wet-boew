@@ -20,7 +20,7 @@ from pylons.i18n import gettext
 GRAVATAR_SHOW_OPTION = 'ckan.gravatar_show'
 GRAVATAR_SHOW_DEFAULT = True
 WET_URL_OPTION = 'wet_boew.url'
-WET_URL_DEFAULT = ''
+WET_URL_DEFAULT = config.get('ckan.site_url', '')
 WET_JQUERY_OFFLINE_OPTION = 'wet_boew.jquery.offline'
 WET_JQUERY_OFFLINE_DEFAULT = False
 GEO_MAP_TYPE_OPTION = 'wet_theme.geo_map_type'
@@ -132,7 +132,7 @@ def _wet_pager(self, *args, **kwargs):
     kwargs.update(
         format=u"<ul class='pagination'>$link_previous ~2~ $link_next</ul>",
         symbol_previous=gettext('Previous').decode('utf-8'), symbol_next=gettext('Next').decode('utf-8'),
-        curpage_attr={'class': 'disabled'}, link_attr={'class': 'active'}
+        curpage_attr={'class': 'active'}
     )
 
     return super(h.Page, self).pager(*args, **kwargs)
