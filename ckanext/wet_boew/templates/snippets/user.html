@@ -1,6 +1,8 @@
-<section class="signon" style="text-align: right;">
+<section id="wb-so">
   <h2 class="wb-inv">Sign-on information</h2>
-    <div class="col-sm-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
       <ul class="list-inline">
 {% if c.userobj %}
     {% block header_account_logged %}
@@ -57,5 +59,7 @@
     {% endblock %}
 {% endif %}
     </ul>
+      </div>
+    </div>
   </div>
 </section>
