@@ -24,17 +24,38 @@ msgstr "Passer au contenu principal"
 msgid "Skip to site information"
 msgstr "Passer aux informations sur le site"
 
+msgid "Language selection"
+msgstr "Sélection de la langue"
+
+msgid "English"
+msgstr "Anglais"
+
+msgid "French"
+msgstr "Français"
+
+msgid "Topics menu"
+msgstr "Menu des sujets"
+
+msgid "Search and menus"
+msgstr "Recherche et menus"
+
+msgid "You are here:"
+msgstr "Vous êtes içi :"
+
+msgid "Sign-on information"
+msgstr "Information de l'utilisateur actuel"
+
+msgid "Signed in as"
+msgstr "Connecté en tant que"
+
+msgid "Register"
+msgstr "Inscription"
+
 msgid "Item"
 msgstr "Article"
 
 msgid "Heading"
 msgstr "En-tête"
-
-msgid "You are here"
-msgstr "Vous êtes ici"
-
-msgid "Language selection"
-msgstr "Sélection de la langue"
 
 msgid "My Settings"
 msgstr "Mes Paramètres"
