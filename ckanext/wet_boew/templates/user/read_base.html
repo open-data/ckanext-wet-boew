@@ -60,27 +60,3 @@
     {% endblock %}
 </div>
 {% endblock %}
-
-
-{% block user_info2 %}
-  <div class="span-2">
-    <ul class="wet-boew-zebra">
-      {% if user.name.startswith('http://') or user.name.startswith('https://') %}
-        <li class="background-medium">{{ _('Open ID') }}</li>
-        <li>{{ user.name|urlize(25) }}{# Be great if this just showed the domain #}</li>
-      {% else %}
-        <li class="background-medium">{{ _('Username') }}</li>
-        <li>{{ user.name }}</li>
-      {% endif %}
-    {% if c.is_myself %}
-      <li class="background-medium">{{ _('Email') }} <span class="label" title="{{ _('This means only you can see this') }}">{{ _('Private') }}</span></li>
-      <li>{{ user.email }}</li>
-    {% endif %}
-      <li class="background-medium">{{ _('Member Since') }}</li>
-      <li>{{ h.render_datetime(user.created) }}</li>
-    {% if c.is_myself %}
-      <li class="background-medium">{{ _('API Key') }} <span class="label" title="{{ _('This means only you can see this') }}">{{ _('Private') }}</span></li>
-      <li class="value"><code>{{ user.apikey }}</code></li>
-    {% endif %}
-
-{% endblock %}
