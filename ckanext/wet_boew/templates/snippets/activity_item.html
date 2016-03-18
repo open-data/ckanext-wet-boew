@@ -3,8 +3,6 @@
 	<span class="badge" title="{{ _('New activity item') }}">{{ _('New activity item') }}</span>
 	{% endif %}
 	<span class="icon icon-{{ activity.icon }}"></span>
-	<p>
 		{{ h.literal(activity.msg.format(**activity.data)) }}
 		<span class="date">{{ h.time_ago_in_words_from_str(activity.timestamp, 'hour') }} ago</span>
-	</p>
 </li>
