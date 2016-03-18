@@ -1,0 +1,19 @@
+# This file is meant to be combined with CKAN v2.x's
+# "ckan/i18n/fr/LC_MESSAGES/ckan.po" file using msgcat --use-first
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+# Branding
+msgid "Government of Canada"
+msgstr "Gouvernement du Canada"
+
+msgid "Symbol of the Government of Canada"
+msgstr "Symbole du gouvernement du Canada"
+
+# Footer
+msgid "About this site"
+msgstr "À propos de ce site"
