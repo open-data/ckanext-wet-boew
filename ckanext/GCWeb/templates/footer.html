@@ -1,5 +1,3 @@
-{% set wet_server = h.wet_url() %}
-{% set wet_theme = h.wet_theme() %}
 <footer role="contentinfo" id="wb-info">
   {% block footer_content %}
   <nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr">
@@ -53,15 +51,15 @@
       <div class="col-sm-3 col-lg-3 brdr-lft">
         <section>
           <h3>{{ _('Feedback') }}</h3>
-          <p><a href="{{ _('http://www.canada.ca/en/contact/feedback.htm') }}"><img src="{{ wet_server }}/{{ wet_theme }}/assets/feedback.png" alt="{{ _('Feedback about this Web site') }}" /></a></p>
+          <p><a href="{{ _('http://www.canada.ca/en/contact/feedback.htm') }}"><img src="{{ h.url_for_wet_theme('/assets/feedback.png') }}" alt="{{ _('Feedback about this Web site') }}" /></a></p>
         </section>
         <section>
           <h3>{{ _('Social media') }}</h3>
-          <p><a href="{{ _('http://www.canada.ca/en/social') }}"><img src="{{ wet_server }}/{{ wet_theme }}/assets/social.png" alt="{{ _('Social media') }}" /></a></p>
+          <p><a href="{{ _('http://www.canada.ca/en/social') }}"><img src="{{ h.url_for_wet_theme('/assets/social.png') }}" alt="{{ _('Social media') }}" /></a></p>
         </section>
         <section>
           <h3>{{ _('Mobile centre') }}</h3>
-          <p><a href="{{ _('http://www.canada.ca/en/mobile') }}"><img src="{{ wet_server }}/{{ wet_theme }}/assets/mobile.png" alt="{{ _('Mobile centre') }}" /></a></p>
+          <p><a href="{{ _('http://www.canada.ca/en/mobile') }}"><img src="{{ h.url_for_wet_theme('/assets/mobile.png') }}" alt="{{ _('Mobile centre') }}" /></a></p>
         </section>
       </div>
     </div>
@@ -73,7 +71,7 @@
           <a href="#wb-cont">{{ _('About this site')}} <span class="glyphicon glyphicon-chevron-up"></span></a>
         </div>
         <div class="col-xs-6 col-md-12 text-right">
-          <object type="image/svg+xml" tabindex="-1" role="img" data="{{ wet_server }}/{{ wet_theme }}/assets/wmms-blk.svg" aria-label="{{ _('Symbol of the Government of Canada') }}"></object>
+          <object type="image/svg+xml" tabindex="-1" role="img" data="{{ h.url_for_wet_theme('/assets/wmms-blk.svg') }}" aria-label="{{ _('Symbol of the Government of Canada') }}"></object>
         </div>
       </div>
     </div>

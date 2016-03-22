@@ -19,8 +19,7 @@ from pylons.i18n import gettext
 
 GRAVATAR_SHOW_OPTION = 'ckan.gravatar_show'
 GRAVATAR_SHOW_DEFAULT = True
-WET_URL_OPTION = 'wet_boew.url'
-WET_URL_DEFAULT = config.get('ckan.site_url', '')
+WET_URL = config.get('wet_boew.url', '')
 WET_JQUERY_OFFLINE_OPTION = 'wet_boew.jquery.offline'
 WET_JQUERY_OFFLINE_DEFAULT = False
 GEO_MAP_TYPE_OPTION = 'wet_theme.geo_map_type'
@@ -51,7 +50,8 @@ class WetTheme(p.SingletonPlugin):
               'get_datapreview': self.get_datapreview,
               'iso_to_goctime': self.iso_to_goctime,
               'geojson_to_wkt': self.geojson_to_wkt,
-              'wet_url': self.wet_url,
+              'url_for_wet': self.url_for_wet,
+              'url_for_wet_theme': self.url_for_wet_theme,
               'wet_theme': self.wet_theme,
               'wet_jquery_offline': self.wet_jquery_offline,
               'get_map_type': self.get_map_type
@@ -113,8 +113,16 @@ class WetTheme(p.SingletonPlugin):
         wkt_str = wkt.dumps(shape)
         return wkt_str
 
-    def wet_url(self):
-        return str(config.get(WET_URL_OPTION, WET_URL_DEFAULT))
+    def url_for_wet(self, *args, **kw):
+        file = args[0] or ''
+        theme = kw.get('theme', False)
+        return h.url_for_static_or_external(
+            WET_URL + '/' + (self.wet_theme() if theme else 'wet-boew') + file
+        )
+
+    def url_for_wet_theme(self, *args):
+        file = args[0] or ''
+        return self.url_for_wet(file, theme = True)
 
     def wet_theme(self):
         return 'theme-wet-boew'
