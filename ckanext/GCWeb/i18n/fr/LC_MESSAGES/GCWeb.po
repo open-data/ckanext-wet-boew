@@ -14,9 +14,99 @@ msgstr "Gouvernement du Canada"
 msgid "Symbol of the Government of Canada"
 msgstr "Symbole du gouvernement du Canada"
 
+msgid "Search website"
+msgstr "Recherchez le site Web"
+
+msgid "Search Canada.ca"
+msgstr "Rechercher dans Canada.ca"
+
 # Footer
 msgid "About this site"
 msgstr "À propos de ce site"
+
+msgid "Contact information"
+msgstr "Coordonnées"
+
+msgid "News"
+msgstr "Nouvelles"
+
+msgid "Newsroom"
+msgstr "Salle de presse"
+
+msgid "News releases"
+msgstr "Communiqués de presse"
+
+msgid "Media advisories"
+msgstr "Avis aux médias"
+
+msgid "Speeches"
+msgstr "Discours"
+
+msgid "Statements"
+msgstr "Déclarations"
+
+msgid "Government"
+msgstr "Gouvernement"
+
+msgid "How government works"
+msgstr "Comment le gouvernement fonctionne"
+
+msgid "Departments and agencies"
+msgstr "Ministères et organismes"
+
+msgid "Prime Minister"
+msgstr "Premier ministre"
+
+msgid "Ministers"
+msgstr "Ministres"
+
+msgid "Public service and military"
+msgstr "Fonction publique et force militaire"
+
+msgid "Policies, regulations and laws"
+msgstr "Traités, lois et règlements"
+
+msgid "Libraries"
+msgstr "Bibliothèques"
+
+msgid "Publications"
+msgstr "Publications"
+
+msgid "Statistics and data"
+msgstr "Statistiques et données"
+
+msgid "About Canada.ca"
+msgstr "À propos de Canada.ca"
+
+msgid "Transparency"
+msgstr "Transparence"
+
+msgid "Government-wide reporting"
+msgstr "Établissement de rapports à l’échelle du gouvernement"
+
+msgid "Open government"
+msgstr "Gouvernement ouvert"
+
+msgid "Proactive disclosure"
+msgstr "Divulgation proactive"
+
+msgid "Terms and conditions"
+msgstr "Avis"
+
+msgid "Privacy"
+msgstr "Confidentialité"
+
+msgid "Feedback"
+msgstr "Rétroaction"
+
+msgid "Feedback about this Web site"
+msgstr "Rétroaction sur ce site Web"
+
+msgid "Social media"
+msgstr "Médias sociaux"
+
+msgid "Mobile centre"
+msgstr "Centre mobile"
 
 # Errors
 
@@ -31,8 +121,8 @@ msgstr "Retournez à la <a href=\"http://www.canada.ca/fr/index.html\">page d'ac
 msgid "Consult the <a href=\"/en/sitemap.html\">site map</a>;"
 msgstr "Consultez le <a href=\"http://www.canada.ca/fr/plan.html\">plan du site</a>;"
 
-#msgid ""
-#msgstr ""
+msgid "Check out the <a href=\"http://www.collectionscanada.gc.ca/012/012-412.01-e.html\" rel=\"external\">Government of Canada Web Archive</a> to view an older version; or"
+msgstr "Vérifiez dans les <a href=\"http://www.collectionscanada.gc.ca/012/012-412.01-f.html\" rel=\"external\">Archives Web du gouvernement du Canada</a> s’il existe une version antérieure;"
 
 msgid "<a href=\"/en/contact.html\">Contact us</a> and we'll help you out."
 msgstr "<a href=\"http://www.canada.ca/fr/contact/index.html\">Contactez-nous</a> pour de l'assistance."
