@@ -17,3 +17,22 @@ msgstr "Symbole du gouvernement du Canada"
 # Footer
 msgid "About this site"
 msgstr "À propos de ce site"
+
+# Errors
+
+msgid "We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help "
+"you find what you're looking for. What next?"
+msgstr "Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. "
+"Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?"
+
+msgid "Return to the <a href=\"https://www.canada.ca/en.html\">home page</a>;"
+msgstr "Retournez à la <a href=\"http://www.canada.ca/fr/index.html\">page d'accueil</a>;"
+
+msgid "Consult the <a href=\"/en/sitemap.html\">site map</a>;"
+msgstr "Consultez le <a href=\"http://www.canada.ca/fr/plan.html\">plan du site</a>;"
+
+#msgid ""
+#msgstr ""
+
+msgid "<a href=\"/en/contact.html\">Contact us</a> and we'll help you out."
+msgstr "<a href=\"http://www.canada.ca/fr/contact/index.html\">Contactez-nous</a> pour de l'assistance."
