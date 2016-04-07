@@ -1,7 +1,7 @@
 <footer role="contentinfo" id="wb-info" class="visible-sm visible-md visible-lg wb-navcurr">
   <div class="container">
     {% block footer_content %}
-    <nav role="navigation" class="row"><h2>{% set api_url = 'http://docs.ckan.org/{0}/{1}/api.html'.format(request.environ.CKAN_LANG, g.ckan_doc_version) %}</h2>
+    <nav role="navigation" class="row"><h2>{{ _('About this site') }}</h2>
       <section class="col-sm-3"><h3>{{ _('About {0}').format(_(g.site_title)) }}</h3>
           <ul class="list-unstyled">
             <li><a href="#">{{ _('Terms and Conditions') }}</a></li>

@@ -60,6 +60,9 @@ msgstr "En-tête"
 msgid "My Settings"
 msgstr "Mes Paramètres"
 
+msgid "About this site"
+msgstr "À propos de ce site"
+
 #Errors
 
 msgid "We couldn't find that Web page"
