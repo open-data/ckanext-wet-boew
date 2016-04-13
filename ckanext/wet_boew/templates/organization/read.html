@@ -6,3 +6,8 @@
     {% link_for _('Edit Organization'), controller='organization', action='edit', id=c.group_dict.id, class_='btn btn-default', icon='wrench' %}
   {% endif %}
 {% endblock %}
+
+{% block primary_content_inner %}
+  <h2 class="wb-inv">{{ _('Assets') }}</h2>
+  {{ super() }}
+{% endblock %}
