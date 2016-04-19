@@ -34,7 +34,13 @@
       {% block pre_primary %}{% endblock %}
       {% block primary %}
         {% block page_title %}
-          <h1 property="name" id="wb-cont">{% block page_heading %}{% block subtitle %}{{ _('About') }}{% endblock %}{% endblock %}</h1>
+          <h1 property="name" id="wb-cont">
+            {%- block page_heading -%}
+              {% set subtitle_2 = self.subtitle_2()|trim %}
+              {%- block subtitle %}{{ _('About') }}{% endblock -%}
+              {%- if subtitle_2 -%}<span class="wb-inv"> - {{ subtitle_2 }}</span>{%- endif -%}
+            {%- endblock -%}
+          </h1>
         {% endblock %}
         <div class="row wb-eqht">
           <div class="{% if self.secondary_content()|trim != '' %}col-md-9{% else %}col-md-12{% endif %}">
