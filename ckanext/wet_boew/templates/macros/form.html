@@ -273,7 +273,7 @@ Example:
 
 #}
 {% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false) %}
-   <div style="margin: 0" class="form-group{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} has-error {% endif %}">
+   <div style="margin-left: 0; margin-right: 0" class="form-group{{ " " ~ classes | join(' ') }} {% if error and error is iterable %} has-error {% endif %}">
      {% if label != '' %}
       <label {% if for != '' %} for="{{ for }}" {% endif %} {% if is_required %}class="required" aria-required="true"{% endif %}>
         {{ label or _('Custom') }}
