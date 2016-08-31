@@ -1,6 +1,9 @@
-<section class="signon" style="text-align: right;">
+{% block header_user_snippet %}
+<section id="wb-so">
   <h2 class="wb-inv">Sign-on information</h2>
-    <div class="col-sm-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
       <ul class="list-inline">
 {% if c.userobj %}
     {% block header_account_logged %}
@@ -41,7 +44,7 @@
         {% endblock %}
         {% block header_account_log_out_link %}
         <li>
-            <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}" class="btn btn-primary">
+            <a href="{{ h.url_for(controller='user', action='logout') }}" title="{{ _('Log out') }}" class="btn btn-primary">
                 <span class="icon-signout"></span>
                 <span class="text">{{ _('Log out') }}</span>
             </a>
@@ -57,5 +60,8 @@
     {% endblock %}
 {% endif %}
     </ul>
+      </div>
+    </div>
   </div>
 </section>
+{% endblock %}

@@ -1,9 +1,12 @@
 {% ckan_extends %}
 
+{% block page_heading %}
+  <span class="glyphicon glyphicon-warning-sign glyphicon-error"></span>
+  {% if c.code[0] == '404' %}
+    {% block subtitle %}{{ _('We couldn\'t find that Web page') }}{% endblock %}
+  {% endif %}
+{% endblock %}
+
 {% block primary %}
-<div class="col-md-9 offset-2">
-<div class="panel panel-warning">
-    <div>{{ c.content }}</div>
-</div>
-</div>
+  {{ super.super() }}
 {% endblock %}

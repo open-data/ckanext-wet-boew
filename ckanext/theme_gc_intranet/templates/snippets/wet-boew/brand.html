@@ -1,5 +1,3 @@
-{% set wet_server = h.wet_url() %}
-{% set wet_theme = h.wet_theme() %}
 <div id="wb-sttl" class="col-md-12">
   <a href="{{ h.url_for(controller='home', action='index') }}">
     <span>
@@ -9,5 +7,5 @@
         {% endif %}
     </span>
   </a>
-  <object id="wmms" type="image/svg+xml" tabindex="-1" role="img" data="{{ wet_server }}/{{ wet_theme }}/assets/wmms-intra.svg" aria-label="{{ _('Symbol of the Government of Canada') }}"></object>
+  <object id="wmms" type="image/svg+xml" tabindex="-1" role="img" data="{{ h.url_for_wet_theme('/assets/wmms-intra.svg') }}" aria-label="{{ _('Symbol of the Government of Canada') }}"></object>
 </div>

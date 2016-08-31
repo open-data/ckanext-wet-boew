@@ -1,7 +1,5 @@
 {% ckan_extends %}
 {% set lang = h.lang() %}
-{% set wet_server = h.wet_url() %}
-{% set wet_theme = h.wet_theme() %}
 {% block header_wrapper %}
 <header role="banner">
   <div id="wb-bnr">
@@ -9,9 +7,9 @@
       <div class="container">
         <div class="row">
           {%- block headerbar -%}
-            <object id="gcwu-sig" type="image/svg+xml" tabindex="-1" role="img" data="{{ wet_server }}/{{ wet_theme }}/assets/sig-blk-{{ lang }}.svg" aria-label="{{ _("Government of Canada") }}"></object>
+            <object id="gcwu-sig" type="image/svg+xml" tabindex="-1" role="img" data="{{ h.url_for_wet_theme('/assets/sig-blk-' + lang + '.svg') }}" aria-label="{{ _("Government of Canada") }}"></object>
             {%- block languagetoggle -%}
-              {% snippet 'snippets/languagetoggle.html' %}
+              {% snippet 'snippets/wet-boew/languagetoggle.html' %}
             {%- endblock -%}
           {%- endblock -%}
           {%- block mobimenu -%}
@@ -23,7 +21,7 @@
     <div class="container">
       <div class="row">
         {% block brand %}
-          {% snippet 'snippets/brand.html' %}
+          {% snippet 'snippets/wet-boew/brand.html' %}
         {% endblock %}
         {% block sitesearch %}
           <section id="wb-srch" class="visible-md visible-lg">

@@ -1,8 +1,6 @@
-{% set wet_server = h.wet_url() %}
-{% set wet_theme = h.wet_theme() %}
 <div id="wb-sttl" class="col-md-8">
   <a href="{{ h.url_for(controller='home', action='index') }}">
-  	<object type="image/svg+xml" tabindex="-1" data="{{ wet_server }}/{{ wet_theme }}/assets/logo.svg"></object>
+    <object type="image/svg+xml" tabindex="-1" data="{{ h.url_for_wet_theme('/assets/logo.svg') }}"></object>
   	<span>
       {{ _(g.site_title|default("WET")) }}
       {% if g.site_description %}
