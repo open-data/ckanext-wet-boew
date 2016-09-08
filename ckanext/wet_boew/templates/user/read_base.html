@@ -1,8 +1,11 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
-  <h2 class="wb-inv">{{ _('Details') }}</h2>
-  {% block secondary_content_inner %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">{{ _('Details') }}</div>
+    </div>
+    {% block secondary_content_inner %}
     {% block user_heading %}{% endblock %}
     <div class="panel-body">
       {% if h.gravatar_show() %}
@@ -61,4 +64,5 @@
       {% endif %}
       {% endblock %}
   {% endblock %}
+  </div>
 {% endblock %}
