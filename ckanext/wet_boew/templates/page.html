@@ -43,7 +43,7 @@
           </h1>
         {% endblock %}
         <div class="row{% if self.secondary_content()|trim != '' %} wb-eqht{% else %}col-md-12{% endif %}">
-          <div class="{% if self.secondary_content()|trim != '' %}col-md-9{% else %}col-md-12{% endif %}">
+          <div class="{% if self.secondary_content()|trim != '' %}col-md-9{% endif %}">
             {% block primary_content %}
               <div class="row">
                   {% if self.content_primary_nav()|trim != '' %}
