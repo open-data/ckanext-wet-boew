@@ -11,11 +11,15 @@
   <div class="panel panel-default">
 
     <div class="panel-heading"><h3 class="h4">
+<!-- CM: Hacked in to reflect official language -->
+      {{ cr.field_id('title', package, client_lang) }}
+<!-- CM: Hacked out, does not reflect officianl language
       {% block heading %}
         {% block heading_private %}{{ super() }}{% endblock %}
         {{ self.heading_title() }}
         {% block heading_meta %}{{ super() }}{% endblock %}
       {% endblock %}
+-->
     </h3></div>
 
     <div class="panel-body">
