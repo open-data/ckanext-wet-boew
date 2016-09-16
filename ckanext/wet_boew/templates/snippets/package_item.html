@@ -12,7 +12,7 @@
 
     <div class="panel-heading"><h3 class="h4">
 <!-- CM: Hacked in to reflect official language -->
-      {{ cr.field_id('title', package, client_lang) }}
+      {{ h.link_to(h.truncate(cr.field_id('title', package, client_lang), truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}
     </h3></div>
 
     <div class="panel-body">
