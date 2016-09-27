@@ -16,7 +16,14 @@
       {% block flash %}
         {{ super() }}
       {% endblock %}
-      <main property="mainContentOfPage" class="{% if self.secondary_content()|trim != '' %}col-md-9{% else %}col-md-12{% endif %}" role="main">
+      {% block secondary %}
+        {% if self.secondary_content()|trim != '' %}
+          <aside class="col-md-3 col-md-push-9">
+            {% block secondary_content %}{% endblock %}
+          </aside>
+        {% endif %}
+      {% endblock %}
+      <main property="mainContentOfPage" class="{% if self.secondary_content()|trim != '' %}col-md-9 col-md-pull-3{% else %}col-md-12{% endif %}" role="main">
       {% block pre_primary %}{% endblock %}
       {% block page_title %}
         {{ super() }}
@@ -25,13 +32,6 @@
         {{ super() }}
       {% endblock %}
       </main>
-      {% block secondary %}
-        {% if self.secondary_content()|trim != '' %}
-          <aside class="col-md-3">
-            {% block secondary_content %}{% endblock %}
-          </aside>
-        {% endif %}
-      {% endblock %}
     </div>
   </div>
 {% endblock %}
