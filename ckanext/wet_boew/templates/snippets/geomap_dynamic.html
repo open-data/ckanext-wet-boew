@@ -1,6 +1,6 @@
 {% set config_js = h.url_for_static('/data/config-en.js') %}
 
-<div class="container">
+<div>
   <div id="dataset_map" class="wb-geomap position scaleline"
        data-wb-geomap='{ "layersFile": "{{config_js}}", "tables": [{ "id": "spatialfeature", "zoom": true, "tab": false, "popups": false}]}'>
     <div class="row">
