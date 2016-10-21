@@ -116,9 +116,15 @@ class WetTheme(p.SingletonPlugin):
     def url_for_wet(self, *args, **kw):
         file = args[0] or ''
         theme = kw.get('theme', False)
-        return h.url_for_static_or_external(
-            WET_URL + '/' + (self.wet_theme() if theme else 'wet-boew') + file
-        )
+
+        if not WET_URL:
+            return h.url_for_static_or_external(
+                (self.wet_theme() if theme else 'wet-boew') + file
+            )
+
+        return WET_URL + '/' + (self.wet_theme() if theme else 'wet-boew') + file
+
+
 
     def url_for_wet_theme(self, *args):
         file = args[0] or ''
