@@ -57,6 +57,9 @@ msgstr "Article"
 msgid "Heading"
 msgstr "En-tête"
 
+msgid "My Profile"
+msgstr "Mon profil"
+
 msgid "My Settings"
 msgstr "Mes Paramètres"
 

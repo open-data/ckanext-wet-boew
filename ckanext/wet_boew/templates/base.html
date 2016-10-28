@@ -18,7 +18,7 @@
   {%- if self.subtitle_2()|trim %} {{ g.template_title_deliminater }} {% endif -%}
   {%- block subtitle %}{% endblock -%}
   {%- if self.subtitle()|trim %} {{ g.template_title_deliminater }} {% endif -%}
-  {{ g.site_title }}
+  {{ _(g.site_title) }}
 {%- endblock -%}
 
 {% block bodytag %}{{super()}} vocab="http://schema.org/" typeof="WebPage"{% endblock %}
