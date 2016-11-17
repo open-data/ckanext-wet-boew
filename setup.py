@@ -24,10 +24,10 @@ setup(
 	],
 	entry_points=\
 	"""
-  [ckan.plugins]
+    [ckan.plugins]
 	# Add plugins here, eg
 	wet_boew=ckanext.wet_boew.plugins:WetTheme
-    wet_boew_theme_gc_intranet=ckanext.theme_gc_intranet.plugins:GCIntranetTheme
-    wet_boew_gcweb=ckanext.GCWeb.plugins:GCWebTheme
+    wet_boew_theme_gc_intranet=ckanext.wet_boew.plugins:GCIntranetTheme
+    wet_boew_gcweb=ckanext.wet_boew.plugins:GCWebTheme
 	""",
 )
