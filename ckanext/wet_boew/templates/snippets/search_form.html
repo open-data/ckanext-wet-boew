@@ -1,7 +1,7 @@
 {# It is not possible to use to ckan_extends due to the very different formatting that WET uses with forms #}
 {% import 'macros/form.html' as form %}
 
-{% set placeholder = placeholder if placeholder else _('Search...') %}
+{% set placeholder = placeholder if placeholder else _('Search') %}
 {% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc')] %}
 {% set search_class = search_class if search_class else 'search-giant' %}
 {% set sort_arg = request.params.get('sort') %}
