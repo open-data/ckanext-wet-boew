@@ -126,3 +126,6 @@ msgstr "Vérifiez dans les <a href=\"http://www.collectionscanada.gc.ca/012/012-
 
 msgid "<a href=\"/en/contact.html\">Contact us</a> and we'll help you out."
 msgstr "<a href=\"http://www.canada.ca/fr/contact/index.html\">Contactez-nous</a> pour de l'assistance."
+
+msgid "http://open.canada.ca/en"
+msgstr "http://open.canada.ca/fr"
