@@ -37,7 +37,7 @@ class WetTheme(p.SingletonPlugin):
 
         # add our templates - note that the Web Experience Toolkit distribution
         # files should be installed in the public folder
-        p.toolkit.add_template_directory(config, 'templates')
+        p.toolkit.add_template_directory(config, 'templates/wet_boew')
         p.toolkit.add_public_directory(config, 'public')
 
         # monkey patch helpers.py pagination method
@@ -184,3 +184,42 @@ def _add_extra_longitude_points(gjson):
         out.append([lng, lat])
         plng, plat = lng, lat
     return {u'coordinates': [out], u'type': u'Polygon'}
+
+class GCIntranetTheme(WetTheme):
+
+    p.implements(p.IConfigurer)
+
+    def update_config(self, config):
+        p.toolkit.add_template_directory(config, 'templates/theme_gc_intranet')
+        return super(GCIntranetTheme, self).update_config(config)
+
+    def wet_theme(self):
+        return 'theme-gc-intranet'
+
+class GCWebTheme(WetTheme):
+
+    p.implements(p.IConfigurer)
+
+    def update_config(self, config):
+        p.toolkit.add_template_directory(config, 'templates/GCWeb')
+        super(GCWebTheme, self).update_config(config)
+        h.build_nav_main = build_nav_main
+
+    def wet_theme(self):
+        return 'GCWeb'
+
+# Monkey Patched to inlude the 'list-group-item' class
+# TODO: Clean up and convert to proper HTML templates
+def build_nav_main(*args):
+    ''' build a set of menu items.
+
+    args: tuples of (menu type, title) eg ('login', _('Login'))
+    outputs <li><a href="...">title</a></li>
+    '''
+    output = ''
+    for item in args:
+        menu_item, title = item[:2]
+        if len(item) == 3 and not h.check_access(item[2]):
+            continue
+        output += h._make_menu_item(menu_item, title, class_='list-group-item')
+    return output
