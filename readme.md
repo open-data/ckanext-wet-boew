@@ -20,7 +20,7 @@ Configuration Settings
   *Example*
 
   ```
-  wet_boew.url = http://domain.com/wet-boew/v4.0.16
+  wet_boew.url = http://domain.com/wet-boew/v4.0.23
   ```
 
 ### Internally Hosted  ###
@@ -28,7 +28,7 @@ Configuration Settings
 1. Extract the WET 4.0.x core CDN and desired themes cdn package to a folder
 
   ```
-  export WET_VERSION=v4.0.16
+  export WET_VERSION=v4.0.23
   mkdir wet-boew && curl -L https://github.com/wet-boew/wet-boew-cdn/archive/$WET_VERSION.tar.gz | tar -zx --strip-components 1 --directory=wet-boew
   mkdir GCWeb && curl -L https://github.com/wet-boew/themes-cdn/archive/$WET_VERSION-gcweb.tar.gz | tar -zx --strip-components 1 --directory=GCWeb
   mkdir theme-base && curl -L https://github.com/wet-boew/themes-cdn/archive/$WET_VERSION-theme-base.tar.gz | tar -zx --strip-components 1 --directory=theme-base
@@ -44,7 +44,7 @@ Configuration Settings
   *Example*
 
   ```
-  extra_public_paths = /home/user/wet-boew/v4.0.16
+  extra_public_paths = /home/user/wet-boew/v4.0.23
   ```
 
 ## Selecting a theme ###
