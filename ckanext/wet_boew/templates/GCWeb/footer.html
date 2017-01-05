@@ -20,12 +20,14 @@
         <nav class="col-md-10 ftr-urlt-lnk">
           <h2 class="wb-inv">{{ _('About this site') }}</h2>
           <ul>
+            {% block foot_brand_inner %}
             <li><a href="{{ _('https://www1.canada.ca/en/contact/feedback.html') }}">{{ _('Feedback') }}</a></li>
             <li><a href="{{ _('https://www.canada.ca/en/social.html') }}">{{ _('Social media') }}</a></li>
             <li><a href="{{ _('https://www.canada.ca/en/mobile.html') }}">{{ _('Mobile applications') }}</a></li>
             <li><a href="{{ _('https://www1.canada.ca/en/newsite.html') }}">{{ _('About Canada.ca') }}</a></li>
             <li><a href="{{ _('https://www.canada.ca/en/transparency/terms.html') }}">{{ _('Terms and conditions') }}</a></li>
             <li><a href="{{ _('https://www.canada.ca/en/transparency/privacy.html') }}">{{ _('Privacy') }}</a></li>
+            {% endblock %}
           </ul>
         </nav>
         <div class="col-xs-6 visible-sm visible-xs tofpg">
