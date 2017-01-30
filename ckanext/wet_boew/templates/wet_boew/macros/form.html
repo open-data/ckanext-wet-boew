@@ -21,7 +21,8 @@ Examples:
   {%- set extra_html = caller() if caller -%}
 
   {% call input_block(id or name, label or name, error, classes, extra_html=extra_html, is_required=is_required) %}
-    <input id="{{ id or name }}" class="form-control" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" {% if placeholder != '' %} placeholder="{{ placeholder }}" {% endif %} {% if is_required %}required="required"{% endif %} {{ attributes(attrs) }} />
+    <input id="{{ id or name }}" class="form-control" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" {% if placeholder != '' %} placeholder="{{ placeholder }}" {% endif %} {% if is_required %}required="required"{% endif %}
+        {% if 'validationMessage' in attrs %}oninvalid="setCustomValidity( '{{ attrs.validationMessage }}' )" onchange="setCustomValidity('')"{% do attrs.pop('validationMessage') %} {% endif %} {{ attributes(attrs) }}/>
   {% endcall %}
 {% endmacro %}
 
