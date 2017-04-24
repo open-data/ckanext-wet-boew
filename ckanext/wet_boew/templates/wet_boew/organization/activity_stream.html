@@ -6,6 +6,11 @@
 
 {% block primary_content_inner %}
   {% block activity_stream %}
+  <div align="right">
+  <a href="{{ '/feeds/organization/'+c.group_dict['id']+'.atom' }}" title="RSS">
+          <span class="fa fa-rss-square"></span> Atom Feed
+        </a>
+        </div>
     {{ c.group_activity_stream | safe }}
   {% endblock %}
 {% endblock %}
