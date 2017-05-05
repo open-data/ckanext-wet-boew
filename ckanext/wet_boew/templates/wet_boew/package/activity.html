@@ -1,0 +1,12 @@
+{% extends "package/read_base.html" %}
+
+{% block subtitle %}{{ _('Activity Stream') }} - {{ super() }}{% endblock %}
+
+{% block breadcrumb_content %}
+  {{ super() }}
+  <li class="active">{{ _('Activity') }}</li>
+{% endblock %}
+
+{% block primary_content_inner %}
+  {% snippet 'snippets/activity_stream.html', activity_stream=activity_stream %}
+{% endblock %}
