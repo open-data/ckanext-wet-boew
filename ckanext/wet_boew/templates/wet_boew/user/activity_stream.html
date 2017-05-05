@@ -10,7 +10,5 @@
 
 {% block primary_content_inner %}
   <h2 class="wb-inv">{{ _('Activity Stream') }}</h2>
-  {% block activity_stream %}
-    {{ super() }}
-  {% endblock %}
+  {% snippet 'snippets/activity_stream.html', activity_stream=activity_stream %}
 {% endblock %}
