@@ -11,6 +11,6 @@
           <span class="fa fa-rss-square"></span>{{ _('Atom Feed') }}
         </a>
         </div>
-    {{ c.group_activity_stream | safe }}
+  {% snippet 'snippets/activity_stream.html', activity_stream=activity_stream %}
   {% endblock %}
 {% endblock %}
