@@ -29,14 +29,6 @@ setup(
 	wet_boew=ckanext.wet_boew.plugins:WetTheme
     wet_boew_theme_gc_intranet=ckanext.wet_boew.plugins:GCIntranetTheme
     wet_boew_gcweb=ckanext.wet_boew.plugins:GCWebTheme
-
-    [babel.extractors]
-    ckan = ckan.lib.extract:extract_ckan
 	""",
-    message_extractors={
-        'ckanext': [
-            ('**.py', 'python', None),
-            ('**/templates/**.html', 'ckan', None),
-        ],
-    },
+
 )
