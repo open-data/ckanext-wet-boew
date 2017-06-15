@@ -8,6 +8,12 @@
 {% endblock %}
 
 {% block primary_content_inner %}
+  <a href="{{ h.url_for(
+      controller='package',
+      action='read',
+      id=pkg.id) }}" class="btn btn-primary" rel="nofollow">
+    <i class="fa fa-arrow-left" aria-hidden="true">{{- _('Go back') -}}</i>
+  </a>
   {% snippet 'snippets/activity_stream.html', activity_stream=activity_stream %}
   {% if offset %}
   <a onclick="window.history.back()" class="btn btn-primary">
