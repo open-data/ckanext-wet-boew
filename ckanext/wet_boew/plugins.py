@@ -9,8 +9,7 @@ import ckan.model as model
 import webhelpers.html as html
 import dateutil.parser
 import json as json
-import shapely as shapely
-import shapely.wkt as wkt
+import geomet.wkt as wkt
 
 from webhelpers.html import HTML, literal
 from webhelpers.html.tags import link_to
@@ -106,7 +105,7 @@ class WetTheme(p.SingletonPlugin):
                 # certain shapes and if that fails showing the original
                 # is good enough
                 pass
-            shape = shapely.geometry.asShape(gjson)
+            shape = gjson
         except ValueError:
             return None # avoid 500 error on bad geojson in DB
 
