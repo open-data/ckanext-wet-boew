@@ -1,4 +1,8 @@
 
+# archived
+
+The templates and static files in this repository are no longer maintained. We've merged them into our theme extension to simplify maintenance for our team as we work on upgrading to the latest ckan release https://github.com/open-data/ckanext-canada/pull/1012
+
 ckanext-wet-boew
 ================
 
